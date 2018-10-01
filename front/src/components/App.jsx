@@ -1,11 +1,21 @@
-import React, { Component } from 'react';
+import React from 'react';
 
-import { Container } from 'reactstrap'
+import { Container, Row, Col } from 'reactstrap'
+
+import PlaceMap from '../containers/PlaceMap'
 
 const App = () => {
+
     return ( 
-        <Container>
-            
+        <Container fluid>
+            <Row className="justify-content-center align-items-center">
+                <Col
+                    xs="8"
+                    className="FormBlock p-4 text-center"
+                >
+                    <PlaceMap/>
+                </Col>
+            </Row>
         </Container>
      );
 }

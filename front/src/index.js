@@ -9,7 +9,6 @@ import allReducers from './reducers';
 import App from './components/App';
 
 import 'bootstrap/dist/css/bootstrap.min.css';
-import 'font-awesome/css/font-awesome.min.css';
 import './index.css';
 
 const createStoreWithMiddleWare = applyMiddleware(reduxThunk)(createStore);
