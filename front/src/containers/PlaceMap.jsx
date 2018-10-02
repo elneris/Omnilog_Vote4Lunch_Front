@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 
 import { Map, TileLayer } from 'react-leaflet';
-import {Button} from 'reactstrap'
-import { FontAwesomeIcon} from '@fortawesome/react-fontawesome'
-import { faBeer } from '@fortawesome/free-solid-svg-icons'
+import FindRestaurant from "./FindRestaurant"
+
+
 
 class PlaceMap extends Component {
 
@@ -31,7 +31,7 @@ class PlaceMap extends Component {
                 this.setState({
                     position_latitude: crd.latitude,
                     position_longitude:  crd.longitude,
-                    zoomLevel: 15,
+                    zoomLevel: 16,
                 })
             }
             navigator.geolocation.getCurrentPosition(success);
@@ -57,11 +57,10 @@ class PlaceMap extends Component {
                 center={mapCenter}
                 zoom={this.state.zoomLevel}
             >
-            <Button color="secondary" size="lg" className="mr-5"><FontAwesomeIcon icon={faBeer} /></Button>
                 <TileLayer
                     url={mapTiles}
                 />
-                
+                <FindRestaurant/>
             </Map>
         </div>
          );
@@ -69,30 +68,3 @@ class PlaceMap extends Component {
 }
  
 export default PlaceMap;
-
-// const PlaceMap = () => {
-
-//     const mapCenter = [44.833, -0.59];
-//     const zoomLevel = 12;
-//     const mapTiles = 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png';
-
-//     return (
-//         <div>
-//             <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.3.4/leaflet.css" />
-
-//             <Map
-//                 center={mapCenter}
-//                 zoom={zoomLevel}
-//             >
-//             <Button color="secondary" size="lg" className="mr-5"><FontAwesomeIcon icon={faBeer} /></Button>
-//                 <TileLayer
-//                     url={mapTiles}
-//                 />
-                
-//             </Map>
-//         </div>
-//     );
-// }
-
-// export default PlaceMap
-//     ;
