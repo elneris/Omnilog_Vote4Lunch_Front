@@ -73,3 +73,5 @@ typings/
 .serverless
 #VSCODE settings
 .vscode/*
+
+back/.postgres-data-dev
