@@ -8,12 +8,17 @@ const App = () => {
 
     return ( 
         <Container fluid>
-            <Row className="justify-content-center align-items-center">
+            <Row  noGutters className="justify-content-center align-items-center">
                 <Col
                     xs="8"
-                    className="FormBlock p-4 text-center"
+                    
                 >
                     <PlaceMap/>
+                </Col>
+                <Col 
+                    xs="4"
+                    className="FormBlock text-center"
+                >
                 </Col>
             </Row>
         </Container>

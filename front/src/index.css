@@ -9,5 +9,4 @@ body {
   border-radius: 25px; }
 
 .leaflet-container {
-  height: 600px;
-  width: 600px; }
+  height: 80vh; }
