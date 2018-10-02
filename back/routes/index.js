@@ -41,6 +41,17 @@ router.get('/api/lunch/all', (req, res) => {
   });
 });
 
+router.get('/api/lunch/today', (req, res) => {
+  const sqlQuery = "SELECT * FROM lunch where date = current_date;";
+  connection.query(sqlQuery, (error, results) => {
+    if (error) {
+      res.status(500).json({ error });
+    } else {
+      res.json(results);
+    }
+  });
+});
+
 router.post('/api/lunch/add', (req, res) => {
   const sqlQuery = `INSERT INTO lunch (username, place, date) values ('${req.body.username}', '${req.body.place}', '${req.body.date}');`
   
