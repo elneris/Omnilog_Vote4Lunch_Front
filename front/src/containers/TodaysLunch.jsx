@@ -10,13 +10,13 @@ import { faPlus, faMinus } from '@fortawesome/free-solid-svg-icons'
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 
-import { fetchUpVote } from '../actions';
+import { fetchUpVote, fetchDownVote } from '../actions';
 import { fetchTodaysLunchs } from '../actions/todayslunchs';
 
 class TodaysLunch extends Component {
 
     render() {
-        const { fetchUpVote, upvote, fetchTodaysLunchs } = this.props
+        const { fetchUpVote, fetchDownVote, upvote, fetchTodaysLunchs } = this.props
         
         if (upvote.completed && upvote.vote_id ===this.props.id) {
             fetchTodaysLunchs()
@@ -35,7 +35,7 @@ class TodaysLunch extends Component {
                             <CardText>créé par : {this.props.username}</CardText>
                             <CardText>votes : {this.props.vote}</CardText>
                             <ButtonGroup>
-                                <Button><FontAwesomeIcon icon={faMinus} /></Button>
+                                <Button onClick={() => fetchDownVote(this.props.id)}><FontAwesomeIcon icon={faMinus} /></Button>
                                 <Button onClick={() => fetchUpVote(this.props.id)}><FontAwesomeIcon icon={faPlus} /></Button>
                             </ButtonGroup>
                         </CardBody>
@@ -51,7 +51,7 @@ const mstp = ({ upvote }) => ({
 });
 
 const mdtp = (dispatch) => {
-    return bindActionCreators({ fetchUpVote, fetchTodaysLunchs }, dispatch);
+    return bindActionCreators({ fetchUpVote, fetchDownVote, fetchTodaysLunchs }, dispatch);
 }
 
 export default connect(mstp, mdtp)(TodaysLunch);
