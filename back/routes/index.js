@@ -31,7 +31,7 @@ router.get('/api/now', (req, res) => {
 });
 
 router.get('/api/lunch/all', (req, res) => {
-  const sqlQuery = "SELECT * FROM lunch;";
+  const sqlQuery = "SELECT * FROM lunch  ORDER BY id;";
   connection.query(sqlQuery, (error, results) => {
     if (error) {
       res.status(500).json({ error });
@@ -42,7 +42,7 @@ router.get('/api/lunch/all', (req, res) => {
 });
 
 router.get('/api/lunch/today', (req, res) => {
-  const sqlQuery = "SELECT * FROM lunch where date = current_date;";
+  const sqlQuery = "SELECT * FROM lunch where date = current_date  ORDER BY id;";
   connection.query(sqlQuery, (error, results) => {
     if (error) {
       res.status(500).json({ error });
@@ -53,7 +53,7 @@ router.get('/api/lunch/today', (req, res) => {
 });
 
 router.post('/api/lunch/add', (req, res) => {
-  const sqlQuery = `INSERT INTO lunch (username, place, date) VALUES ('${req.body.username}', '${req.body.place}', '${req.body.date}') ORDER BY id;`
+  const sqlQuery = `INSERT INTO lunch (username, place, date) VALUES ('${req.body.username}', '${req.body.place}', '${req.body.date}');`
   
   connection.query( sqlQuery, (error) => {
     if (error) {
