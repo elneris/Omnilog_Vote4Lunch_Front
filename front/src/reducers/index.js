@@ -1,7 +1,8 @@
 import {combineReducers} from 'redux';
-import oneReducer from './one';
 
+import todayslunchsReducer from './todayslunchs'
 
 export default combineReducers({
-  one: oneReducer,
+  todayslunchs: todayslunchsReducer,
+
 });

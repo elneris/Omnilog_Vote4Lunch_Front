@@ -36,8 +36,6 @@ class PlaceMap extends Component {
     getLocation() {
         if(navigator.geolocation) {
               // L'API est disponible
-            console.log('geoloc');
-
             const success = (pos)  => {
                 var crd = pos.coords;
 

@@ -3,6 +3,7 @@ import React from 'react';
 import { Container, Row, Col } from 'reactstrap'
 
 import PlaceMap from '../containers/PlaceMap'
+import TodaysLunchs from '../containers/TodaysLunchs'
 
 const App = () => {
 
@@ -19,6 +20,7 @@ const App = () => {
                     xs="4"
                     className="FormBlock text-center"
                 >
+                    <TodaysLunchs/>
                 </Col>
             </Row>
         </Container>
