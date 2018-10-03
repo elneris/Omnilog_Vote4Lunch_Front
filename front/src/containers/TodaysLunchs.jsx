@@ -16,7 +16,7 @@ class TodaysLunchs extends Component {
 
     render() {
         console.log(this.props.todayslunchs);
-
+        
         return (
             <Row className="pb-3">
                 <Col>
@@ -25,6 +25,7 @@ class TodaysLunchs extends Component {
                         this.props.todayslunchs.map(todayslunch => (
                             <TodaysLunch
                                 key={todayslunch.id}
+                                id={todayslunch.id}
                                 place={todayslunch.place}
                                 username={todayslunch.username}
                                 vote={todayslunch.vote}
