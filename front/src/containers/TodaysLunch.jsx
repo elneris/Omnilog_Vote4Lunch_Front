@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import {
     Row, Col, Card, CardText, CardBody,
-    CardTitle } from 'reactstrap';
+    CardHeader } from 'reactstrap';
 
 class TodaysLunch extends Component {
     constructor(props) {
@@ -10,15 +10,14 @@ class TodaysLunch extends Component {
     render() {
         return (
             <Row
-                className="justify-content-center align-items-center p-5"
+                className="justify-content-center align-items-center p-1"
             >
                 <Col
                     xs="10"
                 >
                     <Card>
-
+                    <CardHeader>{this.props.place}</CardHeader>
                         <CardBody>
-                            <CardTitle>{this.props.place}</CardTitle>
                             <CardText>créé par : {this.props.username}</CardText>
                             <CardText>votes : {this.props.vote}</CardText>
                         </CardBody>
