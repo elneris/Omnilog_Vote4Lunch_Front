@@ -53,7 +53,7 @@ router.get('/api/lunch/today', (req, res) => {
 });
 
 router.post('/api/lunch/add', (req, res) => {
-  const sqlQuery = `INSERT INTO lunch (username, place, date) values ('${req.body.username}', '${req.body.place}', '${req.body.date}');`
+  const sqlQuery = `INSERT INTO lunch (username, place, date) VALUES ('${req.body.username}', '${req.body.place}', '${req.body.date}') ORDER BY id;`
   
   connection.query( sqlQuery, (error) => {
     if (error) {
