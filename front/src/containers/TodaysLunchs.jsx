@@ -15,8 +15,6 @@ class TodaysLunchs extends Component {
     }
 
     render() {
-        console.log(this.props.todayslunchs);
-        
         return (
             <Row className="pb-3">
                 <Col>

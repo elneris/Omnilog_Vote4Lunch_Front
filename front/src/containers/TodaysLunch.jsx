@@ -11,11 +11,17 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 
 import { fetchUpVote } from '../actions';
+import { fetchTodaysLunchs } from '../actions/todayslunchs';
 
 class TodaysLunch extends Component {
 
     render() {
-        const { fetchUpVote } = this.props
+        const { fetchUpVote, upvote, fetchTodaysLunchs } = this.props
+        
+        if (upvote.completed && upvote.vote_id ===this.props.id) {
+            fetchTodaysLunchs()
+        }
+
         return (
             <Row
                 className="justify-content-center align-items-center p-1"
@@ -45,7 +51,7 @@ const mstp = ({ upvote }) => ({
 });
 
 const mdtp = (dispatch) => {
-    return bindActionCreators({ fetchUpVote }, dispatch);
+    return bindActionCreators({ fetchUpVote, fetchTodaysLunchs }, dispatch);
 }
 
 export default connect(mstp, mdtp)(TodaysLunch);

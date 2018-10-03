@@ -4,7 +4,7 @@ const upVote = (state = '', action) => {
 
             fetch(`/api/lunch/up_vote/${action.id}`)
 
-            return [...state, {completed: true}]
+            return {vote_id: action.id, completed: true}
 
         default:
             return state;
