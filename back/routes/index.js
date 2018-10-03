@@ -64,15 +64,9 @@ router.post('/api/lunch/add', (req, res) => {
   });
 });
 
-router.post('/api/lunch/up_vote', (req, res) => {
-
-  let voteForDate = '';
-
-  if (req.body.date !== '') {
-    voteForDate = ` AND date = '${req.body.date}'`
-  }
-
-  const sqlQuery = `UPDATE lunch SET vote = vote + 1 WHERE place = '${req.body.place}' ${voteForDate}`
+router.get('/api/lunch/up_vote/:id', (req, res) => {
+  
+  const sqlQuery = `UPDATE lunch SET vote = vote + 1 WHERE id = '${req.params.id}'`
   
   connection.query( sqlQuery, (error) => {
     if (error) {
@@ -83,15 +77,9 @@ router.post('/api/lunch/up_vote', (req, res) => {
   });
 });
 
-router.post('/api/lunch/down_vote', (req, res) => {
+router.get('/api/lunch/down_vote/:id', (req, res) => {
 
-  let voteForDate = '';
-
-  if (req.body.date !== '') {
-    voteForDate = ` AND date = '${req.body.date}'`
-  }
-
-  const sqlQuery = `UPDATE lunch SET vote = vote - 1 WHERE place = '${req.body.place}' ${voteForDate}`
+  const sqlQuery = `UPDATE lunch SET vote = vote - 1 WHERE id = '${req.params.id}'`
   
   connection.query( sqlQuery, (error) => {
     if (error) {
