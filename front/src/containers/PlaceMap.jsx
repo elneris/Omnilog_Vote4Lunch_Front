@@ -1,10 +1,15 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 
 import { Map, TileLayer, Marker, Popup } from 'react-leaflet';
+
 import FindRestaurant from "./FindRestaurant"
+
 import 'leaflet/dist/leaflet.css';
 
 import L from 'leaflet';
+
+import { fetchRestaurants } from '../actions/listOfRestaurants';
 
 delete L.Icon.Default.prototype._getIconUrl;
 
@@ -23,25 +28,23 @@ class PlaceMap extends Component {
             position_longitude: -0.59,
             zoomLevel: 12,
         }
+        this.getLocation = this.getLocation.bind(this);
+        this.getRestaurantsList = this.getRestaurantsList.bind(this);
     }
 
     componentDidMount() {
         this.getLocation();
     }
 
-    componentDidUpdate() {
-        console.log(this.refs.leaflet.leafletElement.getBounds());
-    }
-
     getLocation() {
-        if(navigator.geolocation) {
-              // L'API est disponible
-            const success = (pos)  => {
+        if (navigator.geolocation) {
+            // L'API est disponible
+            const success = (pos) => {
                 var crd = pos.coords;
 
                 this.setState({
                     position_latitude: crd.latitude,
-                    position_longitude:  crd.longitude,
+                    position_longitude: crd.longitude,
                     zoomLevel: 16,
                 })
             }
@@ -53,34 +56,56 @@ class PlaceMap extends Component {
         }
     }
 
-    render() { 
-        
+    getRestaurantsList() {
+        const coordinates = this.refs.leaflet.leafletElement.getBounds()
+        this.props.dispatch(fetchRestaurants(coordinates._northEast.lat, coordinates._northEast.lng, coordinates._southWest.lat, coordinates._southWest.lng))
+    }
+
+    render() {
+        const {error} = this.props
         const mapCenter = [this.state.position_latitude, this.state.position_longitude];
         const mapTiles = 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png';
-        const position = [44.8605579, -0.5528455]
-        
-        
-        return ( 
+        if(error) {
+            console.log(error);
+            
+        }
+
+        return (
             <div>
 
-            <Map
-                center={mapCenter}
-                zoom={this.state.zoomLevel}
-                ref='leaflet'
-            >
-                <TileLayer
-                    url={mapTiles}
-                />
-                <FindRestaurant/>
-                <Marker position={position}>
-          <Popup>
-            Les Tontons <br/> Easily customizable.
-          </Popup>
-        </Marker>
-            </Map>
-        </div>
-         );
+                <Map
+                    center={mapCenter}
+                    zoom={this.state.zoomLevel}
+                    ref='leaflet'
+                    onmoveend={() => this.getRestaurantsList()}
+                    onzoomend={() => this.getRestaurantsList()}
+                >
+                    <TileLayer
+                        url={mapTiles}
+                    />
+                    <FindRestaurant />
+                    {
+                        this.props.restaurants.map(restaurant => (
+                            <Marker
+                                key= {restaurant.id}
+                                position={[restaurant.lat,restaurant.lon]}
+                            >
+                                <Popup>
+                                    {restaurant.tags.name} <br />
+                                </Popup>
+                            </Marker>
+                        ))
+                    }
+
+                </Map>
+            </div>
+        );
     }
 }
- 
-export default PlaceMap;
+
+const mstp = ({ restaurants }) => ({
+    restaurants: restaurants.list,
+    error: restaurants.error,
+});
+
+export default connect(mstp)(PlaceMap);
