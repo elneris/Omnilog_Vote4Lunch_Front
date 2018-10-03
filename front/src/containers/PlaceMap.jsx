@@ -11,6 +11,9 @@ import L from 'leaflet';
 
 import { fetchRestaurants } from '../actions/listOfRestaurants';
 
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faUtensils } from '@fortawesome/free-solid-svg-icons'
+
 delete L.Icon.Default.prototype._getIconUrl;
 
 L.Icon.Default.mergeOptions({
@@ -67,7 +70,6 @@ class PlaceMap extends Component {
         const mapTiles = 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png';
         if(error) {
             console.log(error);
-            
         }
 
         return (
@@ -91,7 +93,7 @@ class PlaceMap extends Component {
                                 position={[restaurant.lat,restaurant.lon]}
                             >
                                 <Popup>
-                                    {restaurant.tags.name} <br />
+                                    <FontAwesomeIcon icon={faUtensils} /> {restaurant.tags.name}
                                 </Popup>
                             </Marker>
                         ))
