@@ -11,7 +11,7 @@ services:
       POSTGRES_PASSWORD: fakepassword
       POSTGRES_DB: vote4lunch
     volumes:
-      - data:/var/lib/postgresql/data
+      - data-vote4lunch:/var/lib/postgresql/data
     ports:
       - "5432:5432"
 
