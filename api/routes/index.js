@@ -49,15 +49,6 @@ router.post('/api/lunch/add', (req, res) => {
       }]
   })
   .then( () => res.sendStatus(200))
-  // const sqlQuery = `INSERT INTO lunch (username, place, date) VALUES ('${req.body.username}', '${req.body.place}', '${req.body.date}');`
-  
-  // connection.query( sqlQuery, (error) => {
-  //   if (error) {
-  //     res.status(500).json({ error });
-  //   } else {
-  //     res.sendStatus(200);
-  //   }
-  // });
 });
 
 export default router;
