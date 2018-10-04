@@ -1,15 +1,11 @@
 import express from 'express';
-import { Place } from '../sequelize'
-
+import { Place, Lunch, Type } from '../sequelize'
 const router = express.Router();
 
 router.get('/api/places', (req, res) => {
 
   if (req.query.ne_lat && req.query.ne_lng && req.query.sw_lat && req.query.sw_lng) {
-    console.log(req.query);
-    
-    res.json('pop')
-  } else {
+
     Place.findAll().then(places => {
       console.log(places);
 
@@ -21,9 +17,47 @@ router.get('/api/places', (req, res) => {
       }
     })
 
+  } else {
+    res.sendStatus(400);
   }
-
-
 })
+
+router.get('/api/lunch/today', (req, res) => {
+  Lunch.findAll().then(lunches => res.json(lunches))
+})
+
+router.post('/api/lunch/add', (req, res) => {
+  console.log(req.body);
+  
+  Lunch
+    .create({
+      username: req.body.username,
+      date: req.body.date,
+      place: {
+        name: req.body.place_name,
+        lat: parseFloat(req.body.place_lat),
+        lng: parseFloat(req.body.place_lng),
+        type: {
+          name: req.body.type_name
+        }
+      }}, {
+      include: [{
+        association: Lunch.Place,
+        include: [{
+          association: Place.Type
+        }]
+      }]
+  })
+  .then( () => res.sendStatus(200))
+  // const sqlQuery = `INSERT INTO lunch (username, place, date) VALUES ('${req.body.username}', '${req.body.place}', '${req.body.date}');`
+  
+  // connection.query( sqlQuery, (error) => {
+  //   if (error) {
+  //     res.status(500).json({ error });
+  //   } else {
+  //     res.sendStatus(200);
+  //   }
+  // });
+});
 
 export default router;

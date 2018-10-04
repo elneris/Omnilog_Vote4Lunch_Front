@@ -1,6 +1,6 @@
 import Sequelize from 'sequelize'
- import PlaceModel from './models/place'
-
+import { PlaceModel, TypeModel } from './models/place'
+import { LunchModel } from './models/lunch'
 
 const sequelize = new Sequelize('vote4lunch','db_user','fakepassword', {
     host: 'localhost',
@@ -14,8 +14,17 @@ const sequelize = new Sequelize('vote4lunch','db_user','fakepassword', {
 })
 
 export const Place = PlaceModel(sequelize, Sequelize)
+export const Type = TypeModel(sequelize, Sequelize)
 
-sequelize.sync({ force: true })
+// Type.hasMany(Place)
+Place.Type = Place.belongsTo(Type)
+
+export const Lunch = LunchModel(sequelize, Sequelize)
+
+// Place.hasMany(Lunch)
+Lunch.Place = Lunch.belongsTo(Place)
+
+sequelize.sync({force: true})
   .then(() => {
     console.log(`Database & tables created!`)
   })
