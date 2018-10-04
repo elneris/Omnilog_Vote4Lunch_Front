@@ -16,7 +16,7 @@ const initialState = {
         return {
           loading: false,
           error: null,
-          list: action.todayslunchs.rows,
+          list: action.todayslunchs,
         };
       case 'FETCH_TODAYSLUNCHS_FAILURE':
         return {

@@ -24,7 +24,7 @@ class TodaysLunchs extends Component {
                             <TodaysLunch
                                 key={todayslunch.id}
                                 id={todayslunch.id}
-                                place={todayslunch.place}
+                                place={todayslunch.place.name}
                                 username={todayslunch.username}
                                 vote={todayslunch.vote}
                             />
