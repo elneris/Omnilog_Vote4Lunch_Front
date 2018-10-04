@@ -23,7 +23,12 @@ router.get('/api/places', (req, res) => {
 })
 
 router.get('/api/lunch/today', (req, res) => {
-  Lunch.findAll().then(lunches => res.json(lunches))
+  Lunch.findAll({
+    include: [{
+      model: Place,
+      as: 'place'
+    }]
+  }).then(lunches => res.json(lunches))
 })
 
 router.post('/api/lunch/add', (req, res) => {
