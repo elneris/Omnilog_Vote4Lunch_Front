@@ -1,6 +1,12 @@
 import express from 'express';
+
+import Sequelize from 'sequelize'
+
 import { Place, Lunch, Vote } from '../sequelize'
+
 const router = express.Router();
+
+const Op = Sequelize.Op
 
 router.get('/api/places', (req, res) => {
 
@@ -92,5 +98,34 @@ router.post('/api/vote/del/place', (req, res) => {
       })
       .then( () => res.json({deleted: true}))
 });
+
+router.get('/api/places/list', (req, res) => {
+
+  if (req.query.ne_lat && req.query.ne_lng && req.query.sw_lat && req.query.sw_lng) {
+
+    Place.findAll({
+      where: {
+        lat: {
+          [Op.between] : [req.query.ne_lat,req.query.sw_lat]
+        },
+        lng: {
+          [Op.between] : [req.query.ne_lng,req.query.sw_lng]
+        },
+      }
+    }).then(places => {
+      console.log(places);
+
+      if (places.length === 0) {
+
+        res.json('no results ')
+      } else {
+        res.json(places)
+      }
+    })
+
+  } else {
+    res.sendStatus(400);
+  }
+})
 
 export default router;
