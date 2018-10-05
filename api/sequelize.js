@@ -1,8 +1,9 @@
 import Sequelize from 'sequelize'
-import { PlaceModel, TypeModel } from './models/place'
+import { PlaceModel } from './models/place'
 import { LunchModel } from './models/lunch'
+import fs from 'fs';
 
-const sequelize = new Sequelize('vote4lunch','db_user','fakepassword', {
+const sequelize = new Sequelize('vote4lunch', 'db_user', 'fakepassword', {
     host: 'localhost',
     dialect: 'postgresql',
     poll: {
@@ -14,17 +15,24 @@ const sequelize = new Sequelize('vote4lunch','db_user','fakepassword', {
 })
 
 export const Place = PlaceModel(sequelize, Sequelize)
-export const Type = TypeModel(sequelize, Sequelize)
-
-// Type.hasMany(Place)
-Place.Type = Place.belongsTo(Type)
 
 export const Lunch = LunchModel(sequelize, Sequelize)
 
-// Place.hasMany(Lunch)
+Place.hasMany(Lunch)
 Lunch.Place = Lunch.belongsTo(Place)
 
-sequelize.sync({force: true})
-  .then(() => {
-    console.log(`Database & tables created!`)
-  })
+sequelize.sync({ force: true })
+    .then(() => {
+        console.log(`Database & tables created!`)
+
+        const PlacesData = JSON.parse(fs.readFileSync('./.json_data/places.json', 'UTF-8'));
+
+        PlacesData.map(place => Place
+            .create({
+                name: place.tags.name,
+                lat: parseFloat(place.lat),
+                lng: parseFloat(place.lon),
+                type: place.tags.amenity
+            })
+        )
+    })

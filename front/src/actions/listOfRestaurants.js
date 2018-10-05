@@ -18,8 +18,7 @@ export const fetchRestaurantsBegin = () => ({
       const bbox = `[bbox:${southWestLat},${southWestLon},${northEastLat},${northEastLon}]`
       const restaurants = `node[amenity=restaurant];`
       const fast_foods = `node[amenity=fast_food];`
-      const bakeries = `node[shop=bakery];`
-      const url = `http://overpass-api.de/api/interpreter?data=${bbox}[out:json];(${restaurants}${fast_foods}${bakeries});out;`
+      const url = `http://overpass-api.de/api/interpreter?data=${bbox}[out:json];(${restaurants}${fast_foods});out;`
       return (
         fetch(url)
           .then((res) => {
