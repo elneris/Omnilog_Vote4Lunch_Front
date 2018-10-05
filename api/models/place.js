@@ -5,9 +5,21 @@ export const PlaceModel = (sequelize, type) => {
           primaryKey: true,
           autoIncrement: true
         },
-        name: type.STRING,
-        lat: type.FLOAT,
-        lng: type.FLOAT,
-        type: type.STRING,
+        name: {
+            type: type.STRING,
+            allowNull: false,
+        },
+        lat: {
+            type: type.FLOAT,
+            allowNull: false
+        },
+        lng: {
+            type: type.FLOAT,
+            allowNull: false
+        },
+        type: {
+            type: type.STRING,
+            allowNull: false
+        },
     })
 }
