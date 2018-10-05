@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 
 import { Redirect } from 'react-router-dom'
 
+import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 
 import { Container, Row, Col, Button, Form, FormGroup, Label, Input } from 'reactstrap'
@@ -15,7 +16,8 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faSpinner } from '@fortawesome/free-solid-svg-icons'
 
 import { createAVote } from '../actions/createAVote'
-
+import { saveVoteData } from '../actions'
+ 
 class CreateAVote extends Component {
     constructor(props) {
         super(props);
@@ -39,7 +41,7 @@ class CreateAVote extends Component {
 
     submitForm(e) {
         e.preventDefault();
-        this.props.dispatch(createAVote(this.state.pseudo, this.state.email, this.state.date))
+        this.props.createAVote(this.state.pseudo, this.state.email, this.state.date)
     }
 
     render() {
@@ -48,10 +50,9 @@ class CreateAVote extends Component {
 
         const { result, error, loading } = this.props
         if (result !== '' && result.createdAt) {
-            console.log(result);
+            this.props.saveVoteData(result.id,result.date,result.pseudo,result.email)
             return <Redirect to='/add-place'/>
         } else if (loading) {
-            console.log('loading...');
             rendering = <FontAwesomeIcon icon={faSpinner} spin />
         } else if (error) {
             console.log(error);
@@ -125,4 +126,8 @@ const mstp = ({ vote }) => ({
     loading: vote.loading
 });
 
-export default connect(mstp)(CreateAVote);
+const mdtp = (dispatch) => {
+    return bindActionCreators({ createAVote, saveVoteData }, dispatch);
+}
+
+export default connect(mstp, mdtp)(CreateAVote);

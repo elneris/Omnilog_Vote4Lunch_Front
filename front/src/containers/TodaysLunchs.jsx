@@ -12,13 +12,17 @@ class TodaysLunchs extends Component {
 
     componentDidMount() {
         this.props.dispatch(fetchTodaysLunchs());
+
     }
 
     render() {
+
+        const{ voteData } = this.props
+        
         return (
             <Row className="pb-3">
                 <Col>
-                    <h3 className='text-white'>Liste des restaurants du jour</h3>
+                    <h5 className='text-white'>Maintenant { voteData.pseudo }, ajoute des restaurants</h5>
                     {
                         this.props.todayslunchs.map(todayslunch => (
                             <TodaysLunch
@@ -36,8 +40,9 @@ class TodaysLunchs extends Component {
     }
 }
 
-const mstp = ({ todayslunchs }) => ({
-    todayslunchs: todayslunchs.list
+const mstp = ({ todayslunchs, voteData }) => ({
+    todayslunchs: todayslunchs.list,
+    voteData: voteData
 });
 
 export default connect(mstp)(TodaysLunchs);
