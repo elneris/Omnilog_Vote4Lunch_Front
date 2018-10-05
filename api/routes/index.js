@@ -57,19 +57,18 @@ router.post('/api/lunch/add', (req, res) => {
 });
 
 router.post('/api/vote/add', (req, res) => {
-console.log(req.body.date);
 
+  console.log(req.body.date);
   /^(\d{2})\/(\d{2})\/(\d{4})$/.exec(req.body.date)
-
   const formattedDate = new Date(RegExp.$3 + '-' + RegExp.$2 + '-' + RegExp.$1)
-
   console.log(formattedDate);
 
   Vote
     .create({
       pseudo: req.body.pseudo,
       email: req.body.email,
-      date: formattedDate
+      // date: formattedDate
+      date: req.body.date
     })
     .then(vote => res.json(vote))
 })
