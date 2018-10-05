@@ -1,6 +1,7 @@
 import Sequelize from 'sequelize'
 import { PlaceModel } from './models/place'
 import { LunchModel } from './models/lunch'
+import  { VoteModel } from './models/vote'
 import fs from 'fs';
 
 const sequelize = new Sequelize('vote4lunch', 'db_user', 'fakepassword', {
@@ -20,6 +21,13 @@ export const Lunch = LunchModel(sequelize, Sequelize)
 
 Place.hasMany(Lunch)
 Lunch.Place = Lunch.belongsTo(Place)
+
+export const Vote = VoteModel(sequelize, Sequelize)
+
+let VotePlace = sequelize.define('vote_place', {});
+
+Vote.belongsToMany(Place, { through: VotePlace });
+Place.belongsToMany(Vote, { through: VotePlace });
 
 sequelize.sync({ force: true })
     .then(() => {

@@ -1,5 +1,5 @@
 import express from 'express';
-import { Place, Lunch, Type } from '../sequelize'
+import { Place, Lunch, Vote } from '../sequelize'
 const router = express.Router();
 
 router.get('/api/places', (req, res) => {
@@ -55,5 +55,23 @@ router.post('/api/lunch/add', (req, res) => {
   })
   .then( () => res.sendStatus(200))
 });
+
+router.post('/api/vote/add', (req, res) => {
+console.log(req.body.date);
+
+  /^(\d{2})\/(\d{2})\/(\d{4})$/.exec(req.body.date)
+
+  const formattedDate = new Date(RegExp.$3 + '-' + RegExp.$2 + '-' + RegExp.$1)
+
+  console.log(formattedDate);
+
+  Vote
+    .create({
+      pseudo: req.body.pseudo,
+      email: req.body.email,
+      date: formattedDate
+    })
+    .then(vote => res.json(vote))
+})
 
 export default router;
