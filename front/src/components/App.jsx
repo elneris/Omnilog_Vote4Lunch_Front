@@ -1,30 +1,23 @@
 import React from 'react';
 
+import {Route, Switch} from 'react-router-dom';
+
 import { Container, Row, Col } from 'reactstrap'
 
-import PlaceMap from '../containers/PlaceMap'
-import TodaysLunchs from '../containers/TodaysLunchs'
+import BeginVote from './BeginVote'
+import CreateAVote from '../containers/CreateAVote'
 
 const App = () => {
 
-    return ( 
-        <Container fluid>
-            <Row  noGutters className="justify-content-center align-items-center">
-                <Col
-                    xs="8"
-                    
-                >
-                    <PlaceMap/>
-                </Col>
-                <Col 
-                    xs="4"
-                    className="FormBlock text-center"
-                >
-                    <TodaysLunchs/>
-                </Col>
-            </Row>
-        </Container>
-     );
+    return (
+
+        <Switch>
+          <Route exact path="/" component={BeginVote} />
+          <Route exact path="/second-step" component={CreateAVote} />
+        </Switch>
+
+
+    );
 }
- 
+
 export default App;

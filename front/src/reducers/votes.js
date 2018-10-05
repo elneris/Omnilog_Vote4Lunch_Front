@@ -1,4 +1,12 @@
-const upVote = (state = '', action) => {
+import axios from 'axios'
+
+const initialState = {
+    date: null,
+    pseudo: '',
+    email: ''
+}
+
+const vote = (state = initialState, action) => {
     switch (action.type) {
         case 'FETCH_UP_VOTE':
 
@@ -11,10 +19,10 @@ const upVote = (state = '', action) => {
             fetch(`/api/lunch/down_vote/${action.id}`)
 
             return {vote_id: action.id, completed: true}
-        
+        case 'CREATE_A_VOTE':
         default:
             return state;
     }
 }
 
-export default upVote;
+export default vote;
