@@ -74,4 +74,13 @@ console.log(req.body.date);
     .then(vote => res.json(vote))
 })
 
+router.post('/api/vote/add/place', (req, res) => {
+  Vote
+    .findById(req.body.vote_id)
+    .then(vote => {
+      Place.findById(req.body.place_id)
+      .then(place => { vote.setPlaces([place])})
+    })
+    .then( () => res.json({added: true}))
+  });
 export default router;
