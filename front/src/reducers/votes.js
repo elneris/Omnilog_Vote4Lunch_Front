@@ -1,5 +1,3 @@
-import axios from 'axios'
-
 const initialState = {
     date: null,
     pseudo: '',
@@ -19,7 +17,6 @@ const vote = (state = initialState, action) => {
             fetch(`/api/lunch/down_vote/${action.id}`)
 
             return {vote_id: action.id, completed: true}
-        case 'CREATE_A_VOTE':
         default:
             return state;
     }

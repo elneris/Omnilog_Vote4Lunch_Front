@@ -2,10 +2,9 @@ import React from 'react';
 
 import {Route, Switch} from 'react-router-dom';
 
-import { Container, Row, Col } from 'reactstrap'
-
 import BeginVote from './BeginVote'
 import CreateAVote from '../containers/CreateAVote'
+import AddPlace from '../components/AddPlace'
 
 const App = () => {
 
@@ -13,7 +12,8 @@ const App = () => {
 
         <Switch>
           <Route exact path="/" component={BeginVote} />
-          <Route exact path="/second-step" component={CreateAVote} />
+          <Route exact path="/begin-vote" component={CreateAVote} />
+          <Route exact path="/add-place" component={AddPlace} />
         </Switch>
 
 
