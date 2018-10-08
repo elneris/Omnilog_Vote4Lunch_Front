@@ -27,8 +27,6 @@ export const addAPlaceBegin = () => ({
             }
         })
           .then(result => {
-            console.log(result);
-            
             dispatch(addAPlaceSuccess(result))
           } 
       )
