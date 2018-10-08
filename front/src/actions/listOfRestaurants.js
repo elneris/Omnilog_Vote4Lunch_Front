@@ -22,11 +22,7 @@ export const fetchRestaurantsBegin = () => ({
       const url = `/api/places/list?${bbox}`
       return (
         axios.get(url)
-          .then(restaurants => {
-            console.log(restaurants);
-            
-            dispatch(fetchRestaurantsSuccess(restaurants.data))
-          } )
+          .then(restaurants => dispatch(fetchRestaurantsSuccess(restaurants.data)))
           .catch(error => dispatch(fetchRestaurantsFailure(error)))
       );
     };
