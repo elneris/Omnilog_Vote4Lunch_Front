@@ -78,9 +78,16 @@ router.post('/api/vote/add/place', (req, res) => {
     .findById(req.body.vote_id)
     .then(vote => {
       Place.findById(req.body.place_id)
-      .then(place => { vote.addPlace(place)})
+      .then(place => {
+        vote.addPlace(place)
+        return place
+        }).then( place => {
+          console.log(place);
+          res.json({added: true,place:place.dataValues})
+      })
+        
     })
-    .then( () => res.json({added: true}))
+    
   });
 
 router.post('/api/vote/del/place', (req, res) => {
