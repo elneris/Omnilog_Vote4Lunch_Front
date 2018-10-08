@@ -89,8 +89,38 @@ class PlaceMap extends Component {
         const mapCenter = [this.state.position_latitude, this.state.position_longitude];
         const mapTiles = 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png';
 
+        let render
+
+        if (restaurants.length === 0) {
+            this.props.dispatch(onMapAlert('info','Pas de restaurant connu dans cette zone'))
+            setTimeout(()=>{this.props.dispatch(offMapAlert())}, 3000)
+        } else {
+            render = restaurants.map(restaurant => (
+                <Marker
+                    key={restaurant.id}
+                    position={[restaurant.lat, restaurant.lng]}
+                >
+                    <Popup>
+                        <p className='text-center mb-1'>
+                            {restaurant.type === 'restaurant' ? <MaterialIcon icon="restaurant" /> : <MaterialIcon icon="fastfood" />}
+                        </p>
+                        <p className='text-center my-1'>
+                            {restaurant.name}
+                        </p>
+                        <p className='text-center mt-1'>
+                            <Button
+                                color='success'
+                                onClick={() => this.addAPlaceToVote(voteData, restaurant.id)}
+                            ><FontAwesomeIcon icon={faPlus} /></Button>
+                        </p>
+                    </Popup>
+                </Marker>
+            ))
+        }
+
         if (error) {
-            console.log(error);
+            this.props.dispatch(onMapAlert('danger','Aie, il y a un problème avec la carte'))
+            setTimeout(()=>{this.props.dispatch(offMapAlert())}, 3000)
         }
 
         return (
@@ -108,29 +138,7 @@ class PlaceMap extends Component {
                     />
 
                     <Controls/>
-                    {
-                        restaurants.map(restaurant => (
-                            <Marker
-                                key={restaurant.id}
-                                position={[restaurant.lat, restaurant.lng]}
-                            >
-                                <Popup>
-                                    <p className='text-center mb-1'>
-                                        {restaurant.type === 'restaurant' ? <MaterialIcon icon="restaurant" /> : <MaterialIcon icon="fastfood" />}
-                                    </p>
-                                    <p className='text-center my-1'>
-                                        {restaurant.name}
-                                    </p>
-                                    <p className='text-center mt-1'>
-                                        <Button
-                                            color='success'
-                                            onClick={() => this.addAPlaceToVote(voteData, restaurant.id)}
-                                        ><FontAwesomeIcon icon={faPlus} /></Button>
-                                    </p>
-                                </Popup>
-                            </Marker>
-                        ))
-                    }
+                    { render }
                 </Map>
             </div>
         );
