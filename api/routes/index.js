@@ -8,35 +8,6 @@ const router = express.Router();
 
 const Op = Sequelize.Op
 
-router.get('/api/places', (req, res) => {
-
-  if (req.query.ne_lat && req.query.ne_lng && req.query.sw_lat && req.query.sw_lng) {
-
-    Place.findAll().then(places => {
-      console.log(places);
-
-      if (places.length === 0) {
-
-        res.json('no results ')
-      } else {
-        res.json(places)
-      }
-    })
-
-  } else {
-    res.sendStatus(400);
-  }
-})
-
-router.get('/api/lunch/today', (req, res) => {
-  Lunch.findAll({
-    include: [{
-      model: Place,
-      as: 'place'
-    }]
-  }).then(lunches => res.json(lunches))
-})
-
 router.post('/api/lunch/add', (req, res) => {
   console.log(req.body);
   
@@ -82,7 +53,6 @@ router.post('/api/vote/add/place', (req, res) => {
         vote.addPlace(place)
         return place
         }).then( place => {
-          console.log(place);
           res.json({added: true,place:place.dataValues})
       })
         
@@ -117,7 +87,7 @@ router.get('/api/places/list', (req, res) => {
 
       if (places.length === 0) {
 
-        res.json('[]')
+        res.json([])
       } else {
         res.json(places)
       }
