@@ -102,7 +102,7 @@ router.post('/api/vote/del/place', (req, res) => {
 router.get('/api/places/list', (req, res) => {
 
   if (req.query.ne_lat && req.query.ne_lng && req.query.sw_lat && req.query.sw_lng) {
-
+    
     Place.findAll({
       where: {
         lat: {
@@ -113,11 +113,10 @@ router.get('/api/places/list', (req, res) => {
         },
       }
     }).then(places => {
-      console.log(places);
 
       if (places.length === 0) {
 
-        res.json('no results ')
+        res.json('[]')
       } else {
         res.json(places)
       }
