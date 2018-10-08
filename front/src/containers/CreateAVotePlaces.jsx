@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Row, Col, ListGroup } from 'reactstrap'
+import { Row, Col, ListGroup, Button } from 'reactstrap'
 
 import Place from '../components/Place'
 
@@ -9,7 +9,10 @@ class CreateAVotePlaces extends Component {
     render() {
 
         const{ voteData } = this.props
-        
+        let disabled_button = true
+        if (voteData.places.length >= 2) {
+            disabled_button = false
+        }
         return (
             <Row className="pb-3 px-2">
                 <Col>
@@ -25,6 +28,11 @@ class CreateAVotePlaces extends Component {
                         ))
                     }
                     </ListGroup>
+                    <Button
+                        color='success'
+                        disabled = { disabled_button }
+                        className = "mt-4"
+                    > Créer le vote</Button>
                 </Col>
             </Row>
         );
