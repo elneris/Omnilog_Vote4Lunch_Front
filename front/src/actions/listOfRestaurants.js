@@ -21,14 +21,12 @@ export const fetchRestaurantsBegin = () => ({
 
       const url = `/api/places/list?${bbox}`
       return (
-        fetch(url)
-          .then((res) => {
-            if (!res.ok) {
-              throw Error(res.statusText);
-            }
-            return res.json();
-          })
-          .then(restaurants => dispatch(fetchRestaurantsSuccess(restaurants)))
+        axios.get(url)
+          .then(restaurants => {
+            console.log(restaurants);
+            
+            dispatch(fetchRestaurantsSuccess(restaurants.data))
+          } )
           .catch(error => dispatch(fetchRestaurantsFailure(error)))
       );
     };
