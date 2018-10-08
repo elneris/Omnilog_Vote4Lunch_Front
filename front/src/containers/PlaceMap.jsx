@@ -67,7 +67,6 @@ class PlaceMap extends Component {
         const {error, restaurants} = this.props
         const mapCenter = [this.state.position_latitude, this.state.position_longitude];
         const mapTiles = 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png';
-        console.log(restaurants);
         
         if(error) {
             console.log(error);
