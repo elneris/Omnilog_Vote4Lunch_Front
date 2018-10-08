@@ -3,6 +3,8 @@ import { connect } from 'react-redux';
 
 import { Map, TileLayer, Marker, Popup } from 'react-leaflet';
 
+import { Button } from 'reactstrap'
+
 import FindRestaurant from "./FindRestaurant"
 
 import 'leaflet/dist/leaflet.css';
@@ -11,7 +13,11 @@ import L from 'leaflet';
 
 import { fetchRestaurants } from '../actions/listOfRestaurants';
 
+import { addAPlace } from '../actions/addAPlace'
+
 import MaterialIcon from 'material-icons-react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faPlus } from '@fortawesome/free-solid-svg-icons'
 
 delete L.Icon.Default.prototype._getIconUrl;
 
@@ -32,6 +38,7 @@ class PlaceMap extends Component {
         }
         this.getLocation = this.getLocation.bind(this);
         this.getRestaurantsList = this.getRestaurantsList.bind(this);
+        this.addAPlaceToVote = this.addAPlaceToVote.bind(this);
     }
 
     componentDidMount() {
@@ -63,11 +70,16 @@ class PlaceMap extends Component {
         this.props.dispatch(fetchRestaurants(coordinates._northEast.lat, coordinates._northEast.lng, coordinates._southWest.lat, coordinates._southWest.lng))
     }
 
+    addAPlaceToVote(vote_id, place_id) {
+        console.log(vote_id, place_id);
+        this.props.dispatch(addAPlace(vote_id, place_id))
+      }
+
     render() {
-        const {error, restaurants} = this.props
+        const {error, restaurants, voteData} = this.props
         const mapCenter = [this.state.position_latitude, this.state.position_longitude];
         const mapTiles = 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png';
-        
+
         if(error) {
             console.log(error);
         }
@@ -93,11 +105,17 @@ class PlaceMap extends Component {
                                 position={[restaurant.lat,restaurant.lng]}
                             >
                                 <Popup>
-                                    <p className='text-center'>
+                                    <p className='text-center mb-1'>
                                     { restaurant.type === 'restaurant' ? <MaterialIcon icon="restaurant" /> : <MaterialIcon icon="fastfood" /> } 
                                     </p>
-                                    <p>
+                                    <p className='text-center my-1'>
                                     {restaurant.name}
+                                    </p>
+                                    <p className='text-center mt-1'>
+                                    <Button
+                                        color='success'
+                                        onClick={() => this.addAPlaceToVote(voteData.id, restaurant.id)}
+                                    ><FontAwesomeIcon icon={faPlus} /></Button>
                                     </p>
                                 </Popup>
                             </Marker>
@@ -110,9 +128,10 @@ class PlaceMap extends Component {
     }
 }
 
-const mstp = ({ restaurants }) => ({
+const mstp = ({ restaurants, voteData }) => ({
     restaurants: restaurants.list,
     error: restaurants.error,
+    voteData: voteData,
 });
 
 export default connect(mstp)(PlaceMap);

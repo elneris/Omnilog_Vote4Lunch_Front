@@ -3,7 +3,7 @@ import React from 'react';
 import { Container, Row, Col } from 'reactstrap'
 
 import PlaceMap from '../containers/PlaceMap'
-import TodaysLunchs from '../containers/TodaysLunchs'
+import CreateAVotePlaces from '../containers/CreateAVotePlaces';
 
 const AddPlace = () => {
 
@@ -20,7 +20,7 @@ const AddPlace = () => {
                     xs="4"
                     className="FormBlock text-center"
                 >
-                    <TodaysLunchs/>
+                    <CreateAVotePlaces/>
                 </Col>
             </Row>
         </Container>

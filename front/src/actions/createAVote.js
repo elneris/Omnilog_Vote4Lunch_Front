@@ -36,7 +36,7 @@ export const createAVoteBegin = () => ({
             data: {
                 pseudo: pseudo,
                 email: email,
-                date: date
+                date: date,
             }
         })
           .then(async result => {

@@ -1,7 +1,9 @@
 const initialState = {
+    id:'',
     date: null,
     pseudo: '',
-    email: ''
+    email: '',
+    places:[]
 }
 
 const vote = (state = initialState, action) => {
@@ -12,7 +14,16 @@ const vote = (state = initialState, action) => {
                 id: action.id,
                 date: action.date,
                 pseudo: action.pseudo,
-                email: action.email
+                email: action.email,
+            }
+        case 'ADD_A_PLACE_SUCCESS':
+            let newPlaces = state.places
+            if (action.result.data.added) {
+                newPlaces.push(action.result.data.place)   
+            }
+            return {
+                ...state,
+                places:newPlaces
             }
         default:
             return state;
