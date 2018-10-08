@@ -7,6 +7,7 @@ export const VoteModel = (sequelize, type) => {
         },
         pseudo: type.STRING,
         email: type.STRING,
-        date: type.DATE
+        date: type.DATE,
+        url: type.STRING
     })
 }

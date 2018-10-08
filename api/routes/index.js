@@ -10,11 +10,22 @@ const Op = Sequelize.Op;
 
 router.post('/api/vote/add', (req, res) => {
 
+  const makeid = () => {
+    var text = "";
+    var possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+  
+    for (var i = 0; i < 5; i++)
+      text += possible.charAt(Math.floor(Math.random() * possible.length));
+  
+    return text;
+  }
+
   Vote
     .create({
       pseudo: req.body.pseudo,
       email: req.body.email,
-      date: req.body.date
+      date: req.body.date,
+      url: makeid()
     })
     .then(vote => res.json(vote))
 })
