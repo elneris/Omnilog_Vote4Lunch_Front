@@ -4,7 +4,7 @@ import { Row, Col, ListGroup } from 'reactstrap'
 
 import Place from '../components/Place'
 
-class TodaysLunchs extends Component {
+class CreateAVotePlaces extends Component {
 
     render() {
 
@@ -35,5 +35,5 @@ const mstp = ({ voteData }) => ({
     voteData: voteData
 });
 
-export default connect(mstp)(TodaysLunchs);
+export default connect(mstp)(CreateAVotePlaces);
 

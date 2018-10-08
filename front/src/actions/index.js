@@ -15,3 +15,11 @@ export const fetchUpVote = id => ({
     pseudo,
     email
   })
+
+
+export const OnMapAlert = (type,status,message) => ({
+  type: 'ON_MAP_ALERT',
+  type,
+  status,
+  message
+})

@@ -5,8 +5,6 @@ import { Map, TileLayer, Marker, Popup } from 'react-leaflet';
 
 import { Button } from 'reactstrap'
 
-import FindRestaurant from "./FindRestaurant"
-
 import 'leaflet/dist/leaflet.css';
 
 import L from 'leaflet';
@@ -18,6 +16,7 @@ import { addAPlace } from '../actions/addAPlace'
 import MaterialIcon from 'material-icons-react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faPlus } from '@fortawesome/free-solid-svg-icons'
+import Controls from '../components/Controls';
 
 delete L.Icon.Default.prototype._getIconUrl;
 
@@ -70,23 +69,28 @@ class PlaceMap extends Component {
         this.props.dispatch(fetchRestaurants(coordinates._northEast.lat, coordinates._northEast.lng, coordinates._southWest.lat, coordinates._southWest.lng))
     }
 
-    addAPlaceToVote(vote_id, place_id) {
-        console.log(vote_id, place_id);
-        this.props.dispatch(addAPlace(vote_id, place_id))
-      }
+    addAPlaceToVote(voteData, place_id) {
+        if (voteData.places.length > 4) {
+            console.log('trop');
+
+        } else {
+            this.props.dispatch(addAPlace(voteData.id, place_id))
+        }
+
+    }
 
     render() {
-        const {error, restaurants, voteData} = this.props
+        const { error, restaurants, voteData } = this.props
         const mapCenter = [this.state.position_latitude, this.state.position_longitude];
         const mapTiles = 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png';
 
-        if(error) {
+        if (error) {
             console.log(error);
         }
 
         return (
             <div>
-
+                
                 <Map
                     center={mapCenter}
                     zoom={this.state.zoomLevel}
@@ -97,31 +101,31 @@ class PlaceMap extends Component {
                     <TileLayer
                         url={mapTiles}
                     />
-                    <FindRestaurant />
+
+                    <Controls/>
                     {
                         restaurants.map(restaurant => (
                             <Marker
-                                key= {restaurant.id}
-                                position={[restaurant.lat,restaurant.lng]}
+                                key={restaurant.id}
+                                position={[restaurant.lat, restaurant.lng]}
                             >
                                 <Popup>
                                     <p className='text-center mb-1'>
-                                    { restaurant.type === 'restaurant' ? <MaterialIcon icon="restaurant" /> : <MaterialIcon icon="fastfood" /> } 
+                                        {restaurant.type === 'restaurant' ? <MaterialIcon icon="restaurant" /> : <MaterialIcon icon="fastfood" />}
                                     </p>
                                     <p className='text-center my-1'>
-                                    {restaurant.name}
+                                        {restaurant.name}
                                     </p>
                                     <p className='text-center mt-1'>
-                                    <Button
-                                        color='success'
-                                        onClick={() => this.addAPlaceToVote(voteData.id, restaurant.id)}
-                                    ><FontAwesomeIcon icon={faPlus} /></Button>
+                                        <Button
+                                            color='success'
+                                            onClick={() => this.addAPlaceToVote(voteData, restaurant.id)}
+                                        ><FontAwesomeIcon icon={faPlus} /></Button>
                                     </p>
                                 </Popup>
                             </Marker>
                         ))
                     }
-
                 </Map>
             </div>
         );
