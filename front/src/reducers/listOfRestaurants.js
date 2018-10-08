@@ -16,7 +16,7 @@ const initialState = {
         return {
           loading: false,
           error: null,
-          list: action.restaurants.elements,
+          list: action.restaurants,
         };
       case 'FETCH_RESTAURANTS_FAILURE':
         return {

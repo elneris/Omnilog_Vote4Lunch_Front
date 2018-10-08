@@ -11,8 +11,7 @@ import L from 'leaflet';
 
 import { fetchRestaurants } from '../actions/listOfRestaurants';
 
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faUtensils } from '@fortawesome/free-solid-svg-icons'
+import MaterialIcon from 'material-icons-react';
 
 delete L.Icon.Default.prototype._getIconUrl;
 
@@ -65,9 +64,11 @@ class PlaceMap extends Component {
     }
 
     render() {
-        const {error} = this.props
+        const {error, restaurants} = this.props
         const mapCenter = [this.state.position_latitude, this.state.position_longitude];
         const mapTiles = 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png';
+        console.log(restaurants);
+        
         if(error) {
             console.log(error);
         }
@@ -87,13 +88,18 @@ class PlaceMap extends Component {
                     />
                     <FindRestaurant />
                     {
-                        this.props.restaurants.map(restaurant => (
+                        restaurants.map(restaurant => (
                             <Marker
                                 key= {restaurant.id}
-                                position={[restaurant.lat,restaurant.lon]}
+                                position={[restaurant.lat,restaurant.lng]}
                             >
                                 <Popup>
-                                    <FontAwesomeIcon icon={faUtensils} /> {restaurant.tags.name}
+                                    <p className='text-center'>
+                                    { restaurant.type === 'restaurant' ? <MaterialIcon icon="restaurant" /> : <MaterialIcon icon="fastfood" /> } 
+                                    </p>
+                                    <p>
+                                    {restaurant.name}
+                                    </p>
                                 </Popup>
                             </Marker>
                         ))
