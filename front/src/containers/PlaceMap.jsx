@@ -9,8 +9,8 @@ import 'leaflet/dist/leaflet.css';
 
 import L from 'leaflet';
 
+import { onMapAlert, offMapAlert } from '../actions'
 import { fetchRestaurants } from '../actions/listOfRestaurants';
-
 import { addAPlace } from '../actions/addAPlace'
 
 import MaterialIcon from 'material-icons-react';
@@ -70,9 +70,14 @@ class PlaceMap extends Component {
     }
 
     addAPlaceToVote(voteData, place_id) {
+        
         if (voteData.places.length > 4) {
-            console.log('trop');
-
+            this.props.dispatch(onMapAlert('danger','Le saviez vous : trop de choix tue le choix.'))
+            setTimeout(()=>{this.props.dispatch(offMapAlert())}, 3000)
+            
+        } else if (voteData.places.filter(place => place.id === place_id).length > 0 ) {
+                this.props.dispatch(onMapAlert('danger',"Hola, attention il existe déjà !"))
+                setTimeout(()=>{this.props.dispatch(offMapAlert())}, 3000)
         } else {
             this.props.dispatch(addAPlace(voteData.id, place_id))
         }

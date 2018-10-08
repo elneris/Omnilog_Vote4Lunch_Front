@@ -6,18 +6,22 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faExclamationTriangle } from '@fortawesome/free-solid-svg-icons';
 
 
-const TooManyPlaces = () => {
+const TooManyPlaces = ({message_type, status, message}) => {
+    let picto = ''
+    if (message_type === 'danger') {
+        picto = <FontAwesomeIcon icon={faExclamationTriangle} />
+    }
     return (
         <Control position="topright" >
-            <Alert color="danger">
-            <FontAwesomeIcon icon={faExclamationTriangle} /> Le saviez vous : trop de choix tue le choix. <FontAwesomeIcon icon={faExclamationTriangle} />
+            <Alert color={message_type} isOpen={status} >
+            {picto} {message} {picto}
             </Alert>
         </Control>
     );
 }
 
 const mstp = ({ onMapAlert }) => ({
-    type: onMapAlert.type,
+    message_type: onMapAlert.message_type,
     status: onMapAlert.status,
     message: onMapAlert.message
 });
