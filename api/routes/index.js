@@ -1,37 +1,12 @@
 import express from 'express';
 
-import Sequelize from 'sequelize'
+import Sequelize from 'sequelize';
 
-import { Place, Lunch, Vote } from '../sequelize'
+import { Place, Vote } from '../sequelize';
 
 const router = express.Router();
 
-const Op = Sequelize.Op
-
-router.post('/api/lunch/add', (req, res) => {
-  console.log(req.body);
-  
-  Lunch
-    .create({
-      username: req.body.username,
-      date: req.body.date,
-      place: {
-        name: req.body.place_name,
-        lat: parseFloat(req.body.place_lat),
-        lng: parseFloat(req.body.place_lng),
-        type: {
-          name: req.body.type_name
-        }
-      }}, {
-      include: [{
-        association: Lunch.Place,
-        include: [{
-          association: Place.Type
-        }]
-      }]
-  })
-  .then( () => res.sendStatus(200))
-});
+const Op = Sequelize.Op;
 
 router.post('/api/vote/add', (req, res) => {
 
