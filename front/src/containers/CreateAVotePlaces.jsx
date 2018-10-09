@@ -26,6 +26,7 @@ class CreateAVotePlaces extends Component {
                                 key={place.id}
                                 id={place.id}
                                 place={place.name}
+                                type={place.type}
                             />
                         ))
                     }

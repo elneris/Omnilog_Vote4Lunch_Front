@@ -2,11 +2,13 @@ import React from 'react';
 
 import { ListGroupItem } from 'reactstrap'
 
-const Place = ({place}) => {
+import MaterialIcon from 'material-icons-react';
+
+const Place = ({place, type}) => {
     
     return ( 
         <ListGroupItem>
-            {place}
+            {type === 'restaurant' ? <MaterialIcon icon="restaurant" /> : <MaterialIcon icon="fastfood" />} {place}
         </ListGroupItem>
      );
 }
