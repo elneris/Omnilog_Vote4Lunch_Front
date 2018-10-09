@@ -55,8 +55,7 @@ router.post('/api/vote/del/place', (req, res) => {
           vote.removePlace(place)
           return place
         }).then( (place) => res.json({deleted: true,place:place.dataValues}))
-      })
-      
+      })   
 });
 
 router.get('/api/places/list', (req, res) => {
@@ -86,5 +85,25 @@ router.get('/api/places/list', (req, res) => {
     res.sendStatus(400);
   }
 })
+
+router.post('/api/vote/get/places/list', (req, res) => {
+  Vote
+    .findOne({
+      where: {
+        url: req.body.vote_url
+      }
+    })
+    .then( vote => {
+      Place.findAll({
+        include: {
+          model: Vote, where: {
+            id: vote.id
+          }
+        }
+      }).then(places => {
+        res.json(places)
+      })
+    })   
+});
 
 export default router;
