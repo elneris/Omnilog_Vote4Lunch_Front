@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
-import { connect } from 'react-redux'
+import { connect } from 'react-redux';
 
-import { getPlacesList } from '../actions/getPlacesList'
+import { getPlacesList } from '../actions/getPlacesList';
 
-import { Container, Row } from 'reactstrap'
+import { Container, Row, Col } from 'reactstrap';
 
 import PlaceCard from './PlaceCard';
+import VoteMap from './VoteMap';
 
 class AddAVoice extends Component {
     constructor(props) {
@@ -23,14 +24,24 @@ class AddAVoice extends Component {
 
         return (
             <Container fluid className="stepContainer">
-                <Row className="justify-content-center align-items-center h-100">
+                <Row className="justify-content-center align-items-center">
                     {restaurants.map(restaurant => (
                         <PlaceCard
                             key={restaurant.id}
                             restaurant={restaurant}
                         />
                     ))}
-
+                </Row>
+                <Row
+                 className="justify-content-center align-items-center"
+                 noGutters
+                >
+                <Col
+                    xs="8"
+                    
+                >
+                    <VoteMap restaurants={restaurants}/>
+                </Col>
                 </Row>
             </Container>
         );

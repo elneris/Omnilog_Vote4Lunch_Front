@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 
 import { Col, Card, CardBody, CardTitle, CardText, Button, ButtonGroup } from 'reactstrap'
 
+import MaterialIcon from 'material-icons-react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faPlus, faMinus, faInfo } from '@fortawesome/free-solid-svg-icons'
 
@@ -26,8 +27,8 @@ class PlaceCard extends Component {
                         <FontAwesomeIcon icon={faInfo} />
                     </Button>
                     <CardBody className='text-center'>
-                        <CardTitle>{restaurant.name}
-
+                        <CardTitle>
+                        {restaurant.type === 'restaurant' ? <MaterialIcon icon="restaurant" /> : <MaterialIcon icon="fastfood" />} {restaurant.name}
                         </CardTitle>
                         <CardText>Votes</CardText>
                         <ButtonGroup>
