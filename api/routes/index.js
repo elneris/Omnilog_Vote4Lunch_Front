@@ -2,7 +2,7 @@ import express from 'express';
 
 import Sequelize from 'sequelize';
 
-import { Place, Vote } from '../sequelize';
+import { Place, Vote, Voice } from '../sequelize';
 
 const router = express.Router();
 
@@ -104,6 +104,15 @@ router.post('/api/vote/get/places/list', (req, res) => {
         res.json(places)
       })
     })   
+});
+
+router.post('/api/vote/add/voice', (req, res) => {
+Voice.create({
+  vote_id: req.body.vote_id,
+  place_id: req.body.place_id
+}).then(() => {
+  res.json({vote:true})
+})
 });
 
 export default router;
