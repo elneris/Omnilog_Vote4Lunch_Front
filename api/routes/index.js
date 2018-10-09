@@ -51,9 +51,12 @@ router.post('/api/vote/del/place', (req, res) => {
       .findById(req.body.vote_id)
       .then(vote => {
         Place.findById(req.body.place_id)
-        .then(place => { vote.removePlace(place)})
+        .then(place => { 
+          vote.removePlace(place)
+          return place
+        }).then( (place) => res.json({deleted: true,place:place.dataValues}))
       })
-      .then( () => res.json({deleted: true}))
+      
 });
 
 router.get('/api/places/list', (req, res) => {
