@@ -5,11 +5,13 @@ import fetchListOfRestaurantsReducer from './listOfRestaurants'
 import createAVoteReducer from './createAVote'
 import voteDataReducer from './voteData'
 import OnMapAlertReducer from './onMapAlert';
+import getPlacesListReducer from './getPlacesList'
 
 export default combineReducers({
   upvote: fetchUpVoteReducer,
   restaurants: fetchListOfRestaurantsReducer,
   vote: createAVoteReducer,
   voteData: voteDataReducer,
-  onMapAlert: OnMapAlertReducer
+  onMapAlert: OnMapAlertReducer,
+  getPlacesList: getPlacesListReducer
 });
