@@ -26,6 +26,18 @@ const vote = (state = initialState, action) => {
                 ...state,
                 places:newPlaces
             }
+        case 'DELETE_A_PLACE_SUCCESS':
+            let remainPlaces = state.places;
+            let result
+            if (action.result.data.deleted) {
+                result = remainPlaces.filter(element => element.id !== action.result.data.place.id)
+            } else {
+
+            }
+            return {
+                ...state,
+                places:result
+            }
         default:
             return state;
     }

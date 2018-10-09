@@ -24,9 +24,10 @@ class CreateAVotePlaces extends Component {
                         this.props.voteData.places.map(place => (
                             <Place
                                 key={place.id}
-                                id={place.id}
+                                place_id={place.id}
                                 place={place.name}
                                 type={place.type}
+                                vote_id= {voteData.id}
                             />
                         ))
                     }
