@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
 
-import { Col, Card, CardBody, CardTitle, CardText, Button, ButtonGroup } from 'reactstrap'
+import { Col, Card, CardBody, CardTitle, CardText, Button } from 'reactstrap'
 
 import MaterialIcon from 'material-icons-react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faPlus, faMinus, faInfo } from '@fortawesome/free-solid-svg-icons'
+import { faInfo } from '@fortawesome/free-solid-svg-icons'
+import { faSmileBeam } from '@fortawesome/free-regular-svg-icons'
 
 class PlaceCard extends Component {
 
@@ -28,10 +29,7 @@ class PlaceCard extends Component {
                         {restaurant.type === 'restaurant' ? <MaterialIcon icon="restaurant" /> : <MaterialIcon icon="fastfood" />} {restaurant.name}
                         </CardTitle>
                         <CardText>Votes</CardText>
-                        <ButtonGroup>
-                            <Button color='danger'><FontAwesomeIcon icon={faMinus} /></Button>
-                            <Button color='success'><FontAwesomeIcon icon={faPlus} /></Button>
-                        </ButtonGroup>
+                        <Button color='success'>Je vote pour ! <FontAwesomeIcon icon={faSmileBeam} /></Button>
                     </CardBody>
                 </Card>
             </Col>

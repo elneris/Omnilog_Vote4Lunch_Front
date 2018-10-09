@@ -20,7 +20,6 @@ class AddAVoice extends Component {
 
     render() {
         const { restaurants } = this.props
-        console.log(restaurants);
 
         return (
             <Container fluid className="stepContainer">
