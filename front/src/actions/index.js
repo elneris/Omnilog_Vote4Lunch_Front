@@ -8,12 +8,13 @@ export const fetchUpVote = id => ({
     id
   });
 
-  export const saveVoteData = (id,date, pseudo, email) => ({
+  export const saveVoteData = (id,date, pseudo, email, url) => ({
     type: 'SAVE_VOTE_DATA',
     id,
     date,
     pseudo,
-    email
+    email,
+    url
   })
 
 

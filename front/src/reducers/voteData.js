@@ -15,6 +15,7 @@ const vote = (state = initialState, action) => {
                 date: action.date,
                 pseudo: action.pseudo,
                 email: action.email,
+                url: action.url
             }
         case 'ADD_A_PLACE_SUCCESS':
             let newPlaces = state.places
