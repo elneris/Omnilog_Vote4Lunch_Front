@@ -58,7 +58,7 @@ class PlaceCard extends Component {
 }
 
 const mstp = ({ getVoicesCount }) => ({
-    voiceCount: getVoicesCount.count,
+    voiceCount: getVoicesCount,
 });
 
 export default connect(mstp)(PlaceCard);

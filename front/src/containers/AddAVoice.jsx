@@ -9,21 +9,20 @@ import PlaceCard from './PlaceCard';
 import VoteMap from './VoteMap';
 
 class AddAVoice extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {}
-    }
 
     componentDidMount() {
         this.props.dispatch(getPlacesList(this.props.match.params.url))
     }
 
     render() {
-        const { restaurants } = this.props
+        const { restaurants, hasVoted } = this.props
 
         return (
+
             <Container fluid className="stepContainer">
+
                 <Row className="justify-content-center align-items-center">
+
                     {restaurants.map(restaurant => (
                         <PlaceCard
                             key={restaurant.id}
@@ -33,23 +32,26 @@ class AddAVoice extends Component {
                     ))}
                 </Row>
                 <Row
-                 className="justify-content-center align-items-center"
-                 noGutters
+                    className="justify-content-center align-items-center"
+                    noGutters
                 >
-                <Col
-                    xs="8"
-                    
-                >
-                    <VoteMap restaurants={restaurants}/>
-                </Col>
+                    <Col
+                        xs="8"
+
+                    >
+                        <VoteMap restaurants={restaurants} />
+                    </Col>
                 </Row>
             </Container>
+
+
         );
     }
 }
 
-const mstp = ({ getPlacesList }) => ({
+const mstp = ({ getPlacesList, addVoice }) => ({
     restaurants: getPlacesList.result,
+    hasVoted: addVoice.result
 });
 
 export default connect(mstp)(AddAVoice);
