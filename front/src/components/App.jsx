@@ -4,11 +4,11 @@ import { Route, Switch } from 'react-router-dom';
 
 import BeginVote from './BeginVote'
 import AddPlace from './AddPlace'
-import Header from './Header'
 import Footer from './Footer'
 
-import CreateAVote from '../containers/CreateAVote'
+import CreateAVote from '../containers/CreateAVote';
 import AddAVoice from '../containers/AddAVoice';
+import Header from '../containers/Header';
 
 const App = () => {
 
