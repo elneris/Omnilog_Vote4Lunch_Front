@@ -6,6 +6,7 @@ import voteDataReducer from './voteData'
 import OnMapAlertReducer from './onMapAlert';
 import getPlacesListReducer from './getPlacesList'
 import getVoicesCountReducer from './getVoicesCount'
+import addVoiceReducer from './addVoice'
 
 export default combineReducers({
   restaurants: fetchListOfRestaurantsReducer,
@@ -14,4 +15,5 @@ export default combineReducers({
   onMapAlert: OnMapAlertReducer,
   getPlacesList: getPlacesListReducer,
   getVoicesCount: getVoicesCountReducer,
+  addVoice: addVoiceReducer,
 });
