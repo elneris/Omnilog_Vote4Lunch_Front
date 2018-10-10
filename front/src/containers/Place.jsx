@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
+
 import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
 
 import { ListGroupItem, Button } from 'reactstrap'
 
@@ -13,16 +15,11 @@ import { faTimes } from '@fortawesome/free-solid-svg-icons'
 class Place extends Component {
     constructor(props) {
         super(props);
-        this.deleteAPlaceToVote = this.deleteAPlaceToVote.bind(this);
-    }
-
-    deleteAPlaceToVote(vote_id, place_id) {
-        this.props.dispatch(deleteAPlace(vote_id, place_id))
     }
 
     render() {
 
-        const { place, type, vote_id, place_id } = this.props
+        const { place, type, vote_id, place_id, deleteAPlace } = this.props
 
         return (
             <ListGroupItem>
@@ -33,7 +30,7 @@ class Place extends Component {
                             color="danger"
                             size="sm"
                             className="float-right"
-                            onClick={() => this.deleteAPlaceToVote(vote_id, place_id) }
+                            onClick={() => deleteAPlace(vote_id, place_id) }
                         >
                             <FontAwesomeIcon icon={faTimes} />
                         </Button>
@@ -45,7 +42,8 @@ class Place extends Component {
     }
 }
 
-const mstp = () => ({
-});
+const mdtp = (dispatch) => {
+    return bindActionCreators({ deleteAPlace }, dispatch);
+}
 
-export default connect(mstp)(Place);
+export default connect(null, mdtp)(Place);

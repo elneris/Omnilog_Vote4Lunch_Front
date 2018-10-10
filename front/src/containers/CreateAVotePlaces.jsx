@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { Row, Col, ListGroup, Button } from 'reactstrap'
 import { Link } from 'react-router-dom';
 
-import Place from '../components/Place'
+import Place from '../containers/Place'
 
 class CreateAVotePlaces extends Component {
 
