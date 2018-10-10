@@ -13,9 +13,6 @@ import { faTimes } from '@fortawesome/free-solid-svg-icons'
 
 
 class Place extends Component {
-    constructor(props) {
-        super(props);
-    }
 
     render() {
 
