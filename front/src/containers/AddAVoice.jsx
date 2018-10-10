@@ -15,7 +15,7 @@ class AddAVoice extends Component {
     }
 
     render() {
-        const { restaurants, hasVoted } = this.props
+        const { restaurants } = this.props
 
         return (
 
