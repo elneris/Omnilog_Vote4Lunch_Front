@@ -7,8 +7,9 @@ body {
     width: 100vw;
   }
 
-#root, .container-fluid,
+#root, .container-fluid, .App,
 .row-fluid { height: inherit; }
+
 
 .bg-blue {
   background-color: #3E606F;
