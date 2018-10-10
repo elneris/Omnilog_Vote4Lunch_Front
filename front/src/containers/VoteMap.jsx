@@ -50,12 +50,13 @@ class VoteMap extends Component {
         const {restaurants} = this.props
 
         return (
-            <div>
+            <div className="mt-3">
                 
                 <Map
                     center={mapCenter}
                     zoom={this.state.zoomLevel}
                     ref='leaflet'
+                    className='VoteMap'
                 >
                     <TileLayer
                         url={mapTiles}

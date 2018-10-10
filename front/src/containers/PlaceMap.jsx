@@ -132,6 +132,7 @@ class PlaceMap extends Component {
                     ref='leaflet'
                     onmoveend={() => this.getRestaurantsList()}
                     onzoomend={() => this.getRestaurantsList()}
+                    className='PlaceMap'
                 >
                     <TileLayer
                         url={mapTiles}

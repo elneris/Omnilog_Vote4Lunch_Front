@@ -21,7 +21,7 @@ class AddAVoice extends Component {
 
             <Container fluid className="stepContainer">
 
-                <Row className="justify-content-center align-items-center">
+                <Row className="justify-content-center align-items-center mt-3">
 
                     {restaurants.map(restaurant => (
                         <PlaceCard
