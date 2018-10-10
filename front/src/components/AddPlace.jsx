@@ -1,30 +1,41 @@
 import React from 'react';
+import { connect } from 'react-redux';
+
+import { Redirect } from 'react-router-dom'
 
 import { Container, Row, Col } from 'reactstrap'
 
 import PlaceMap from '../containers/PlaceMap'
 import CreateAVotePlaces from '../containers/CreateAVotePlaces';
 
-const AddPlace = () => {
+const AddPlace = ({ voteData_id }) => {
 
-    return ( 
+    if (voteData_id === '') {
+        return <Redirect to='/' />
+    }
+
+    return (
         <Container fluid className="stepContainer">
-                <Row noGutters className="justify-content-center align-items-center h-100">
+            <Row noGutters className="justify-content-center align-items-center h-100">
                 <Col
                     xs="8"
-                    
+
                 >
-                    <PlaceMap/>
+                    <PlaceMap />
                 </Col>
-                <Col 
+                <Col
                     xs="4"
                     className="FormBlock text-center"
                 >
-                    <CreateAVotePlaces/>
+                    <CreateAVotePlaces />
                 </Col>
             </Row>
         </Container>
-     );
+    );
 }
- 
-export default AddPlace;
+
+const mstp = ({ voteData }) => ({
+    voteData_id: voteData.id,
+});
+
+export default connect(mstp)(AddPlace);
