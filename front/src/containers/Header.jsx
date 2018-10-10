@@ -9,8 +9,13 @@ import {
   NavbarBrand,
   Nav,
   NavItem,
-  NavLink
+  NavLink,
+  Button
 } from 'reactstrap';
+
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faPowerOff } from '@fortawesome/free-solid-svg-icons';
+import Link from 'react-router-dom/Link';
 
 class Header extends Component {
   constructor(props) {
@@ -23,13 +28,6 @@ class Header extends Component {
     };
   }
 
-  componentDidMount() {
-    const get_pseudo = localStorage.getItem('pseudo')
-    const get_email = localStorage.getItem('email')
-    if (get_pseudo && get_email) {
-    }
-  }
-
   toggle() {
     this.setState({
       isOpen: !this.state.isOpen
@@ -38,7 +36,7 @@ class Header extends Component {
 
   render() {
 
-    const {vote_pseudo} = this.props
+    const { vote_pseudo } = this.props
 
     let pseudo = ''
 
@@ -57,15 +55,24 @@ class Header extends Component {
           <NavbarToggler onClick={this.toggle} />
           <Collapse isOpen={this.state.isOpen} navbar>
             <Nav className="ml-auto" navbar>
-              <NavItem className="mr-3">
-              <NavLink>
-                {pseudo ? `Bonjour, ${pseudo}` : ''}
-              </NavLink>
-                
-              </NavItem>
-              <NavItem className="mr-3">
-                <NavLink href="http://www.omnilog.fr/">Omnilog</NavLink>
-              </NavItem>
+              {pseudo ?
+                <NavItem className="mr-3 pt-2">
+                  <NavLink>
+                    Bonjour, {pseudo}
+                  </NavLink>
+                </NavItem> : ''}
+              {pseudo ?
+                <NavItem>
+                    <Button
+                      tag={Link}
+                      color='danger'
+                      to='/logout'
+                    >
+                      <FontAwesomeIcon icon={faPowerOff} />
+                    </Button>
+                </NavItem>
+                : ''
+              }
             </Nav>
           </Collapse>
         </Navbar>

@@ -25,6 +25,11 @@ const initialState = {
           loading: false,
           error: action.error,
         };
+      case 'CREATE_A_VOTE_DELETE':
+        return {
+          ...state,
+          result:''
+        }
       default: 
         return state;
     }

@@ -3,7 +3,7 @@ const initialState = {
     date: null,
     pseudo: '',
     email: '',
-    places:[]
+    places:[],
 }
 
 const vote = (state = initialState, action) => {
