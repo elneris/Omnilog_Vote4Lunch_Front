@@ -60,7 +60,7 @@ class CreateAVote extends Component {
         }
 
         return (
-            <Container fluid className="stepContainer">
+            <Container fluid className="CreateAVote">
                 <Row noGutters className="justify-content-center align-items-center h-100">
                     <Col
                         xs="12"

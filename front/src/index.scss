@@ -7,9 +7,15 @@ body {
     width: 100vw;
   }
 
-#root, .container-fluid, .App,
-.row-fluid { height: inherit; }
+#root, .App { height: inherit; }
 
+.BeginVote .row {
+  min-height: 80vh;
+}
+
+.CreateAVote .row {
+  min-height: 80vh;
+}
 
 .bg-blue {
   background-color: #3E606F;

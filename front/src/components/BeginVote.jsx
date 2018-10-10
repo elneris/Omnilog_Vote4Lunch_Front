@@ -7,7 +7,7 @@ import { faPlus } from '@fortawesome/free-solid-svg-icons'
 
 const BeginVote = () => {
     return ( 
-        <Container  fluid className="stepContainer">
+        <Container fluid className="BeginVote">
             <Row noGutters className="justify-content-center align-items-center h-100">
                 <Col
                     xs="4" 
