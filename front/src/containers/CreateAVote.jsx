@@ -51,6 +51,8 @@ class CreateAVote extends Component {
         const { result, error, loading } = this.props
         if (result !== '' && result.createdAt) {
             this.props.saveVoteData(result.id,result.date,result.pseudo,result.email,result.url)
+            localStorage.setItem('pseudo', JSON.stringify(result.pseudo))
+            localStorage.setItem('email', JSON.stringify(result.email))
             return <Redirect to='/add-place'/>
         } else if (loading) {
             rendering = <FontAwesomeIcon icon={faSpinner} spin />
