@@ -8,7 +8,7 @@ const Footer = () => {
         <div className="Footer bg-blue">
             <div className="container text-center">
                 <span className="text-white">
-                    2018 - propulsé par <FontAwesomeIcon icon={faReact} />
+                    2018 - propulsé par <FontAwesomeIcon icon={faReact} /> pour <a href="http://www.omnilog.fr/" className="text-white">Omnilog</a>
                 </span>
             </div>
         </div>
