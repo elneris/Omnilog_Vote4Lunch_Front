@@ -17,7 +17,7 @@ import { faSpinner } from '@fortawesome/free-solid-svg-icons'
 
 import { createAVote } from '../actions/createAVote'
 import { saveVoteData } from '../actions'
- 
+
 class CreateAVote extends Component {
     constructor(props) {
         super(props);
@@ -26,6 +26,17 @@ class CreateAVote extends Component {
             focused: null,
             pseudo: '',
             email: ''
+        }
+    }
+
+    componentDidMount() {
+        const get_pseudo = localStorage.getItem('pseudo')
+        const get_email = localStorage.getItem('email')
+        if (get_pseudo && get_email) {
+            this.setState({
+                pseudo: get_pseudo,
+                email: get_email,
+            })
         }
     }
 
@@ -50,10 +61,10 @@ class CreateAVote extends Component {
 
         const { result, error, loading } = this.props
         if (result !== '' && result.createdAt) {
-            this.props.saveVoteData(result.id,result.date,result.pseudo,result.email,result.url)
+            this.props.saveVoteData(result.id, result.date, result.pseudo, result.email, result.url)
             localStorage.setItem('pseudo', result.pseudo)
             localStorage.setItem('email', result.email)
-            return <Redirect to='/add-place'/>
+            return <Redirect to='/add-place' />
         } else if (loading) {
             rendering = <FontAwesomeIcon icon={faSpinner} spin />
         } else if (error) {
@@ -98,6 +109,7 @@ class CreateAVote extends Component {
                                     type="text"
                                     name="pseudo"
                                     id="pseudo"
+                                    value={this.state.pseudo}
                                     onChange={(e) => this.handleChange(e)}
                                 />
                             </FormGroup>
@@ -107,6 +119,7 @@ class CreateAVote extends Component {
                                     type="email"
                                     name="email"
                                     id="email"
+                                    value={this.state.email}
                                     onChange={(e) => this.handleChange(e)}
                                 />
                             </FormGroup>
