@@ -17,7 +17,7 @@ const App = () => {
             <Header/>
             <Switch>
                 <Route exact path="/" component={BeginVote} />
-                <Route exact path="/begin-vote" component={CreateAVote} />
+                <Route exact path="/create-a-vote" component={CreateAVote} />
                 <Route exact path="/add-place" component={AddPlace} />
                 <Route exact path="/vote/:url" component={AddAVoice} />
             </Switch>

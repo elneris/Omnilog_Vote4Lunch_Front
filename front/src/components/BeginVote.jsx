@@ -13,8 +13,8 @@ const BeginVote = () => {
                     xs="4" 
                     className="bg-blue p-5 text-center rounded"
                 >
-                <p className="text-white">Faites voter vos collègues pour le déjeuner</p>
-                    <Button tag={Link} to="/begin-vote" color="success">Organiser un vote <FontAwesomeIcon icon={faPlus} /></Button>
+                <p className="text-white">Fait voter tes collègues pour le déjeuner</p>
+                    <Button tag={Link} to="/create-a-vote" color="success">Organiser un vote <FontAwesomeIcon icon={faPlus} /></Button>
                 </Col>
             </Row>
         </Container>
