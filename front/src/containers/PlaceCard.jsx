@@ -1,6 +1,10 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 
 import { Col, Card, CardBody, CardTitle, CardText, Button } from 'reactstrap'
+
+import { getVoiceCount } from '../actions/getVoiceCount'
+
 
 import MaterialIcon from 'material-icons-react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
@@ -9,9 +13,26 @@ import { faSmileBeam } from '@fortawesome/free-regular-svg-icons'
 
 class PlaceCard extends Component {
 
+    componentDidMount() {
+        this.props.dispatch(getVoiceCount(this.props.vote_url, this.props.restaurant.id))
+    }
+
     render() {
 
-        const { restaurant } = this.props
+        const { restaurant, voiceCount } = this.props
+
+        let filteredVoiceCountValue = { count: 0, place: restaurant.id }
+
+        if (voiceCount.length > 0) {
+            
+            const filteredVoiceCount = voiceCount.filter(element => element.place === restaurant.id);
+
+            if (filteredVoiceCount.length !== 0) {
+                filteredVoiceCountValue = filteredVoiceCount[0]
+            }
+        }
+
+
         return (
             <Col
                 xs='2'
@@ -26,9 +47,9 @@ class PlaceCard extends Component {
                     </Button>
                     <CardBody className='text-center'>
                         <CardTitle>
-                        {restaurant.type === 'restaurant' ? <MaterialIcon icon="restaurant" /> : <MaterialIcon icon="fastfood" />} {restaurant.name}
+                            {restaurant.type === 'restaurant' ? <MaterialIcon icon="restaurant" /> : <MaterialIcon icon="fastfood" />} {restaurant.name}
                         </CardTitle>
-                        <CardText>Votes</CardText>
+                        <CardText>Votes : { filteredVoiceCountValue.count }</CardText>
                         <Button color='success'>Je vote pour ! <FontAwesomeIcon icon={faSmileBeam} /></Button>
                     </CardBody>
                 </Card>
@@ -37,4 +58,8 @@ class PlaceCard extends Component {
     }
 }
 
-export default PlaceCard;
+const mstp = ({ getVoicesCount }) => ({
+    voiceCount: getVoicesCount.count
+});
+
+export default connect(mstp)(PlaceCard);

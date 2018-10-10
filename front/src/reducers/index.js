@@ -6,6 +6,7 @@ import createAVoteReducer from './createAVote'
 import voteDataReducer from './voteData'
 import OnMapAlertReducer from './onMapAlert';
 import getPlacesListReducer from './getPlacesList'
+import getVoicesCountReducer from './getVoicesCount'
 
 export default combineReducers({
   upvote: fetchUpVoteReducer,
@@ -13,5 +14,6 @@ export default combineReducers({
   vote: createAVoteReducer,
   voteData: voteDataReducer,
   onMapAlert: OnMapAlertReducer,
-  getPlacesList: getPlacesListReducer
+  getPlacesList: getPlacesListReducer,
+  getVoicesCount: getVoicesCountReducer,
 });

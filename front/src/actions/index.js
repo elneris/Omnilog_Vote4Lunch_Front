@@ -17,7 +17,6 @@ export const fetchUpVote = id => ({
     url
   })
 
-
 export const onMapAlert = (message_type,message) => ({
   type: 'ON_MAP_ALERT',
   message_type,

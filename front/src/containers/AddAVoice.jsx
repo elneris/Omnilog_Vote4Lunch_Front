@@ -28,6 +28,7 @@ class AddAVoice extends Component {
                         <PlaceCard
                             key={restaurant.id}
                             restaurant={restaurant}
+                            vote_url={this.props.match.params.url}
                         />
                     ))}
                 </Row>
