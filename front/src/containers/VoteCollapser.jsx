@@ -9,7 +9,7 @@ import { faAngleRight, faAngleDown } from '@fortawesome/free-solid-svg-icons'
 import moment from 'moment'
 import 'moment/locale/fr'
 
-import PlaceCard from '../containers/PlaceCard'
+import PlaceCard from './PlaceCard'
 
 import { getPlacesList } from '../actions/getPlacesList';
 
