@@ -8,6 +8,10 @@ import path from 'path';
 
 import index from './routes/index';
 
+// set dotenv for environment variables
+
+require('dotenv').config()
+
 const app = express();
 const debug = Debug('api:app');
 app.set('views', path.join(__dirname, 'views'));
