@@ -10,7 +10,8 @@ import {
   Nav,
   NavItem,
   NavLink,
-  Button
+  Button,
+  Tooltip,
 } from 'reactstrap';
 
 import MaterialIcon from 'material-icons-react';
@@ -23,16 +24,24 @@ class Header extends Component {
   constructor(props) {
     super(props);
 
-    this.toggle = this.toggle.bind(this);
-
     this.state = {
       isOpen: false,
+      tooltipOpen: false,
     };
+
+    this.toggleHamburger = this.toggleHamburger.bind(this);
+    this.toggleTooltip = this.toggleTooltip.bind(this);
   }
 
-  toggle() {
+  toggleHamburger() {
     this.setState({
       isOpen: !this.state.isOpen
+    });
+  }
+
+  toggleTooltip() {
+    this.setState({
+      tooltipOpen: !this.state.tooltipOpen
     });
   }
 
@@ -54,7 +63,7 @@ class Header extends Component {
       <div>
         <Navbar dark expand="md" className="bg-blue">
           <NavbarBrand href="/">Vote 4 Lunch</NavbarBrand>
-          <NavbarToggler onClick={this.toggle} />
+          <NavbarToggler onClick={this.toggleHamburger} />
           <Collapse isOpen={this.state.isOpen} navbar>
             <Nav className="ml-auto" navbar>
               {pseudo ?
@@ -69,6 +78,8 @@ class Header extends Component {
                     tag={Link}
                     color='info'
                     to='/logout'
+                    href="#" 
+                    id="TooltipMyVotes"
                   >
                     <MaterialIcon
                       icon="how_to_vote"
@@ -94,6 +105,14 @@ class Header extends Component {
             </Nav>
           </Collapse>
         </Navbar>
+        <Tooltip 
+          placement="bottom" 
+          isOpen={this.state.tooltipOpen} 
+          target="TooltipMyVotes" 
+          toggle={this.toggleTooltip}
+        >
+        Accéder à mes votes
+        </Tooltip>
       </div>
     );
   }
