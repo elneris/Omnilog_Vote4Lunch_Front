@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 
 import {Container} from 'reactstrap'
 
-import VoteCollapser from '../components/VoteCollapser'
+import VoteCollapser from '../containers/VoteCollapser'
 
 import { getUsersVotes } from '../actions/getUsersVotes'
 
@@ -19,7 +19,7 @@ class GetUsersVotes extends Component {
     render() { 
 
         const {usersVotes} = this.props
-        
+
         return ( 
         <Container fluid className="GetUserVotes">
             {
