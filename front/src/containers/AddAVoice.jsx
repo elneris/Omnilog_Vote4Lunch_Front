@@ -57,9 +57,8 @@ class AddAVoice extends Component {
     }
 }
 
-const mstp = ({ getPlacesList, addVoice }) => ({
+const mstp = ({ getPlacesList }) => ({
     restaurants: getPlacesList.result,
-    hasVoted: addVoice.result
 });
 
 export default connect(mstp)(AddAVoice);
