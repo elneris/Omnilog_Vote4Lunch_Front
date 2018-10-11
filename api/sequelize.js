@@ -1,7 +1,9 @@
 import Sequelize from 'sequelize';
+
 import { PlaceModel } from './models/place';
 import { VoteModel } from './models/vote';
 import { VoiceModel } from './models/voice';
+
 import fs from 'fs';
 
 const sequelize = new Sequelize('vote4lunch', 'db_user', 'fakepassword', {
