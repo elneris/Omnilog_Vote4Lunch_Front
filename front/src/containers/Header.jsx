@@ -77,7 +77,7 @@ class Header extends Component {
                   <Button
                     tag={Link}
                     color='info'
-                    to='/logout'
+                    to='/my-votes'
                     href="#" 
                     id="TooltipMyVotes"
                   >

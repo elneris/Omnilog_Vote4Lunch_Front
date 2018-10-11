@@ -10,6 +10,7 @@ import LogoutView from './LogoutView'
 import CreateAVote from '../containers/CreateAVote';
 import AddAVoice from '../containers/AddAVoice';
 import Header from '../containers/Header';
+import GetUsersVotes from '../containers/GetUsersVotes';
 
 const App = () => {
 
@@ -21,6 +22,7 @@ const App = () => {
                 <Route exact path="/create-a-vote" component={CreateAVote} />
                 <Route exact path="/add-place" component={AddPlace} />
                 <Route exact path="/vote/:url" component={AddAVoice} />
+                <Route exact path="/my-votes" component={GetUsersVotes} />
                 <Route exact path="/logout" component={LogoutView} />
             </Switch>
             <Footer/>
