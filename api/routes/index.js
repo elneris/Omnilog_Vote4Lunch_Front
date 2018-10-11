@@ -4,74 +4,15 @@ import Sequelize from 'sequelize';
 
 import { Place, Vote, Voice } from '../sequelize';
 
+import voteRouter from './votes'
+
 const router = express.Router();
 
 const Op = Sequelize.Op;
 
-router.post('/api/vote/add', (req, res) => {
+router.use('/vote', voteRouter);
 
-  const makeid = () => {
-    var text = "";
-    var possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
-
-    for (var i = 0; i < 5; i++)
-      text += possible.charAt(Math.floor(Math.random() * possible.length));
-
-    return text;
-  }
-
-  Vote
-    .create({
-      pseudo: req.body.pseudo,
-      email: req.body.email,
-      date: req.body.date,
-      url: makeid()
-    })
-    .then(vote => res.json(vote))
-})
-
-router.get('/api/vote/get', (req, res) => {
-
-  Vote
-  .findOne({
-    where: {
-      url: req.query.vote_url
-    }
-  })
-  .then(vote => {
-    res.json(vote)
-  })
-})
-
-router.post('/api/vote/add/place', (req, res) => {
-  Vote
-    .findById(req.body.vote_id)
-    .then(vote => {
-      Place.findById(req.body.place_id)
-        .then(place => {
-          vote.addPlace(place)
-          return place
-        }).then(place => {
-          res.json({ added: true, place: place.dataValues })
-        })
-
-    })
-
-});
-
-router.post('/api/vote/del/place', (req, res) => {
-  Vote
-    .findById(req.body.vote_id)
-    .then(vote => {
-      Place.findById(req.body.place_id)
-        .then(place => {
-          vote.removePlace(place)
-          return place
-        }).then((place) => res.json({ deleted: true, place: place.dataValues }))
-    })
-});
-
-router.get('/api/places/list', (req, res) => {
+router.get('/places/list', (req, res) => {
 
   if (req.query.ne_lat && req.query.ne_lng && req.query.sw_lat && req.query.sw_lng) {
 
@@ -99,27 +40,7 @@ router.get('/api/places/list', (req, res) => {
   }
 })
 
-router.post('/api/vote/get/places/list', (req, res) => {
-  Vote
-    .findOne({
-      where: {
-        url: req.body.vote_url
-      }
-    })
-    .then(vote => {
-      Place.findAll({
-        include: {
-          model: Vote, where: {
-            id: vote.id
-          }
-        }
-      }).then(places => {
-        res.json(places)
-      })
-    })
-});
-
-router.post('/api/vote/add/voice', (req, res) => {
+router.post('/vote/add/voice', (req, res) => {
   Voice.create({
     voteId: req.body.vote_id,
     placeId: req.body.place_id
@@ -128,7 +49,7 @@ router.post('/api/vote/add/voice', (req, res) => {
   })
 });
 
-router.get('/api/vote/get/voice', (req, res) => {
+router.get('/vote/get/voice', (req, res) => {
   Voice.findAndCountAll({
     where: {
       voteId: req.query.vote_id,
