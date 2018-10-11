@@ -1,25 +1,29 @@
-import React from 'react';
+import React, { Component } from 'react';
 
 import { Redirect } from 'react-router-dom'
 
-import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 
-import {saveVoteData, createAVoteDelete} from '../actions'
+import {resetVoteData} from '../actions'
 
-const LogoutView = ({saveVoteData, createAVoteDelete}) => {
+class LogoutView extends Component {
 
-    localStorage.removeItem('pseudo');
-    localStorage.removeItem('email');
-    saveVoteData('',null,'','','');
-    createAVoteDelete();
-    return (
-        <Redirect to='/' />
-    );
+    constructor(props) {
+        super(props);
+        this.state = {  }
+    }
+
+    componentDidMount() {
+        localStorage.removeItem('pseudo');
+        localStorage.removeItem('email');      
+        this.props.dispatch(resetVoteData());
+    }
+
+    render() { 
+
+        
+        return ( <Redirect to='/' /> );
+    }
 }
 
-const mdtp = (dispatch) => {
-    return bindActionCreators({ saveVoteData, createAVoteDelete }, dispatch);
-}
-
-export default connect(null, mdtp)(LogoutView);
+export default connect()(LogoutView);

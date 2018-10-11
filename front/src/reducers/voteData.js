@@ -38,6 +38,16 @@ const vote = (state = initialState, action) => {
                 ...state,
                 places:result
             }
+        case 'RESET_VOTE_DATA':
+        return { 
+            ...state,
+            id: '',
+            date: null,
+            pseudo: '',
+            email: '',
+            url: '',
+            places: [],
+        }
         default:
             return state;
     }

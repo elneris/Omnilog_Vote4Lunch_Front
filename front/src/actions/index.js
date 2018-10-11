@@ -17,9 +17,9 @@ export const fetchUpVote = id => ({
     url
   })
 
-export const createAVoteDelete = () => ({
-  type: 'CREATE_A_VOTE_DELETE',
-})
+  export const resetVoteData = () => ({
+    type: 'RESET_VOTE_DATA',
+  })
 
 export const onMapAlert = (message_type,message) => ({
   type: 'ON_MAP_ALERT',
