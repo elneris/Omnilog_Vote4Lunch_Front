@@ -105,6 +105,7 @@ class Header extends Component {
             </Nav>
           </Collapse>
         </Navbar>
+        {pseudo ?
         <Tooltip 
           placement="bottom" 
           isOpen={this.state.tooltipOpen} 
@@ -113,6 +114,7 @@ class Header extends Component {
         >
         Accéder à mes votes
         </Tooltip>
+        : ''}
       </div>
     );
   }
