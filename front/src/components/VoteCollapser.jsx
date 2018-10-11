@@ -40,10 +40,7 @@ class VoteCollapser extends Component {
 
         if (myRestaurants) {
             listOfRestaurants = myRestaurants[vote.url]
-        }
-
-        console.log( listOfRestaurants );
-        
+        }     
 
         return (
             <Row className="VoteCollapser mt-3 px-3" >

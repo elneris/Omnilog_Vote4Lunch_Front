@@ -4,10 +4,11 @@ export const getVoiceCountBegin = () => ({
     type: 'GET_VOICE_COUNT_BEGIN',
 });
 
-export const getVoiceCountSuccess = (count,place_id) => ({
+export const getVoiceCountSuccess = (count,vote_id,place_id) => ({
     type: 'GET_VOICE_COUNT_SUCCESS',
     count,
-    place_id
+    vote_id,
+    place_id,
 });
 
 export const getVoiceCountFailure = error => ({
@@ -24,11 +25,12 @@ export function getVoiceCount(vote_url,place_id) {
                 .then(vote => {
                     const url = `/api/vote/get/voice?vote_id=${vote.data.id}&place_id=${place_id}`
                      return axios.get(url).then(result => {
-                        return result.data.count
+                        return {'count':result.data.count,'vote_id':vote.data.id}
                     })
                 })
-                .then(count => {
-                    dispatch(getVoiceCountSuccess(count,place_id))
+                .then(result => {
+                    
+                    dispatch(getVoiceCountSuccess(result.count,result.vote_id,place_id))
                 } )
                 .catch(error => dispatch(getVoiceCountSuccess(error)))
         );
