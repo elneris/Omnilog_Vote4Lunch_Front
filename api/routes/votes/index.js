@@ -42,6 +42,20 @@ router.get('/get', (req, res) => {
         })
 })
 
+// Get all votes from a user and return them
+router.get('/get/mine', (req, res) => {
+
+  Vote
+      .findAll({
+          where: {
+              pseudo: req.query.pseudo
+          }
+      })
+      .then(votes => {
+          res.json(votes)
+      })
+})
+
 // Add a place to a vote and return it
 router.post('/add/place', (req, res) => {
     Vote
