@@ -13,8 +13,10 @@ import {
   Button
 } from 'reactstrap';
 
+import MaterialIcon from 'material-icons-react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPowerOff } from '@fortawesome/free-solid-svg-icons';
+
 import Link from 'react-router-dom/Link';
 
 class Header extends Component {
@@ -56,20 +58,36 @@ class Header extends Component {
           <Collapse isOpen={this.state.isOpen} navbar>
             <Nav className="ml-auto" navbar>
               {pseudo ?
-                <NavItem className="mr-3 pt-2">
+                <NavItem className="mr-3 pt-1">
                   <NavLink>
                     Bonjour, {pseudo}
                   </NavLink>
                 </NavItem> : ''}
               {pseudo ?
-                <NavItem>
-                    <Button
-                      tag={Link}
-                      color='danger'
-                      to='/logout'
-                    >
-                      <FontAwesomeIcon icon={faPowerOff} />
-                    </Button>
+                <NavItem className="mr-3">
+                  <Button
+                    tag={Link}
+                    color='info'
+                    to='/logout'
+                  >
+                    <MaterialIcon
+                      icon="how_to_vote"
+                      color="white"
+                      size="tiny"
+                    />
+                  </Button>
+                </NavItem>
+                : ''
+              }
+              {pseudo ?
+                <NavItem className="mr-3">
+                  <Button
+                    tag={Link}
+                    color='danger'
+                    to='/logout'
+                  >
+                    <FontAwesomeIcon icon={faPowerOff} />
+                  </Button>
                 </NavItem>
                 : ''
               }
