@@ -17,13 +17,21 @@ class AddAVoice extends Component {
     render() {
         const { restaurants } = this.props
 
+        let listOfRestaurants
+        
+        if(restaurants[this.props.match.params.url]) {
+            listOfRestaurants = restaurants[this.props.match.params.url]
+        } else {
+            listOfRestaurants = []
+        }
+
         return (
 
             <Container fluid className="stepContainer">
 
                 <Row className="justify-content-center align-items-center mt-3">
 
-                    {restaurants.map(restaurant => (
+                    {listOfRestaurants.map(restaurant => (
                         <PlaceCard
                             key={restaurant.id}
                             restaurant={restaurant}
@@ -39,7 +47,7 @@ class AddAVoice extends Component {
                         xs="8"
 
                     >
-                        <VoteMap restaurants={restaurants} />
+                        <VoteMap restaurants={listOfRestaurants} />
                     </Col>
                 </Row>
             </Container>

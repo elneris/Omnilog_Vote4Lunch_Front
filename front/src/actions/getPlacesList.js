@@ -26,7 +26,7 @@ export const getPlacesListBegin = () => ({
             }
         })
           .then(result => {
-            dispatch(getPlacesListSuccess(result))
+            dispatch(getPlacesListSuccess({[vote_url]: result.data}))
           } 
       )
           .catch(error => dispatch(getPlacesListFailure(error)))
