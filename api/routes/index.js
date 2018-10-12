@@ -13,8 +13,9 @@ const Op = Sequelize.Op;
 
 router.use('/vote', voteRouter);
 
-router.use('/voice', voiceRouter)
+router.use('/voice', voiceRouter);
 
+// Return a list of places. Need 4 coordinates
 router.get('/places/list', (req, res) => {
 
   if (req.query.ne_lat && req.query.ne_lng && req.query.sw_lat && req.query.sw_lng) {
@@ -41,6 +42,6 @@ router.get('/places/list', (req, res) => {
   } else {
     res.sendStatus(400);
   }
-})
+});
 
 export default router;

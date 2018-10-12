@@ -53,6 +53,6 @@ router.get('/count/foruser', (req,res) => {
       })
     }
   })
-})
+});
 
 export default router;
