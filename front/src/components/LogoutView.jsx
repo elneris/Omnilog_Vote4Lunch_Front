@@ -8,11 +8,6 @@ import {resetVoteData} from '../actions'
 
 class LogoutView extends Component {
 
-    constructor(props) {
-        super(props);
-        this.state = {  }
-    }
-
     componentDidMount() {
         localStorage.removeItem('pseudo');
         localStorage.removeItem('email');      
