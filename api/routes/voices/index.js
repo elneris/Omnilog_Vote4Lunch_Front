@@ -4,6 +4,7 @@ import { Voice } from '../../sequelize';
 
 const router = express.Router();
 
+// Add a Voice
 router.post('/add', (req, res) => {
     Voice.create({
       voteId: req.body.vote_id,
@@ -15,6 +16,7 @@ router.post('/add', (req, res) => {
     })
   });
   
+  // Return the sum of voices for a vote and a place
   router.get('/count/all', (req, res) => {
     Voice.findAndCountAll({
       where: {
@@ -26,6 +28,7 @@ router.post('/add', (req, res) => {
     })
   });
 
+// Verify if a user have voted for a vote
 router.get('/count/foruser', (req,res) => {
   Voice.findAndCountAll({
     where: {
@@ -34,7 +37,21 @@ router.get('/count/foruser', (req,res) => {
       email: req.query.email
     }
   }).then(result=>{
-    res.json(result.count)
+    if (result.count === 0) {
+      res.json({
+        'vote_id':req.query.vote_id,
+        'pseudo': req.query.pseudo,
+        'email': req.query.email,
+        'vote': false,
+      })
+    } else {
+      res.json({
+        'vote_id':req.query.vote_id,
+        'pseudo': req.query.pseudo,
+        'email': req.query.email,
+        'vote': true,
+      })
+    }
   })
 })
 
