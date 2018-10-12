@@ -4,6 +4,12 @@ export const VoiceModel = (sequelize, type) => {
           type: type.INTEGER,
           primaryKey: true,
           autoIncrement: true
-        }
+        },
+        pseudo: {
+            type: type.STRING,
+        },
+        email: {
+            type: type.STRING,
+        },
     })
 }
