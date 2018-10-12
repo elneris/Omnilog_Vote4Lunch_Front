@@ -1,13 +1,27 @@
-import React from 'react';
+import React, {Component} from 'react';
+import {connect} from 'react-redux'
 
 import { Container, Row, Col, Button } from 'reactstrap'
 import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faPlus } from '@fortawesome/free-solid-svg-icons'
 
-const BeginVote = () => {
-    return ( 
-        <Container fluid className="BeginVote">
+import {updateUserData} from '../actions'
+
+class BeginVote extends Component {
+
+    componentDidMount() {
+        const pseudo = localStorage.getItem('pseudo')
+        const email = localStorage.getItem('email')
+
+        if (pseudo && email) {
+            this.props.dispatch(updateUserData(pseudo, email))
+        }
+    }
+
+    render() { 
+        return ( 
+            <Container fluid className="BeginVote">
             <Row noGutters className="justify-content-center align-items-center h-100">
                 <Col
                     xs="4" 
@@ -18,7 +32,8 @@ const BeginVote = () => {
                 </Col>
             </Row>
         </Container>
-     );
+         );
+    }
 }
  
-export default BeginVote;
+export default connect()(BeginVote);

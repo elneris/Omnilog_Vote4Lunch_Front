@@ -11,8 +11,8 @@ export const resetVoteData = () => ({
     type: 'RESET_VOTE_DATA',
 })
 
-export const updateVoteData = (pseudo,email) => ({
-  type: 'UPDATE_VOTE_DATA',
+export const updateUserData = (pseudo,email) => ({
+  type: 'UPDATE_USER_DATA',
   pseudo,
   email,
 })

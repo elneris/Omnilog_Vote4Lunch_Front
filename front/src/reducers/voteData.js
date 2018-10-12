@@ -48,7 +48,7 @@ const vote = (state = initialState, action) => {
             url: '',
             places: [],
         }
-        case 'UPDATE_VOTE_DATA':
+        case 'UPDATE_USER_DATA':
         return {
             ...state,
             pseudo: action.pseudo,

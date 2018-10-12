@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 
 import { Button, Modal, ModalHeader, ModalBody, Form, FormGroup, Label, Input } from 'reactstrap';
 
-import { updateVoteData } from '../actions'
+import { updateUserData } from '../actions'
 
 class LoginModal extends Component {
     constructor(props) {
@@ -48,7 +48,7 @@ class LoginModal extends Component {
         this.setState({
             modal:false,
         })
-    this.props.dispatch(updateVoteData(this.state.pseudo,this.state.email));
+    this.props.dispatch(updateUserData(this.state.pseudo,this.state.email));
 
     }
 

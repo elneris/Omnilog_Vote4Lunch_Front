@@ -2,7 +2,6 @@ import React from 'react';
 
 import { Route, Switch } from 'react-router-dom';
 
-import BeginVote from './BeginVote'
 import AddPlace from './AddPlace'
 import Footer from './Footer'
 import LogoutView from './LogoutView'
@@ -11,6 +10,7 @@ import CreateAVote from '../containers/CreateAVote';
 import AddAVoice from '../containers/AddAVoice';
 import Header from '../containers/Header';
 import GetUsersVotes from '../containers/GetUsersVotes';
+import BeginVote from '../containers/BeginVote';
 
 const App = () => {
 
