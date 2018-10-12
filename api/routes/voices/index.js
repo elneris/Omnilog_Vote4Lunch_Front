@@ -26,4 +26,16 @@ router.post('/add', (req, res) => {
     })
   });
 
+router.get('/count/foruser', (req,res) => {
+  Voice.findAndCountAll({
+    where: {
+      voteId: req.query.vote_id,
+      pseudo: req.query.pseudo,
+      email: req.query.email
+    }
+  }).then(result=>{
+    res.json(result.count)
+  })
+})
+
 export default router;
