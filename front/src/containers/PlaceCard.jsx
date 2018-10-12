@@ -7,6 +7,7 @@ import axios from 'axios'
 
 import { getVoiceCount } from '../actions/getVoiceCount'
 import { addVoice } from '../actions/addVoice'
+import { verifyIfUserHasVoted } from '../actions/verifyIfUserHasVoted'
 
 import MaterialIcon from 'material-icons-react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
@@ -15,18 +16,22 @@ import { faSmileBeam } from '@fortawesome/free-regular-svg-icons'
 
 class PlaceCard extends Component {
 
-    constructor() {
-        super()
-        this.getVoteId = this.getVoteId.bind(this)
+    constructor(props) {
+        super(props)
+
+        this.getVoteId = this.getVoteId.bind(this);
 
         this.state = {
-            vote_id:''
-        }
+            vote_id:'',
+        };
     }
 
-    componentDidMount() {
-        this.props.dispatch(getVoiceCount(this.props.vote_url, this.props.restaurant.id))
-        this.getVoteId()
+    async componentDidMount() {
+        const pseudo = await localStorage.getItem('pseudo');
+        const email = await localStorage.getItem('email');
+        await this.props.dispatch(getVoiceCount(this.props.vote_url, this.props.restaurant.id))
+        await this.getVoteId()
+        await this.props.dispatch(verifyIfUserHasVoted(this.state.vote_id, pseudo, email))
     }
 
     async getVoteId() {
@@ -40,9 +45,19 @@ class PlaceCard extends Component {
     }
 
     render() {
-
-        const { restaurant, voiceCount } = this.props
+        const { restaurant, voiceCount, voteData, userVote } = this.props
         
+        let filteredUserVoteValue = false
+
+        if (userVote.length > 0) {
+            console.log(userVote, 'pop');
+            const filteredUserVote = userVote.filter( element => parseInt(element.vote_id, 10) === this.state.vote_id && element.pseudo === "bob" && element.email === "bob@bob.com")
+            console.log(filteredUserVote);
+            if (filteredUserVote.length !== 0) {
+                filteredUserVoteValue = filteredUserVote[0].vote
+            }
+        }
+
         let filteredVoiceCountValue = { count: 0, place: restaurant.id }        
 
         if (voiceCount.length > 0) {
@@ -71,7 +86,11 @@ class PlaceCard extends Component {
                             {restaurant.type === 'restaurant' ? <MaterialIcon icon="restaurant" /> : <MaterialIcon icon="fastfood" />} {restaurant.name}
                         </CardTitle>
                         <CardText>Votes : { filteredVoiceCountValue.count }</CardText>
-                        <Button onClick={()=> this.props.dispatch(addVoice(this.props.vote_url, this.props.restaurant.id)) }color='success'>Je vote pour ! <FontAwesomeIcon icon={faSmileBeam} /></Button>
+                        <Button 
+                            onClick={()=> this.props.dispatch(addVoice(this.props.vote_url, this.props.restaurant.id, voteData.pseudo, voteData.email)) }
+                            color='success'
+                            disabled={filteredUserVoteValue}
+                        >Je vote pour ! <FontAwesomeIcon icon={faSmileBeam} /></Button>
                     </CardBody>
                 </Card>
             </Col>
@@ -79,8 +98,10 @@ class PlaceCard extends Component {
     }
 }
 
-const mstp = ({ getVoicesCount }) => ({
+const mstp = ({ getVoicesCount, voteData, verifyIfUserHasVoted }) => ({
     voiceCount: getVoicesCount,
+    voteData: voteData,
+    userVote: verifyIfUserHasVoted,
 });
 
 export default connect(mstp)(PlaceCard);

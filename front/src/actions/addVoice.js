@@ -1,5 +1,6 @@
 import axios from 'axios'
 import { getVoiceCount } from './getVoiceCount'
+import { verifyIfUserHasVoted} from './verifyIfUserHasVoted'
 
 export const addVoiceBegin = () => ({
     type: 'ADD_VOICE_BEGIN',
@@ -33,12 +34,16 @@ export const addVoiceBegin = () => ({
                     }
                 })
                 .then(result => {
-                    return result.data
+                    return {
+                        result: result.data,
+                        vote:vote.data,
+                    }
                 })
             })
             .then(result => {
-                dispatch(addVoiceSuccess(result))
+                dispatch(addVoiceSuccess(result.result))
                 dispatch(getVoiceCount(vote_url,place_id))
+                dispatch(verifyIfUserHasVoted(result.vote.id,pseudo,email))
             })
             .catch(error => dispatch(addVoiceFailure(error)))
     );

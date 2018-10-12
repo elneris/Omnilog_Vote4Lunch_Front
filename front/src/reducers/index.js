@@ -9,6 +9,7 @@ import getVoicesCountReducer from './getVoicesCount'
 import addVoiceReducer from './addVoice'
 import getUsersVotesReducer from './getUsersVotes'
 import getManyPlacesListReducer from './getManyPlacesList'
+import verifyIfUserHasVotedReducer from './verifyIfUserHasVoted';
 
 export default combineReducers({
   restaurants: fetchListOfRestaurantsReducer,
@@ -20,4 +21,5 @@ export default combineReducers({
   addVoice: addVoiceReducer,
   usersVotes: getUsersVotesReducer,
   getManyPlacesList: getManyPlacesListReducer,
+  verifyIfUserHasVoted: verifyIfUserHasVotedReducer,
 });
