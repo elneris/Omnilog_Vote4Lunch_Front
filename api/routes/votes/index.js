@@ -66,7 +66,7 @@ router.post('/add/place', (req, res) => {
         active: true
       });
       return vote
-    } )
+    })
     .then(vote => {
       Place.findById(req.body.place_id)
         .then(place => {
@@ -80,6 +80,19 @@ router.post('/add/place', (req, res) => {
 
 });
 
+// Deactivate Vote instance if no places is associated with
+async function makeThings(vote,place) {
+  await vote.removePlace(place)
+  await vote.getPlaces().then(places => {
+    console.log(places);
+    if (places.length === 0) {
+      vote.updateAttributes({
+        active: false
+      });
+    }
+  });
+}
+
 // Delete a place from a vote and return it  
 router.post('/del/place', (req, res) => {
   Vote
@@ -87,7 +100,7 @@ router.post('/del/place', (req, res) => {
     .then(vote => {
       Place.findById(req.body.place_id)
         .then(place => {
-          vote.removePlace(place)
+          makeThings(vote,place)
           return place
         }).then((place) => res.json({ deleted: true, place: place.dataValues }))
     })
