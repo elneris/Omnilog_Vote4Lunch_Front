@@ -47,6 +47,9 @@ router.get('/get/mine', (req, res) => {
 
   Vote
     .findAll({
+      order: [
+        ['date', 'ASC'],
+      ],
       where: {
         pseudo: req.query.pseudo
       }
