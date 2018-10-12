@@ -4,7 +4,7 @@ import { Voice } from '../../sequelize';
 
 const router = express.Router();
 
-router.post('/add/voice', (req, res) => {
+router.post('/add', (req, res) => {
     Voice.create({
       voteId: req.body.vote_id,
       placeId: req.body.place_id,

@@ -15,7 +15,7 @@ export const addVoiceBegin = () => ({
     error,
   });
   
-  export function addVoice(vote_url,place_id) {
+  export function addVoice(vote_url,place_id,pseudo,email) {
     return (dispatch) => {
       dispatch(addVoiceBegin());
       return (
@@ -23,11 +23,13 @@ export const addVoiceBegin = () => ({
             .get(`/api/vote/get?vote_url=${vote_url}`)
             .then( vote => {
                 return axios({
-                    url:'/api/vote/add/voice',
+                    url:'/api/voice/add',
                     method:'post',
                     data: {
                         vote_id: vote.data.id,
                         place_id: place_id,
+                        pseudo: pseudo,
+                        email: email,
                     }
                 })
                 .then(result => {
