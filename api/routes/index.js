@@ -2,15 +2,18 @@ import express from 'express';
 
 import Sequelize from 'sequelize';
 
-import { Place, Vote, Voice } from '../sequelize';
+import { Place, Voice } from '../sequelize';
 
 import voteRouter from './votes'
+import voiceRouter from './voices'
 
 const router = express.Router();
 
 const Op = Sequelize.Op;
 
 router.use('/vote', voteRouter);
+
+router.use('/voice', voiceRouter)
 
 router.get('/places/list', (req, res) => {
 
@@ -39,25 +42,5 @@ router.get('/places/list', (req, res) => {
     res.sendStatus(400);
   }
 })
-
-router.post('/vote/add/voice', (req, res) => {
-  Voice.create({
-    voteId: req.body.vote_id,
-    placeId: req.body.place_id
-  }).then(() => {
-    res.json({ vote: true })
-  })
-});
-
-router.get('/vote/get/voice', (req, res) => {
-  Voice.findAndCountAll({
-    where: {
-      voteId: req.query.vote_id,
-      placeId: req.query.place_id
-    }
-  }).then(voices=>{
-    res.json(voices)
-  })
-});
 
 export default router;
