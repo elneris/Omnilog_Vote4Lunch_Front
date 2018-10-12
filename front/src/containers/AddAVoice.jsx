@@ -7,11 +7,32 @@ import { Container, Row, Col } from 'reactstrap';
 
 import PlaceCard from './PlaceCard';
 import VoteMap from './VoteMap';
+import LoginModal from './LoginModal';
 
 class AddAVoice extends Component {
 
+    constructor() {
+        super()
+
+        this.state = {
+            openLoginModal: false
+        }
+    } 
+
     componentDidMount() {
-        this.props.dispatch(getPlacesList(this.props.match.params.url))
+        this.props.dispatch(getPlacesList(this.props.match.params.url));
+        const pseudo = localStorage.getItem('pseudo');
+        const email = localStorage.getItem('email');
+
+        if(!pseudo || !email) {
+            this.setState({
+                openLoginModal: true
+            }) 
+        } else {
+            this.setState({
+                openLoginModal: false
+            })
+        }
     }
 
     render() {
@@ -50,6 +71,7 @@ class AddAVoice extends Component {
                         <VoteMap restaurants={listOfRestaurants} />
                     </Col>
                 </Row>
+                {this.state.openLoginModal ? <LoginModal open /> : ''}
             </Container>
 
 

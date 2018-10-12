@@ -48,6 +48,12 @@ const vote = (state = initialState, action) => {
             url: '',
             places: [],
         }
+        case 'UPDATE_VOTE_DATA':
+        return {
+            ...state,
+            pseudo: action.pseudo,
+            email: action.email,
+        }
         default:
             return state;
     }
