@@ -29,7 +29,7 @@ class GetUsersVotes extends Component {
                             key={vote.id}
                             vote={vote}
                         />
-                    }
+                    } else { return ""}
                 })
             }
         </Container> 
