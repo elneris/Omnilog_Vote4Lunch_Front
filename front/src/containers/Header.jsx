@@ -47,7 +47,8 @@ class Header extends Component {
 
   render() {
 
-    const { vote_pseudo } = this.props
+    const { vote } = this.props
+    const vote_pseudo = vote.pseudo
 
     let pseudo = ''
 
@@ -121,8 +122,7 @@ class Header extends Component {
 }
 
 const mstp = ({ voteData }) => ({
-  vote_id: voteData.id,
-  vote_pseudo: voteData.pseudo,
+  vote: voteData,
 })
 
 export default connect(mstp)(Header);
