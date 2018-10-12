@@ -23,12 +23,14 @@ class GetUsersVotes extends Component {
         return ( 
         <Container fluid className="GetUserVotes">
             {
-                usersVotes.map(vote => 
-                    <VoteCollapser 
-                        key={vote.id}
-                        vote={vote}
-                    />                    
-                )
+                usersVotes.map(vote => {
+                    if (vote.active) {
+                        return <VoteCollapser 
+                            key={vote.id}
+                            vote={vote}
+                        />
+                    }
+                })
             }
         </Container> 
         );
