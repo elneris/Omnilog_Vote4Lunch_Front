@@ -19,7 +19,7 @@ export const fetchRestaurantsBegin = () => ({
       dispatch(fetchRestaurantsBegin());
       const bbox = `sw_lat=${southWestLat}&sw_lng=${southWestLon}&ne_lat=${northEastLat}&ne_lng=${northEastLon}`
 
-      const url = `/api/places/list?${bbox}`
+      const url = `/api/place/list?${bbox}`
       return (
         axios.get(url)
           .then(restaurants => dispatch(fetchRestaurantsSuccess(restaurants.data)))
