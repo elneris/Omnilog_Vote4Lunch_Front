@@ -20,6 +20,8 @@ import { faPowerOff } from '@fortawesome/free-solid-svg-icons';
 
 import Link from 'react-router-dom/Link';
 
+import TopAlert from './TopAlert'
+
 class Header extends Component {
   constructor(props) {
     super(props);
@@ -62,6 +64,7 @@ class Header extends Component {
 
     return (
       <div>
+        <TopAlert/>
         <Navbar dark expand="md" className="bg-blue">
           <NavbarBrand href="/">Vote 4 Lunch</NavbarBrand>
           <NavbarToggler onClick={this.toggleHamburger} />
@@ -79,7 +82,7 @@ class Header extends Component {
                     tag={Link}
                     color='info'
                     to='/my-votes'
-                    href="#" 
+                    href="#"
                     id="TooltipMyVotes"
                   >
                     <MaterialIcon
@@ -107,15 +110,15 @@ class Header extends Component {
           </Collapse>
         </Navbar>
         {pseudo ?
-        <Tooltip 
-          placement="bottom" 
-          isOpen={this.state.tooltipOpen} 
-          target="TooltipMyVotes" 
-          toggle={this.toggleTooltip}
-        >
-        Accéder à mes votes
+          <Tooltip
+            placement="bottom"
+            isOpen={this.state.tooltipOpen}
+            target="TooltipMyVotes"
+            toggle={this.toggleTooltip}
+          >
+            Accéder à mes votes
         </Tooltip>
-        : ''}
+          : ''}
       </div>
     );
   }

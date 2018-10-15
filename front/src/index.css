@@ -34,3 +34,6 @@ body {
   width: 100%;
   height: 6vh;
   line-height: 6vh; }
+
+.AlertBox {
+  margin-bottom: 0px; }

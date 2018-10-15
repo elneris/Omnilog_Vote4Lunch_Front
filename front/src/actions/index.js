@@ -26,3 +26,13 @@ export const onMapAlert = (message_type,message) => ({
 export const offMapAlert = () => ({
   type: 'OFF_MAP_ALERT',
 })
+
+export const onTopAlert = (message_type,message) => ({
+  type: 'ON_TOP_ALERT',
+  message_type,
+  message
+})
+
+export const offTopAlert = () => ({
+  type: 'OFF_TOP_ALERT',
+})
