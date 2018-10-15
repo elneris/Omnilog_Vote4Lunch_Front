@@ -7,9 +7,11 @@ export const VoiceModel = (sequelize, type) => {
         },
         pseudo: {
             type: type.STRING,
+            allowNull: false
         },
         email: {
             type: type.STRING,
+            allowNull: false
         },
     })
 }

@@ -6,6 +6,7 @@ const router = express.Router();
 
 // Add a Voice
 router.post('/add', (req, res) => {
+  if (req.body.vote_id && req.body.place_id && req.body.pseudo && req.body.email) {
     Voice.create({
       voteId: req.body.vote_id,
       placeId: req.body.place_id,
@@ -14,7 +15,10 @@ router.post('/add', (req, res) => {
     }).then(() => {
       res.json({ vote: true })
     })
-  });
+  } else {
+    res.sendStatus(400)
+  }    
+});
   
   // Return the sum of voices for a vote and a place
   router.get('/count/all', (req, res) => {
