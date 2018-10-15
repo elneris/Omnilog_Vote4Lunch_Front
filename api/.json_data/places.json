@@ -73,15 +73,6 @@
     },
     {
         "type": "node",
-        "id": 401569943,
-        "lat": 44.8072386,
-        "lon": -0.5860518,
-        "tags": {
-            "amenity": "restaurant"
-        }
-    },
-    {
-        "type": "node",
         "id": 401786576,
         "lat": 44.8123033,
         "lon": -0.5901944,
@@ -371,15 +362,6 @@
     },
     {
         "type": "node",
-        "id": 671742172,
-        "lat": 44.8593155,
-        "lon": -0.5832679,
-        "tags": {
-            "amenity": "fast food"
-        }
-    },
-    {
-        "type": "node",
         "id": 686670644,
         "lat": 44.8414283,
         "lon": -0.5751740,
@@ -460,25 +442,6 @@
             "name": "Ristorante Del Arte",
             "source": "survey",
             "wheelchair": "yes"
-        }
-    },
-    {
-        "type": "node",
-        "id": 914304735,
-        "lat": 44.8196553,
-        "lon": -0.5978268,
-        "tags": {
-            "amenity": "restaurant"
-        }
-    },
-    {
-        "type": "node",
-        "id": 928001097,
-        "lat": 44.8260126,
-        "lon": -0.5564038,
-        "tags": {
-            "amenity": "fast food",
-            "cuisine": "sandwich"
         }
     },
     {
@@ -691,16 +654,6 @@
     },
     {
         "type": "node",
-        "id": 1345282196,
-        "lat": 44.8388750,
-        "lon": -0.5737590,
-        "tags": {
-            "amenity": "fast food",
-            "cuisine": "kebab"
-        }
-    },
-    {
-        "type": "node",
         "id": 1345283623,
         "lat": 44.8395920,
         "lon": -0.5705993,
@@ -819,33 +772,6 @@
     },
     {
         "type": "node",
-        "id": 1723380919,
-        "lat": 44.8275846,
-        "lon": -0.5687995,
-        "tags": {
-            "amenity": "restaurant"
-        }
-    },
-    {
-        "type": "node",
-        "id": 1723383132,
-        "lat": 44.8277059,
-        "lon": -0.5687472,
-        "tags": {
-            "amenity": "restaurant"
-        }
-    },
-    {
-        "type": "node",
-        "id": 1723383208,
-        "lat": 44.8278248,
-        "lon": -0.5687029,
-        "tags": {
-            "amenity": "restaurant"
-        }
-    },
-    {
-        "type": "node",
         "id": 1723401071,
         "lat": 44.8288018,
         "lon": -0.5683027,
@@ -863,16 +789,6 @@
             "amenity": "restaurant",
             "cuisine": "regional",
             "name": "La Référence"
-        }
-    },
-    {
-        "type": "node",
-        "id": 1723404780,
-        "lat": 44.8286773,
-        "lon": -0.5686577,
-        "tags": {
-            "amenity": "restaurant",
-            "cuisine": "regional"
         }
     },
     {
@@ -1309,15 +1225,6 @@
     },
     {
         "type": "node",
-        "id": 1879317424,
-        "lat": 44.8418884,
-        "lon": -0.6678572,
-        "tags": {
-            "amenity": "restaurant"
-        }
-    },
-    {
-        "type": "node",
         "id": 1879334867,
         "lat": 44.8286582,
         "lon": -0.6651432,
@@ -1502,25 +1409,6 @@
     },
     {
         "type": "node",
-        "id": 1881726036,
-        "lat": 44.8302340,
-        "lon": -0.5702585,
-        "tags": {
-            "amenity": "restaurant",
-            "cuisine": "kebab"
-        }
-    },
-    {
-        "type": "node",
-        "id": 1881728288,
-        "lat": 44.8313002,
-        "lon": -0.5742429,
-        "tags": {
-            "amenity": "restaurant"
-        }
-    },
-    {
-        "type": "node",
         "id": 1885292281,
         "lat": 44.8414677,
         "lon": -0.6491688,
@@ -1532,16 +1420,6 @@
     },
     {
         "type": "node",
-        "id": 1885346132,
-        "lat": 44.8318370,
-        "lon": -0.5776171,
-        "tags": {
-            "amenity": "fast food",
-            "cuisine": "kebab"
-        }
-    },
-    {
-        "type": "node",
         "id": 1885362616,
         "lat": 44.8360710,
         "lon": -0.6246383,
@@ -1549,16 +1427,6 @@
             "amenity": "restaurant",
             "cuisine": "italian",
             "name": "Giulio Pizza"
-        }
-    },
-    {
-        "type": "node",
-        "id": 1885936954,
-        "lat": 44.8210935,
-        "lon": -0.5832699,
-        "tags": {
-            "amenity": "restaurant",
-            "cuisine": "kebab"
         }
     },
     {
@@ -1583,15 +1451,6 @@
             "amenity": "restaurant",
             "cuisine": "brasserie",
             "name": "L'échappée belle"
-        }
-    },
-    {
-        "type": "node",
-        "id": 1886329316,
-        "lat": 44.8296076,
-        "lon": -0.5664165,
-        "tags": {
-            "amenity": "restaurant"
         }
     },
     {
@@ -2035,15 +1894,6 @@
             "amenity": "restaurant",
             "cuisine": "chinese",
             "name": "Délices de Mondésir"
-        }
-    },
-    {
-        "type": "node",
-        "id": 2040304214,
-        "lat": 44.7902758,
-        "lon": -0.6345741,
-        "tags": {
-            "amenity": "fast food"
         }
     },
     {
@@ -2646,16 +2496,6 @@
     },
     {
         "type": "node",
-        "id": 2393767316,
-        "lat": 44.8150462,
-        "lon": -0.5724319,
-        "tags": {
-            "amenity": "fast food",
-            "cuisine": "italian"
-        }
-    },
-    {
-        "type": "node",
         "id": 2393827852,
         "lat": 44.8323517,
         "lon": -0.5722280,
@@ -2713,15 +2553,6 @@
             "cuisine": "asian",
             "name": "Le Petit Nem",
             "takeaway": "yes"
-        }
-    },
-    {
-        "type": "node",
-        "id": 2426715515,
-        "lat": 44.8575650,
-        "lon": -0.5600784,
-        "tags": {
-            "amenity": "restaurant"
         }
     },
     {
@@ -3181,16 +3012,6 @@
     },
     {
         "type": "node",
-        "id": 2514970209,
-        "lat": 44.7861640,
-        "lon": -0.6448376,
-        "tags": {
-            "amenity": "restaurant",
-            "cuisine": "chinese"
-        }
-    },
-    {
-        "type": "node",
         "id": 2514970210,
         "lat": 44.7862957,
         "lon": -0.6409409,
@@ -3319,19 +3140,6 @@
     },
     {
         "type": "node",
-        "id": 2534027602,
-        "lat": 44.8433836,
-        "lon": -0.5866262,
-        "tags": {
-            "addr:housenumber": "4",
-            "amenity": "fast food",
-            "cuisine": "pizza",
-            "level": "0",
-            "source": "Communauté Urbaine de Bordeaux - 09/2013"
-        }
-    },
-    {
-        "type": "node",
         "id": 2535568988,
         "lat": 44.8340352,
         "lon": -0.5892943,
@@ -3374,20 +3182,6 @@
             "phone": "+33685993242",
             "website": "http://lecaillou-bordeaux.com/",
             "wheelchair": "yes"
-        }
-    },
-    {
-        "type": "node",
-        "id": 2549147400,
-        "lat": 44.7911009,
-        "lon": -0.5887149,
-        "tags": {
-            "addr:city": "Talence",
-            "addr:housename": "gambetta2",
-            "addr:postcode": "33400",
-            "addr:street": "Rue Chateaubriand",
-            "amenity": "fast food",
-            "cuisine": "kebab"
         }
     },
     {
@@ -3561,30 +3355,6 @@
     },
     {
         "type": "node",
-        "id": 2667701944,
-        "lat": 44.8386494,
-        "lon": -0.6153802,
-        "tags": {
-            "addr:housenumber": "301",
-            "amenity": "restaurant",
-            "cuisine": "chinese",
-            "source": "Communauté Urbaine de Bordeaux - 09/2014"
-        }
-    },
-    {
-        "type": "node",
-        "id": 2667701945,
-        "lat": 44.8386368,
-        "lon": -0.6154340,
-        "tags": {
-            "addr:housenumber": "303",
-            "amenity": "restaurant",
-            "cuisine": "chinese",
-            "source": "Communauté Urbaine de Bordeaux - 09/2014"
-        }
-    },
-    {
-        "type": "node",
         "id": 2667702046,
         "lat": 44.8402578,
         "lon": -0.5998128,
@@ -3666,16 +3436,6 @@
             "name": "Komptoir Caudéran",
             "name:fr": "Komptoir Caudéran",
             "source": "Communauté Urbaine de Bordeaux - 09/2014"
-        }
-    },
-    {
-        "type": "node",
-        "id": 2782164109,
-        "lat": 44.8016776,
-        "lon": -0.5444201,
-        "tags": {
-            "amenity": "fast food",
-            "cuisine": "kebab;pizza"
         }
     },
     {
@@ -4220,16 +3980,6 @@
     },
     {
         "type": "node",
-        "id": 3073360694,
-        "lat": 44.8274799,
-        "lon": -0.5755520,
-        "tags": {
-            "amenity": "fast food",
-            "cuisine": "pizza"
-        }
-    },
-    {
-        "type": "node",
         "id": 3073360696,
         "lat": 44.8271779,
         "lon": -0.5757325,
@@ -4309,16 +4059,6 @@
             "outdoor_seating": "no",
             "phone": "+33 5 56 04 23 40",
             "website": "http://www.les-pizzas-d-emilie.com"
-        }
-    },
-    {
-        "type": "node",
-        "id": 3208001207,
-        "lat": 44.8191659,
-        "lon": -0.5844689,
-        "tags": {
-            "amenity": "restaurant",
-            "cuisine": "kebab"
         }
     },
     {
@@ -4622,16 +4362,6 @@
     },
     {
         "type": "node",
-        "id": 3611225619,
-        "lat": 44.8406544,
-        "lon": -0.6479724,
-        "tags": {
-            "amenity": "restaurant",
-            "cuisine": "pizza"
-        }
-    },
-    {
-        "type": "node",
         "id": 3639221379,
         "lat": 44.8401289,
         "lon": -0.5590102,
@@ -4660,15 +4390,6 @@
             "amenity": "fast food",
             "cuisine": "kebab",
             "name": "Coluche"
-        }
-    },
-    {
-        "type": "node",
-        "id": 3669177668,
-        "lat": 44.8344437,
-        "lon": -0.5636878,
-        "tags": {
-            "amenity": "restaurant"
         }
     },
     {
@@ -6388,15 +6109,6 @@
     },
     {
         "type": "node",
-        "id": 4637455490,
-        "lat": 44.8306091,
-        "lon": -0.5812404,
-        "tags": {
-            "amenity": "restaurant"
-        }
-    },
-    {
-        "type": "node",
         "id": 4637867789,
         "lat": 44.8400516,
         "lon": -0.5990843,
@@ -6937,16 +6649,6 @@
     },
     {
         "type": "node",
-        "id": 4795029022,
-        "lat": 44.8408907,
-        "lon": -0.5823666,
-        "tags": {
-            "amenity": "restaurant",
-            "cuisine": "chinese"
-        }
-    },
-    {
-        "type": "node",
         "id": 4796411845,
         "lat": 44.8638915,
         "lon": -0.5565894,
@@ -6958,16 +6660,6 @@
             "drive_through": "no",
             "name": "Subway",
             "opening_hours": "Mo-We 09:00-22:30; Th-Sa 09:00-24:00; Su 09:00-22:30"
-        }
-    },
-    {
-        "type": "node",
-        "id": 4805815863,
-        "lat": 44.8415289,
-        "lon": -0.6306470,
-        "tags": {
-            "amenity": "restaurant",
-            "cuisine": "pizza"
         }
     },
     {
@@ -7092,20 +6784,6 @@
             "outdoor_seating": "no",
             "phone": "+33 5 56 17 73 24",
             "website": "https://www.facebook.com/antamrestaurant/"
-        }
-    },
-    {
-        "type": "node",
-        "id": 4823164323,
-        "lat": 44.8421429,
-        "lon": -0.5728548,
-        "tags": {
-            "addr:housenumber": "38",
-            "addr:postcode": "33000",
-            "addr:street": "Cours du Chapeau Rouge",
-            "amenity": "restaurant",
-            "phone": "+33556816497",
-            "website": "http://www.boiteahuitres.com"
         }
     },
     {
@@ -8325,24 +8003,6 @@
             "opening_hours": "Mo-Fr 10:00-14:00",
             "takeaway": "only",
             "website": "http://www.facebook.com/aubonheurdumidi/"
-        }
-    },
-    {
-        "type": "node",
-        "id": 5649101017,
-        "lat": 44.8275869,
-        "lon": -0.5291217,
-        "tags": {
-            "amenity": "restaurant"
-        }
-    },
-    {
-        "type": "node",
-        "id": 5649139063,
-        "lat": 44.8386104,
-        "lon": -0.5349930,
-        "tags": {
-            "amenity": "restaurant"
         }
     },
     {
