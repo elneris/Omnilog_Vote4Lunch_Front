@@ -1,6 +1,6 @@
 const initialState = {
-    pseudo: '',
-    email: '',
+    pseudo: null,
+    email: null,
 }
 
 const vote = (state = initialState, action) => {

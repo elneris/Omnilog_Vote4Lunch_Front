@@ -45,14 +45,12 @@ class PlaceCard extends Component {
     }
 
     render() {
-        const { restaurant, voiceCount, voteData, userVote } = this.props
+        const { restaurant, voiceCount, voteData, userVote, userData } = this.props
         
         let filteredUserVoteValue = false
 
         if (userVote.length > 0) {
-            console.log(userVote, 'pop');
-            const filteredUserVote = userVote.filter( element => parseInt(element.vote_id, 10) === this.state.vote_id && element.pseudo === "bob" && element.email === "bob@bob.com")
-            console.log(filteredUserVote);
+            const filteredUserVote = userVote.filter( element => parseInt(element.vote_id, 10) === this.state.vote_id && element.pseudo === userData.pseudo && element.email === userData.email)
             if (filteredUserVote.length !== 0) {
                 filteredUserVoteValue = filteredUserVote[0].vote
             }
@@ -98,10 +96,11 @@ class PlaceCard extends Component {
     }
 }
 
-const mstp = ({ getVoicesCount, voteData, verifyIfUserHasVoted }) => ({
+const mstp = ({ getVoicesCount, voteData, verifyIfUserHasVoted, userData }) => ({
     voiceCount: getVoicesCount,
     voteData: voteData,
     userVote: verifyIfUserHasVoted,
+    userData: userData,
 });
 
 export default connect(mstp)(PlaceCard);
