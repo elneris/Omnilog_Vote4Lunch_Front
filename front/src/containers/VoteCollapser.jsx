@@ -6,6 +6,8 @@ import { Row, Col, Collapse, Button } from 'reactstrap'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faAngleRight, faAngleDown } from '@fortawesome/free-solid-svg-icons'
 
+import { Link } from 'react-router-dom';
+
 import moment from 'moment'
 import 'moment/locale/fr'
 
@@ -31,16 +33,16 @@ class VoteCollapser extends Component {
     render() {
 
         const { vote, restaurants } = this.props
-      
+
         moment.locale('fr')
 
         const date_vote = moment(vote.date).format("dddd D MMMM YYYY")
-            let listOfRestaurants = []
-        const myRestaurants = restaurants.find( obj => obj.hasOwnProperty(vote.url))
+        let listOfRestaurants = []
+        const myRestaurants = restaurants.find(obj => obj.hasOwnProperty(vote.url))
 
         if (myRestaurants) {
             listOfRestaurants = myRestaurants[vote.url]
-        }     
+        }
 
         return (
             <Row className="VoteCollapser mt-3 px-3" >
@@ -58,6 +60,14 @@ class VoteCollapser extends Component {
                             />
                         </Button>
                         {date_vote}
+                        <Button
+                            size='sm'
+                            color='info'
+                            tag={Link} to={'/vote/' + vote.url}
+                            className="ml-3"
+                        >
+                        voir le détail
+                        </Button>
                     </p>
                     <Collapse isOpen={this.state.collapse}>
                         <Row className="justify-content-center align-items-center pb-3">
