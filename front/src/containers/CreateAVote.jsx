@@ -99,6 +99,7 @@ class CreateAVote extends Component {
                                         showDefaultInputIcon
                                         inputIconPosition="after"
                                         displayFormat="DD/MM/YYYY"
+                                        required
                                     />
                                 </div>
 
@@ -111,6 +112,7 @@ class CreateAVote extends Component {
                                     id="pseudo"
                                     value={this.state.pseudo}
                                     onChange={(e) => this.handleChange(e)}
+                                    required
                                 />
                             </FormGroup>
                             <FormGroup>
@@ -121,6 +123,7 @@ class CreateAVote extends Component {
                                     id="email"
                                     value={this.state.email}
                                     onChange={(e) => this.handleChange(e)}
+                                    required
                                 />
                             </FormGroup>
                             <div className="text-center mt-5">
