@@ -54,8 +54,8 @@ class LoginModal extends Component {
 
     render() {
         return (
-            <Modal isOpen={this.state.modal} toggle={this.toggle} className={this.props.className}>
-                <ModalHeader toggle={this.toggle}>Présente toi avant de voter</ModalHeader>
+            <Modal isOpen={this.state.modal} className={this.props.className}>
+                <ModalHeader>Présente toi avant de voter</ModalHeader>
                 <ModalBody>
                 <Form onSubmit={(e) => this.submitForm(e)}>
                             <FormGroup>
