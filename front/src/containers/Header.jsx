@@ -21,8 +21,10 @@ import { faPowerOff } from '@fortawesome/free-solid-svg-icons';
 import Link from 'react-router-dom/Link';
 
 import TopAlert from './TopAlert'
+import { updateUserData } from '../actions';
 
 class Header extends Component {
+  
   constructor(props) {
     super(props);
 
@@ -33,6 +35,14 @@ class Header extends Component {
 
     this.toggleHamburger = this.toggleHamburger.bind(this);
     this.toggleTooltip = this.toggleTooltip.bind(this);
+  }
+
+  componentDidMount() {
+    const get_pseudo = localStorage.getItem('pseudo')
+    const get_email = localStorage.getItem('email')
+    if (get_pseudo && get_email) {
+      this.props.dispatch(updateUserData(get_pseudo,get_email))
+    }
   }
 
   toggleHamburger() {
