@@ -48,9 +48,9 @@ class AddAVoice extends Component {
 
         return (
 
-            <Container fluid className="stepContainer">
+            <Container fluid className="AddVoice">
 
-                <Row className="justify-content-center align-items-center mt-3">
+                <Row className="justify-content-center align-items-center pt-3">
 
                     {listOfRestaurants.map(restaurant => (
                         <PlaceCard

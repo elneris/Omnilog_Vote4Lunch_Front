@@ -18,7 +18,6 @@ class CreateAVotePlaces extends Component {
         return (
             <Row className="pb-3 px-2">
                 <Col>
-                    <h5 className='text-white'>Maintenant { voteData.pseudo }, ajoute des restaurants</h5>
                     <ListGroup>
                     {
                         this.props.voteData.places.map(place => (

@@ -8,23 +8,30 @@ import { Container, Row, Col } from 'reactstrap'
 import PlaceMap from '../containers/PlaceMap'
 import CreateAVotePlaces from '../containers/CreateAVotePlaces';
 
-const AddPlace = ({ voteData_id }) => {
+const AddPlace = ({ voteData_id, userData }) => {
 
     if (voteData_id === '') {
         return <Redirect to='/' />
     }
 
     return (
-        <Container fluid className="stepContainer">
+        <Container fluid className="AddPlace">
+        <Row noGutters className="justify-content-center align-items-center h-100">
+        <Col>
+        <h5 className='text-white text-center my-3'>Maintenant { userData.pseudo }, ajoute des restaurants</h5>
+        </Col>
+        </Row>
             <Row noGutters className="justify-content-center align-items-center h-100">
                 <Col
-                    xs="8"
+                    xs="12"
+                    md="8"
 
                 >
                     <PlaceMap />
                 </Col>
                 <Col
-                    xs="4"
+                    xs="12"
+                    md="4"
                     className="FormBlock text-center"
                 >
                     <CreateAVotePlaces />
@@ -34,8 +41,9 @@ const AddPlace = ({ voteData_id }) => {
     );
 }
 
-const mstp = ({ voteData }) => ({
+const mstp = ({ voteData, userData }) => ({
     voteData_id: voteData.id,
+    userData: userData,
 });
 
 export default connect(mstp)(AddPlace);

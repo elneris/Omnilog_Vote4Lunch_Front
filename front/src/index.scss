@@ -17,11 +17,15 @@ body {
 }
 
 .BeginVote .row {
-  min-height: 80vh;
+  min-height: 88vh;
 }
 
 .CreateAVote .row {
-  min-height: 80vh;
+  min-height: 88vh;
+}
+
+.AddPlace, .AddVoice, .GetUserVotes {
+  min-height: 88vh;
 }
 
 .bg-blue {
@@ -36,10 +40,12 @@ body {
   height: 60vh;
 }
 
+.Header {
+  height: 6vh;
+}
 
 .Footer {
-  position: absolute;
-  bottom: 0;
+  position: relative;
   width: 100%;
   height: 6vh;
   line-height: 6vh;

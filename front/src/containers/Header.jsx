@@ -63,7 +63,7 @@ class Header extends Component {
     }
 
     return (
-      <div>
+      <div className="Header">
         <TopAlert/>
         <Navbar dark expand="md" className="bg-blue">
           <NavbarBrand href="/">Vote 4 Lunch</NavbarBrand>

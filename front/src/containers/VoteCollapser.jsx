@@ -45,7 +45,7 @@ class VoteCollapser extends Component {
         }
 
         return (
-            <Row className="VoteCollapser mt-3 px-3" >
+            <Row className="VoteCollapser p-3" >
                 <Col className="rounded bg-blue pt-2">
                     <p className="text-white">
                         <Button
