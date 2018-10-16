@@ -3,8 +3,6 @@ import {connect} from 'react-redux'
 
 import { Container, Row, Col, Button } from 'reactstrap'
 import { Link } from 'react-router-dom';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faPlus } from '@fortawesome/free-solid-svg-icons'
 
 import {updateUserData} from '../actions'
 
@@ -29,7 +27,7 @@ class BeginVote extends Component {
                     className="bg-blue p-5 text-center rounded"
                 >
                 <p className="text-white">Fait voter tes collègues pour le déjeuner</p>
-                    <Button tag={Link} to="/create-a-vote" color="success">Organiser un vote <FontAwesomeIcon icon={faPlus} /></Button>
+                    <Button tag={Link} to="/create-a-vote" color="success">Organiser un vote</Button>
                 </Col>
             </Row>
         </Container>
