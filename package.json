@@ -5,7 +5,8 @@
   "main": "app.js",
   "scripts": {
     "start": "node ./bin/start",
-    "test": "mocha --recursive ./test/*Test.js --compilers js:babel-core/register --require babel-polyfill"
+    "test": "mocha --recursive ./test/*Test.js --compilers js:babel-core/register --require babel-polyfill",
+    "heroku-postbuild": "cd front && npm install && npm run-script build"
   },
   "dependencies": {
     "babel-core": "^6.25.0",
