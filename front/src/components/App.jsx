@@ -1,23 +1,35 @@
 import React from 'react';
 
-import { Container, Row, Col } from 'reactstrap'
+import { Route, Switch } from 'react-router-dom';
 
-import PlaceMap from '../containers/PlaceMap'
+import AddPlace from './AddPlace'
+import Footer from './Footer'
+import LogoutView from './LogoutView'
+import NotFound from './NotFound'
+
+import CreateAVote from '../containers/CreateAVote';
+import AddAVoice from '../containers/AddAVoice';
+import Header from '../containers/Header';
+import GetUsersVotes from '../containers/GetUsersVotes';
+import BeginVote from '../containers/BeginVote';
 
 const App = () => {
 
-    return ( 
-        <Container fluid>
-            <Row className="justify-content-center align-items-center">
-                <Col
-                    xs="8"
-                    className="FormBlock p-4 text-center"
-                >
-                    <PlaceMap/>
-                </Col>
-            </Row>
-        </Container>
-     );
+    return (
+        <div className="App">
+            <Header/>
+            <Switch>
+                <Route exact path="/" component={BeginVote} />
+                <Route exact path="/create-a-vote" component={CreateAVote} />
+                <Route exact path="/add-place" component={AddPlace} />
+                <Route exact path="/vote/:url" component={AddAVoice} />
+                <Route exact path="/my-votes" component={GetUsersVotes} />
+                <Route exact path="/logout" component={LogoutView} />
+                <Route path="*" component={NotFound} status={404} />
+            </Switch>
+            <Footer/>
+        </div>
+    );
 }
- 
+
 export default App;

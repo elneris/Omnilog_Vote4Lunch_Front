@@ -1,0 +1,38 @@
+export const saveVoteData = (id,date, pseudo, email, url) => ({
+    type: 'SAVE_VOTE_DATA',
+    id,
+    date,
+    pseudo,
+    email,
+    url
+})
+
+export const resetVoteData = () => ({
+    type: 'RESET_VOTE_DATA',
+})
+
+export const updateUserData = (pseudo,email) => ({
+  type: 'UPDATE_USER_DATA',
+  pseudo,
+  email,
+})
+
+export const onMapAlert = (message_type,message) => ({
+  type: 'ON_MAP_ALERT',
+  message_type,
+  message
+})
+
+export const offMapAlert = () => ({
+  type: 'OFF_MAP_ALERT',
+})
+
+export const onTopAlert = (message_type,message) => ({
+  type: 'ON_TOP_ALERT',
+  message_type,
+  message
+})
+
+export const offTopAlert = () => ({
+  type: 'OFF_TOP_ALERT',
+})
