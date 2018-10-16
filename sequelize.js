@@ -8,16 +8,38 @@ import { VoiceModel } from './models/voice';
 
 import fs from 'fs';
 
-const sequelize = new Sequelize(process.env.DB_NAME, process.env.DB_USER, process.env.DB_PASSWORD, {
-    host: process.env.DB_HOST,
-    dialect: 'postgresql',
-    poll: {
-        max: 10,
-        min: 0,
-        acquire: 30000,
-        idle: 10000
+const development = process.env.ENV;
+
+let config;
+
+if (development !== 'production') {
+    config = {
+        host: process.env.DB_HOST,
+        dialect: 'postgresql',
+        poll: {
+            max: 10,
+            min: 0,
+            acquire: 30000,
+            idle: 10000
+        }
     }
-})
+} else {
+    config = {
+        host: process.env.DB_HOST,
+        dialect: 'postgresql',
+        poll: {
+            max: 10,
+            min: 0,
+            acquire: 30000,
+            idle: 10000
+        },
+        dialectOptions: {
+            ssl: true
+        }
+    }
+}
+
+const sequelize = new Sequelize(process.env.POSTGRES_DB_URL, config)
 
 // Model's initialization
 
@@ -39,20 +61,42 @@ Place.belongsToMany(Vote, { through: VotePlace });
 
 // Database initialization
 
-sequelize.sync({ force: process.env.DEBUG })
-    .then(() => {
-        console.log(`Database & tables created!`)
 
-        const PlacesData = JSON.parse(fs.readFileSync('./.json_data/places.json', 'UTF-8'));
 
-        PlacesData.map(place => Place
-            .findOrCreate({
-                where: {
-                    name: place.tags.name,
-                    lat: parseFloat(place.lat),
-                    lng: parseFloat(place.lon),
-                    type: place.tags.amenity
-                }
-            })
-        )
-    })
+if (development !== 'production') {
+    sequelize.sync({ force: true })
+        .then(() => {
+            console.log(`Database & tables created!`)
+
+            const PlacesData = JSON.parse(fs.readFileSync('./.json_data/places.json', 'UTF-8'));
+
+            PlacesData.map(place => Place
+                .findOrCreate({
+                    where: {
+                        name: place.tags.name,
+                        lat: parseFloat(place.lat),
+                        lng: parseFloat(place.lon),
+                        type: place.tags.amenity
+                    }
+                })
+            )
+        })
+} else {
+    sequelize.sync({ force: false })
+        .then(() => {
+            console.log(`Database & tables created!`)
+
+            const PlacesData = JSON.parse(fs.readFileSync('./.json_data/places.json', 'UTF-8'));
+
+            PlacesData.map(place => Place
+                .findOrCreate({
+                    where: {
+                        name: place.tags.name,
+                        lat: parseFloat(place.lat),
+                        lng: parseFloat(place.lon),
+                        type: place.tags.amenity
+                    }
+                })
+            )
+        })
+}
