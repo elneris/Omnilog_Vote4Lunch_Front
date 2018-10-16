@@ -84,7 +84,7 @@ class CreateAVote extends Component {
                     >
                         <Form onSubmit={(e) => this.submitForm(e)}>
                             <FormGroup>
-                                <Label for="pseudo">Ta date ?</Label>
+                                <Label className="text-white" for="pseudo">Choisis ta date</Label>
                                 <div className='text-center'>
                                     <SingleDatePicker
                                         numberOfMonths={1}
@@ -105,7 +105,7 @@ class CreateAVote extends Component {
 
                             </FormGroup>
                             <FormGroup>
-                                <Label for="pseudo">Indique ton pseudo</Label>
+                                <Label className="text-white" for="pseudo">Indique ton pseudo</Label>
                                 <Input
                                     type="text"
                                     name="pseudo"
@@ -116,7 +116,7 @@ class CreateAVote extends Component {
                                 />
                             </FormGroup>
                             <FormGroup>
-                                <Label for="email">Indique ton email</Label>
+                                <Label className="text-white" for="email">Indique ton email</Label>
                                 <Input
                                     type="email"
                                     name="email"
