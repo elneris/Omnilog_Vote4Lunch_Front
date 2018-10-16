@@ -24,14 +24,21 @@ body {
   min-height: 88vh;
 }
 
-.AddPlace, .AddVoice, .GetUserVotes, .NotFound {
+.AddPlace, .AddVoice, .GetUserVotes, .NotFound, .APropos {
   min-height: 88vh;
 }
 
 .bg-blue {
   background-color: #3E606F;
 }
-  
+
+.bg-lighter {
+  background-color: rgba($color: #E5EFEE, $alpha: 0.3);
+}
+
+.round-corners {
+  border-radius: 25px;
+}
 .PlaceMap {
   height: 80vh;
 }
