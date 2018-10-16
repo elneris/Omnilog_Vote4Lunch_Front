@@ -19,7 +19,7 @@ body {
 .CreateAVote .row {
   min-height: 88vh; }
 
-.AddPlace, .AddVoice, .GetUserVotes {
+.AddPlace, .AddVoice, .GetUserVotes, .NotFound {
   min-height: 88vh; }
 
 .bg-blue {
