@@ -24,7 +24,8 @@ class BeginVote extends Component {
             <Container fluid className="BeginVote">
             <Row noGutters className="justify-content-center align-items-center h-100">
                 <Col
-                    xs="4" 
+                    xs="12"
+                    md="4"
                     className="bg-blue p-5 text-center rounded"
                 >
                 <p className="text-white">Fait voter tes collègues pour le déjeuner</p>
