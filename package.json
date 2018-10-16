@@ -1,6 +1,6 @@
 {
-  "name": "api",
-  "version": "0.0.0",
+  "name": "vote4lunch",
+  "version": "0.1.0",
   "private": true,
   "main": "app.js",
   "scripts": {
