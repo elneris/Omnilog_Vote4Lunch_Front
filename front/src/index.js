@@ -7,6 +7,8 @@ import { composeWithDevTools } from 'redux-devtools-extension';
 import { Provider } from 'react-redux';
 import allReducers from './reducers';
 
+import WebFont from 'webfontloader';
+
 import App from './components/App';
 
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -15,6 +17,12 @@ import './index.css';
 const store = createStore(allReducers, composeWithDevTools(
   applyMiddleware(reduxThunk)
 ));
+
+WebFont.load({
+  google: {
+    families: ['Courgette']
+  }
+});
 
 ReactDOM.render(
   <Provider store={store}>
