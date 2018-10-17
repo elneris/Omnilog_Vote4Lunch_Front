@@ -31,7 +31,7 @@ class VoteCollapser extends Component {
   }
 
   render() {
-    const { vote, restaurants } = this.props;
+    const { vote, restaurants, maxDate } = this.props;
 
     moment.locale('fr');
 
@@ -43,10 +43,16 @@ class VoteCollapser extends Component {
       listOfRestaurants = myRestaurants[vote.url];
     }
 
+    let classNameForRow = 'VoteCollapser pt-4';
+
+    if (maxDate) {
+      classNameForRow = 'VoteCollapser py-4';
+    }
+
     const voteDetailUrl = `/vote/${vote.url}`;
 
     return (
-      <Row className="VoteCollapser pt-4" >
+      <Row className={classNameForRow} >
         <Col className="rounded bg-blue pt-2">
           <p className="text-white">
             <Button
