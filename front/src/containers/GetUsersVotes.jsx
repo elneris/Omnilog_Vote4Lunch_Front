@@ -8,6 +8,7 @@ import VoteCollapser from '../containers/VoteCollapser';
 
 import { getUsersVotes } from '../actions/getUsersVotes';
 
+/* eslint class-methods-use-this: ["error", { "exceptMethods": ["getMaxDate"] }] */
 class GetUsersVotes extends Component {
   constructor() {
     super();
@@ -20,7 +21,7 @@ class GetUsersVotes extends Component {
   }
 
   getMaxDate(data) {
-    return data[data.length-1].date;
+    return data[data.length - 1].date;
   }
 
   render() {
@@ -28,7 +29,7 @@ class GetUsersVotes extends Component {
     let maxDate;
     if (usersVotes.length > 0) {
       maxDate = this.getMaxDate(usersVotes);
-    }    
+    }
 
     return (
       <Container fluid className="GetUserVotes">
