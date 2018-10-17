@@ -89,9 +89,9 @@ class PlaceCard extends Component {
             className='float-right'
             color='info'
           >
-            {restaurant.type === 'restaurant' ? <MaterialIcon icon="restaurant" /> : <MaterialIcon icon="fastfood" />} 
+            {restaurant.type === 'restaurant' ? <MaterialIcon icon="restaurant" /> : <MaterialIcon icon="fastfood" />}
           </Button>
-          <CardBody className='text-center'>
+          <CardBody className='text-center d-flex flex-column'>
             <CardTitle>
               {restaurant.name}
             </CardTitle>
@@ -107,6 +107,7 @@ class PlaceCard extends Component {
               size="sm"
               color='success'
               disabled={filteredUserVoteValue}
+              className='mt-auto'
             >Je vote pour ! <FontAwesomeIcon icon={faSmileBeam} /></Button>
           </CardBody>
         </Card>
