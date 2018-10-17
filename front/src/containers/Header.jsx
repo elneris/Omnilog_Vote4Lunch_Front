@@ -11,6 +11,7 @@ import {
   NavItem,
   NavLink,
   Button,
+  ButtonGroup,
   Tooltip,
 } from 'reactstrap';
 
@@ -20,11 +21,10 @@ import { faPowerOff } from '@fortawesome/free-solid-svg-icons';
 
 import Link from 'react-router-dom/Link';
 
-import TopAlert from './TopAlert'
+import TopAlert from './TopAlert';
 import { updateUserData } from '../actions';
 
 class Header extends Component {
-  
   constructor(props) {
     super(props);
 
@@ -38,10 +38,10 @@ class Header extends Component {
   }
 
   componentDidMount() {
-    const get_pseudo = localStorage.getItem('pseudo')
-    const get_email = localStorage.getItem('email')
-    if (get_pseudo && get_email) {
-      this.props.dispatch(updateUserData(get_pseudo,get_email))
+    const getPseudo = localStorage.getItem('pseudo');
+    const getEmail = localStorage.getItem('email');
+    if (getPseudo && getEmail) {
+      this.props.dispatch(updateUserData(getPseudo, getEmail));
     }
   }
 
@@ -58,64 +58,105 @@ class Header extends Component {
   }
 
   render() {
+    const { vote } = this.props;
+    const votePseudo = vote.pseudo;
 
-    const { vote } = this.props
-    const vote_pseudo = vote.pseudo
+    let pseudo = '';
 
-    let pseudo = ''
+    const getPseudo = localStorage.getItem('pseudo');
+    const getEmail = localStorage.getItem('email');
 
-    const get_pseudo = localStorage.getItem('pseudo')
-    const get_email = localStorage.getItem('email')
-    if (get_pseudo && get_email) {
-      pseudo = get_pseudo
+    if (getPseudo && getEmail) {
+      pseudo = getPseudo;
     } else {
-      pseudo = vote_pseudo
+      pseudo = votePseudo;
+    }
+
+    let renderBonjour;
+    if (pseudo) {
+      renderBonjour = <NavItem className="mr-3 pt-1">
+        <NavLink>
+          Bonjour, {pseudo}
+        </NavLink>
+      </NavItem>;
+    } else {
+      renderBonjour = '';
+    }
+
+    let renderButtonVote;
+    let renderButtonLogout;
+    if (pseudo) {
+      if (window.innerWidth <= 768) {
+        renderButtonVote =
+          <NavItem className="mr-3">
+            <ButtonGroup>
+              <Button
+                tag={Link}
+                color='info'
+                to='/my-votes'
+                href="#"
+                id="TooltipMyVotes"
+              >
+                <MaterialIcon
+                  icon="how_to_vote"
+                  color="white"
+                  size="tiny"
+                />
+              </Button>
+              <Button
+                tag={Link}
+                color='danger'
+                to='/logout'
+              >
+                <FontAwesomeIcon icon={faPowerOff} />
+              </Button>
+            </ButtonGroup>
+          </NavItem>;
+        renderButtonLogout = '';
+      } else {
+        renderButtonVote =
+          <NavItem className="mr-3">
+            <Button
+              tag={Link}
+              color='info'
+              to='/my-votes'
+              href="#"
+              id="TooltipMyVotes"
+            >
+              <MaterialIcon
+                icon="how_to_vote"
+                color="white"
+                size="tiny"
+              />
+            </Button>
+          </NavItem>;
+        renderButtonLogout =
+          <NavItem className="mr-3">
+            <Button
+              tag={Link}
+              color='danger'
+              to='/logout'
+            >
+              <FontAwesomeIcon icon={faPowerOff} />
+            </Button>
+          </NavItem>;
+      }
+    } else {
+      renderButtonVote = '';
+      renderButtonLogout = '';
     }
 
     return (
       <div className="Header">
-        <TopAlert/>
+        <TopAlert />
         <Navbar dark expand="md" className="bg-blue">
           <NavbarBrand href="/">Vote 4 Lunch</NavbarBrand>
           <NavbarToggler onClick={this.toggleHamburger} />
           <Collapse isOpen={this.state.isOpen} navbar>
             <Nav className="ml-auto" navbar>
-              {pseudo ?
-                <NavItem className="mr-3 pt-1">
-                  <NavLink>
-                    Bonjour, {pseudo}
-                  </NavLink>
-                </NavItem> : ''}
-              {pseudo ?
-                <NavItem className="mr-3">
-                  <Button
-                    tag={Link}
-                    color='info'
-                    to='/my-votes'
-                    href="#"
-                    id="TooltipMyVotes"
-                  >
-                    <MaterialIcon
-                      icon="how_to_vote"
-                      color="white"
-                      size="tiny"
-                    />
-                  </Button>
-                </NavItem>
-                : ''
-              }
-              {pseudo ?
-                <NavItem className="mr-3">
-                  <Button
-                    tag={Link}
-                    color='danger'
-                    to='/logout'
-                  >
-                    <FontAwesomeIcon icon={faPowerOff} />
-                  </Button>
-                </NavItem>
-                : ''
-              }
+              {renderBonjour}
+              {renderButtonVote}
+              {renderButtonLogout}
             </Nav>
           </Collapse>
         </Navbar>
@@ -127,7 +168,7 @@ class Header extends Component {
             toggle={this.toggleTooltip}
           >
             Accéder à mes votes
-        </Tooltip>
+          </Tooltip>
           : ''}
       </div>
     );
@@ -136,6 +177,6 @@ class Header extends Component {
 
 const mstp = ({ voteData }) => ({
   vote: voteData,
-})
+});
 
 export default connect(mstp)(Header);
