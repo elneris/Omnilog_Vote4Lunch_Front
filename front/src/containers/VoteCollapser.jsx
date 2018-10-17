@@ -23,7 +23,7 @@ class VoteCollapser extends Component {
   }
 
   componentDidMount() {
-    this.props.dispatch(getPlacesList(this.props.vote.url))
+    this.props.dispatch(getPlacesList(this.props.vote.url));
   }
 
   toggle() {
@@ -46,7 +46,7 @@ class VoteCollapser extends Component {
     const voteDetailUrl = `/vote/${vote.url}`;
 
     return (
-      <Row className="VoteCollapser p-3" >
+      <Row className="VoteCollapser pt-4" >
         <Col className="rounded bg-blue pt-2">
           <p className="text-white">
             <Button
