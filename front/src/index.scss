@@ -17,21 +17,33 @@ body {
 }
 
 .BeginVote .row {
-  min-height: 88vh;
+  min-height: 85vh;
 }
 
 .CreateAVote .row {
-  min-height: 88vh;
+  min-height: 85vh;
 }
 
-.AddPlace, .AddVoice, .GetUserVotes, .NotFound {
-  min-height: 88vh;
+.AddPlace, .AddVoice, .GetUserVotes, .NotFound, .APropos {
+  min-height: 85vh;
+}
+
+.AddPlace {
+  padding-left: 0px !important;
+  padding-right: 0px !important;
 }
 
 .bg-blue {
   background-color: #3E606F;
 }
-  
+
+.bg-lighter {
+  background-color: rgba($color: #E5EFEE, $alpha: 0.3);
+}
+
+.round-corners {
+  border-radius: 25px;
+}
 .PlaceMap {
   height: 80vh;
 }
@@ -41,7 +53,7 @@ body {
 }
 
 .Header {
-  height: 6vh;
+  min-height: 9vh;
 }
 
 .Footer {

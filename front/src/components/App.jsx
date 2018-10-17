@@ -6,6 +6,7 @@ import AddPlace from './AddPlace'
 import Footer from './Footer'
 import LogoutView from './LogoutView'
 import NotFound from './NotFound'
+import About from './About'
 
 import CreateAVote from '../containers/CreateAVote';
 import AddAVoice from '../containers/AddAVoice';
@@ -25,6 +26,7 @@ const App = () => {
                 <Route exact path="/vote/:url" component={AddAVoice} />
                 <Route exact path="/my-votes" component={GetUsersVotes} />
                 <Route exact path="/logout" component={LogoutView} />
+                <Route exact path="/apropos" component={About} />
                 <Route path="*" component={NotFound} status={404} />
             </Switch>
             <Footer/>
