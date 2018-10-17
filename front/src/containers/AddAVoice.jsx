@@ -26,11 +26,11 @@ class AddAVoice extends Component {
     if (!pseudo || !email) {
       this.setState({
         openLoginModal: true
-      })
+      });
     } else {
       this.setState({
         openLoginModal: false
-      })
+      });
     }
   }
 
@@ -40,7 +40,7 @@ class AddAVoice extends Component {
     let listOfRestaurants;
 
     if (restaurants[this.props.match.params.url]) {
-      listOfRestaurants = restaurants[this.props.match.params.url]
+      listOfRestaurants = restaurants[this.props.match.params.url];
     } else {
       listOfRestaurants = [];
     }
@@ -64,8 +64,8 @@ class AddAVoice extends Component {
           noGutters
         >
           <Col
-            xs="8"
-
+            xs="12"
+            lg='8'
           >
             <VoteMap restaurants={listOfRestaurants} />
           </Col>
