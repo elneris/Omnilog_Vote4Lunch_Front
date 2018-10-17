@@ -14,13 +14,13 @@ body {
   position: relative; }
 
 .BeginVote .row {
-  min-height: 87vh; }
+  min-height: 85vh; }
 
 .CreateAVote .row {
-  min-height: 87vh; }
+  min-height: 85vh; }
 
 .AddPlace, .AddVoice, .GetUserVotes, .NotFound, .APropos {
-  min-height: 87vh; }
+  min-height: 85vh; }
 
 .bg-blue {
   background-color: #3E606F; }
@@ -38,7 +38,7 @@ body {
   height: 60vh; }
 
 .Header {
-  height: 7vh; }
+  min-height: 9vh; }
 
 .Footer {
   position: relative;
