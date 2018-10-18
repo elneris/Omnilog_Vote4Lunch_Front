@@ -5,10 +5,10 @@ export const verifyIfUserHasVotedSuccess = result => ({
   result,
 });
 
-export function verifyIfUserHasVoted(voteId, pseudo, email) {
+export function verifyIfUserHasVoted(voteUrl, pseudo, email) {
   return dispatch => (
     axios
-      .get(`/api/voice/count/foruser?vote_id=${voteId}&pseudo=${pseudo}&email=${email}`)
+      .get(`/api/voice/count/foruser?vote_url=${voteUrl}&pseudo=${pseudo}&email=${email}`)
       .then(result => result.data)
       .then((result) => {
         dispatch(verifyIfUserHasVotedSuccess(result));
