@@ -4,7 +4,7 @@ import { Route, Switch } from 'react-router-dom';
 
 
 import Footer from './Footer'
-import LogoutView from './LogoutView'
+
 import NotFound from './NotFound'
 import About from './About'
 
@@ -14,6 +14,7 @@ import Header from '../containers/Header';
 import GetUsersVotes from '../containers/GetUsersVotes';
 import BeginVote from '../containers/BeginVote';
 import AddPlace from '../containers/AddPlace';
+import LogoutView from '../containers/LogoutView';
 
 const App = () => {
 
