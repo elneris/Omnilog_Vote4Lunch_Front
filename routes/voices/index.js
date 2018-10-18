@@ -1,6 +1,6 @@
 import express from 'express';
 
-import { Voice } from '../../sequelize';
+import { Vote, Voice } from '../../sequelize';
 
 const router = express.Router();
 
@@ -34,29 +34,37 @@ router.get('/count/all', (req, res) => {
 
 // Verify if a user have voted for a vote
 router.get('/count/foruser', (req, res) => {
-  Voice.findAndCountAll({
-    where: {
-      voteId: req.query.vote_id,
-      pseudo: req.query.pseudo,
-      email: req.query.email
-    }
-  }).then((result) => {
-    if (result.count === 0) {
-      res.json({
-        vote_id: req.query.vote_id,
-        pseudo: req.query.pseudo,
-        email: req.query.email,
-        vote: false,
-      });
-    } else {
-      res.json({
-        vote_id: req.query.vote_id,
-        pseudo: req.query.pseudo,
-        email: req.query.email,
-        vote: true,
-      });
-    }
-  });
+  Vote
+    .findOne({
+      where: {
+        url: req.query.vote_url
+      }
+    })
+    .then(vote =>
+      Voice.findAndCountAll({
+        where: {
+          voteId: vote.id,
+          pseudo: req.query.pseudo,
+          email: req.query.email
+        }
+      }).then((result) => {
+        if (result.count === 0) {
+          res.json({
+            vote_id: vote.id,
+            pseudo: req.query.pseudo,
+            email: req.query.email,
+            vote: false,
+          });
+        } else {
+          res.json({
+            vote_id: vote.id,
+            pseudo: req.query.pseudo,
+            email: req.query.email,
+            vote: true,
+          });
+        }
+      })
+    );
 });
 
 export default router;
