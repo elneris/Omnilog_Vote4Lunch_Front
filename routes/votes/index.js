@@ -29,11 +29,11 @@ router.post('/add', (req, res) => {
 });
 
 // Get a vote from his url field and delete it
-router.get('/del', (req, res) => {
+router.post('/del', (req, res) => {
   Vote
     .findOne({
       where: {
-        url: req.query.vote_url
+        url: req.body.vote_url
       }
     })
     .then(vote => vote.destroy())
