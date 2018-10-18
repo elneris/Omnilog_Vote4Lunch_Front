@@ -5,8 +5,8 @@ import { Redirect } from 'react-router-dom';
 
 import { Container, Row, Col } from 'reactstrap';
 
-import PlaceMap from '../containers/PlaceMap';
-import CreateAVotePlaces from '../containers/CreateAVotePlaces';
+import PlaceMap from './PlaceMap';
+import CreateAVotePlaces from './CreateAVotePlaces';
 
 const AddPlace = ({ voteDataId, userData }) => {
   if (voteDataId === '') {
