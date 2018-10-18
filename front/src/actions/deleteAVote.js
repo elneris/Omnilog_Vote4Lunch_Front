@@ -15,6 +15,10 @@ export const deleteAVoteFailure = error => ({
   error,
 });
 
+export const deleteAVoteInit = () => ({
+  type: 'DELETE_A_VOTE_INIT',
+});
+
 export function deleteAVote(voteUrl) {
   return (dispatch) => {
     dispatch(deleteAVoteBegin());
@@ -23,10 +27,12 @@ export function deleteAVote(voteUrl) {
         url: '/api/vote/del',
         method: 'post',
         data: {
-          voteUrl,
+          vote_url: voteUrl,
         }
       })
         .then(result => dispatch(deleteAVoteSuccess(result.data))
+        )
+        .then(() => dispatch(deleteAVoteInit())
         )
         .catch(error => dispatch(deleteAVoteFailure(error)))
     );

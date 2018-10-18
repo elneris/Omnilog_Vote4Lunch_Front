@@ -25,6 +25,8 @@ const deleteAVote = (state = initialState, action) => {
         loading: false,
         error: action.error,
       };
+    case 'DELETE_A_VOTE_INIT':
+      return initialState;
     default:
       return state;
   }
