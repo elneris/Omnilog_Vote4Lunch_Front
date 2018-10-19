@@ -6,7 +6,7 @@ import { connect } from 'react-redux';
 
 import { getPlacesList } from '../actions/getPlacesList';
 
-import { Container, Row, Col, ButtonGroup, Button } from 'reactstrap';
+import { Container, Row, Col, ButtonGroup, Button, Tooltip } from 'reactstrap';
 
 import { CopyToClipboard } from 'react-copy-to-clipboard';
 
@@ -19,8 +19,11 @@ class AddAVoice extends Component {
     super();
 
     this.state = {
-      openLoginModal: false
+      openLoginModal: false,
+      tooltipOpen: false,
     };
+
+    this.toggleTooltip = this.toggleTooltip.bind(this);
   }
 
   componentDidMount() {
@@ -38,6 +41,12 @@ class AddAVoice extends Component {
         openLoginModal: false
       });
     }
+  }
+
+  toggleTooltip() {
+    this.setState({
+      tooltipOpen: !this.state.tooltipOpen
+    });
   }
 
   render() {
@@ -69,6 +78,7 @@ class AddAVoice extends Component {
               <CopyToClipboard text={window.location.href}>
                 <Button
                   color="info"
+                  id="TooltipCopyToClipBoard"
                 >
                   <FontAwesomeIcon icon={faClipboard} />
                 </Button>
@@ -98,6 +108,14 @@ class AddAVoice extends Component {
           </Col>
         </Row>
         {this.state.openLoginModal ? <LoginModal open voteUrl={this.props.match.params.url} /> : ''}
+        <Tooltip
+          placement="bottom"
+          isOpen={this.state.tooltipOpen}
+          target="TooltipCopyToClipBoard"
+          toggle={this.toggleTooltip}
+        >
+          Copier vers le presse-papiers
+        </Tooltip>
       </Container >
 
 
