@@ -67,4 +67,47 @@ router.get('/count/foruser', (req, res) => {
     );
 });
 
+// Verify if a user have voted for a vote
+router.post('/count/all/foruser', (req, res) => {
+  const request = JSON.parse(req.body.votes_url);
+
+  const resultPromises = request.map(voteUrl =>
+    Vote
+      .findOne({
+        where: {
+          url: voteUrl
+        }
+      })
+      .then(vote =>
+        Voice
+          .findAndCountAll({
+            where: {
+              voteId: vote.id,
+              pseudo: req.body.pseudo,
+              email: req.body.email
+            }
+          })
+          .then((result) => {
+            if (result.count === 0) {
+              return {
+                vote_id: vote.id,
+                pseudo: req.body.pseudo,
+                email: req.body.email,
+                vote: false,
+              };
+            }
+            return {
+              vote_id: vote.id,
+              pseudo: req.body.pseudo,
+              email: req.body.email,
+              vote: true,
+            };
+          })
+      )
+  );
+  Promise.all(resultPromises).then((resultToSend) => {
+    res.json(resultToSend);
+  });
+});
+
 export default router;
