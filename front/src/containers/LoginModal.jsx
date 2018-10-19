@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import { Button, Modal, ModalHeader, ModalBody, Form, FormGroup, Label, Input } from 'reactstrap';
 
 import { updateUserData } from '../actions';
+import { verifyIfUserHasVoted } from '../actions/verifyIfUserHasVoted';
 
 class LoginModal extends Component {
   constructor(props) {
@@ -22,6 +23,17 @@ class LoginModal extends Component {
     if (this.props.open) {
       this.toggle();
     }
+  }
+
+  componentDidUpdate() {
+    if (!this.state.modal) {
+      this.props.dispatch(verifyIfUserHasVoted(
+        this.props.voteUrl,
+        this.state.pseudo,
+        this.state.email
+      ));
+    }
+
   }
 
   toggle() {
@@ -81,7 +93,6 @@ class LoginModal extends Component {
             <div className="text-center mt-5">
               <Button color="success">Bonjour</Button>
             </div>
-
           </Form>
         </ModalBody>
       </Modal>

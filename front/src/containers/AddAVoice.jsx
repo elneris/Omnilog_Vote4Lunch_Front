@@ -97,7 +97,7 @@ class AddAVoice extends Component {
             <VoteMap restaurants={listOfRestaurants} />
           </Col>
         </Row>
-        {this.state.openLoginModal ? <LoginModal open /> : ''}
+        {this.state.openLoginModal ? <LoginModal open voteUrl={this.props.match.params.url} /> : ''}
       </Container >
 
 
