@@ -1,13 +1,14 @@
-export default (sequelize, type) =>
-  sequelize.define('vote', {
-    id: {
-      type: type.INTEGER,
-      primaryKey: true,
-      autoIncrement: true
-    },
-    pseudo: type.STRING,
-    email: type.STRING,
-    date: type.DATE,
-    url: type.STRING,
-    active: type.BOOLEAN,
-  });
+export const VoteModel = (sequelize, type) => {
+    return sequelize.define('vote', {
+        id: {
+          type: type.INTEGER,
+          primaryKey: true,
+          autoIncrement: true
+        },
+        pseudo: type.STRING,
+        email: type.STRING,
+        date: type.DATE,
+        url: type.STRING,
+        active: type.BOOLEAN,
+    })
+}
