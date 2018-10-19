@@ -10,7 +10,7 @@ import index from './routes/index';
 
 // set dotenv for environment variables
 
-require('dotenv').config()
+require('dotenv').config();
 
 const app = express();
 const debug = Debug('api:app');
@@ -34,7 +34,7 @@ app.use('/api', index);
 // The "catchall" handler: for any request that doesn't
 // match one above, send back React's index.html file.
 app.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname + '/front/build/index.html'));
+  res.sendFile(path.join(`${__dirname}/front/build/index.html`));
 });
 
 // Handle uncaughtException

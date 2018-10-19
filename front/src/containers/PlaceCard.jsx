@@ -30,7 +30,7 @@ class PlaceCard extends Component {
     const email = await localStorage.getItem('email');
     await this.props.dispatch(getVoiceCount(this.props.vote_url, this.props.restaurant.id));
     await this.getVoteId();
-    await this.props.dispatch(verifyIfUserHasVoted(this.state.vote_id, pseudo, email));
+    await this.props.dispatch(verifyIfUserHasVoted(this.props.vote_url, pseudo, email));
   }
 
   async getVoteId() {

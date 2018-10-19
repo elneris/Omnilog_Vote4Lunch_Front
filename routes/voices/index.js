@@ -1,6 +1,6 @@
 import express from 'express';
 
-import { Voice } from '../../sequelize';
+import { Vote, Voice } from '../../sequelize';
 
 const router = express.Router();
 
@@ -13,50 +13,101 @@ router.post('/add', (req, res) => {
       pseudo: req.body.pseudo,
       email: req.body.email,
     }).then(() => {
-      res.json({ vote: true })
-    })
+      res.json({ vote: true });
+    });
   } else {
-    res.sendStatus(400)
-  }    
+    res.sendStatus(400);
+  }
 });
-  
-  // Return the sum of voices for a vote and a place
-  router.get('/count/all', (req, res) => {
-    Voice.findAndCountAll({
-      where: {
-        voteId: req.query.vote_id,
-        placeId: req.query.place_id
-      }
-    }).then(voices=>{
-      res.json(voices)
-    })
-  });
 
-// Verify if a user have voted for a vote
-router.get('/count/foruser', (req,res) => {
+// Return the sum of voices for a vote and a place
+router.get('/count/all', (req, res) => {
   Voice.findAndCountAll({
     where: {
       voteId: req.query.vote_id,
-      pseudo: req.query.pseudo,
-      email: req.query.email
+      placeId: req.query.place_id
     }
-  }).then(result=>{
-    if (result.count === 0) {
-      res.json({
-        'vote_id':req.query.vote_id,
-        'pseudo': req.query.pseudo,
-        'email': req.query.email,
-        'vote': false,
+  }).then((voices) => {
+    res.json(voices);
+  });
+});
+
+// Verify if a user have voted for a vote
+router.get('/count/foruser', (req, res) => {
+  Vote
+    .findOne({
+      where: {
+        url: req.query.vote_url
+      }
+    })
+    .then(vote =>
+      Voice.findAndCountAll({
+        where: {
+          voteId: vote.id,
+          pseudo: req.query.pseudo,
+          email: req.query.email
+        }
+      }).then((result) => {
+        if (result.count === 0) {
+          res.json({
+            vote_id: vote.id,
+            pseudo: req.query.pseudo,
+            email: req.query.email,
+            vote: false,
+          });
+        } else {
+          res.json({
+            vote_id: vote.id,
+            pseudo: req.query.pseudo,
+            email: req.query.email,
+            vote: true,
+          });
+        }
       })
-    } else {
-      res.json({
-        'vote_id':req.query.vote_id,
-        'pseudo': req.query.pseudo,
-        'email': req.query.email,
-        'vote': true,
+    );
+});
+
+// Verify if a user have voted for a vote
+router.post('/count/all/foruser', (req, res) => {
+  const request = JSON.parse(req.body.votes_url);
+
+  const resultPromises = request.map(voteUrl =>
+    Vote
+      .findOne({
+        where: {
+          url: voteUrl
+        }
       })
-    }
-  })
+      .then(vote =>
+        Voice
+          .findAndCountAll({
+            where: {
+              voteId: vote.id,
+              pseudo: req.body.pseudo,
+              email: req.body.email
+            }
+          })
+          .then((result) => {
+            if (result.count === 0) {
+              return {
+                vote_id: vote.id,
+                pseudo: req.body.pseudo,
+                email: req.body.email,
+                vote: false,
+              };
+            }
+            return {
+              vote_id: vote.id,
+              pseudo: req.body.pseudo,
+              email: req.body.email,
+              vote: true,
+            };
+          })
+      )
+  );
+  Promise.all(resultPromises).then((resultToSend) => {
+    res.json(resultToSend);
+  });
 });
 
 export default router;

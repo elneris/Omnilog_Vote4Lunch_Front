@@ -39,7 +39,7 @@ export function addVoice(voteUrl, placeId, pseudo, email) {
         .then((result) => {
           dispatch(addVoiceSuccess(result.result));
           dispatch(getVoiceCount(voteUrl, placeId));
-          dispatch(verifyIfUserHasVoted(result.vote.id, pseudo, email));
+          dispatch(verifyIfUserHasVoted(voteUrl, pseudo, email));
         })
         .catch(error => dispatch(addVoiceFailure(error)))
     );

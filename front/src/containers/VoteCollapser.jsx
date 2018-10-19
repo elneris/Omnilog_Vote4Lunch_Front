@@ -14,6 +14,9 @@ import 'moment/locale/fr';
 import PlaceCard from './PlaceCard';
 
 import { getPlacesList } from '../actions/getPlacesList';
+import { deleteAVote } from '../actions/deleteAVote';
+import { onTopAlert, offTopAlert } from '../actions';
+import { getUsersVotes } from '../actions/getUsersVotes';
 
 class VoteCollapser extends Component {
   constructor(props) {
@@ -31,7 +34,7 @@ class VoteCollapser extends Component {
   }
 
   render() {
-    const { vote, restaurants, maxDate } = this.props;
+    const { vote, restaurants, maxDate, delVoteResult } = this.props;
 
     moment.locale('fr');
 
@@ -50,6 +53,12 @@ class VoteCollapser extends Component {
     }
 
     const voteDetailUrl = `/vote/${vote.url}`;
+
+    if (delVoteResult.delete === true) {
+      this.props.dispatch(onTopAlert('success', 'Ce vote a bien été supprimé'));
+      setTimeout(() => { this.props.dispatch(offTopAlert()); }, 3000);
+      this.props.dispatch(getUsersVotes(vote.pseudo));
+    }
 
     return (
       <Row className={classNameForRow} >
@@ -70,10 +79,19 @@ class VoteCollapser extends Component {
             <Button
               size='sm'
               color='info'
-              tag={Link} to={voteDetailUrl}
+              tag={Link}
+              to={voteDetailUrl}
               className="ml-3"
             >
               voir le détail
+            </Button>
+            <Button
+              size='sm'
+              color='danger'
+              onClick={() => this.props.dispatch(deleteAVote(vote.url))}
+              className="ml-3"
+            >
+              supprimer le vote
             </Button>
           </p>
           <Collapse isOpen={this.state.collapse}>
@@ -96,8 +114,10 @@ class VoteCollapser extends Component {
   }
 }
 
-const mstp = ({ getManyPlacesList }) => ({
-  restaurants: getManyPlacesList.result
+const mstp = ({ getManyPlacesList, delVote }) => ({
+  restaurants: getManyPlacesList.result,
+  delVoteResult: delVote.result
+
 });
 
 export default connect(mstp)(VoteCollapser);
