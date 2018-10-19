@@ -21,6 +21,8 @@ import { faPowerOff } from '@fortawesome/free-solid-svg-icons';
 
 import Link from 'react-router-dom/Link';
 
+import LoginModal from './LoginModal';
+
 import TopAlert from './TopAlert';
 import { updateUserData } from '../actions';
 
@@ -31,10 +33,13 @@ class Header extends Component {
     this.state = {
       isOpen: false,
       tooltipOpen: false,
+      openLoginModal: false,
     };
 
     this.toggleHamburger = this.toggleHamburger.bind(this);
     this.toggleTooltip = this.toggleTooltip.bind(this);
+    this.openLoginModal = this.openLoginModal.bind(this);
+    this.closeLoginModal = this.closeLoginModal.bind(this);
   }
 
   componentDidMount() {
@@ -54,6 +59,18 @@ class Header extends Component {
   toggleTooltip() {
     this.setState({
       tooltipOpen: !this.state.tooltipOpen
+    });
+  }
+
+  openLoginModal() {
+    this.setState({
+      openLoginModal: true
+    });
+  }
+  
+  closeLoginModal() {
+    this.setState({
+      openLoginModal: false
     });
   }
 
@@ -80,7 +97,16 @@ class Header extends Component {
         </NavLink>
       </NavItem>;
     } else {
-      renderBonjour = '';
+      renderBonjour =
+        <NavItem className="mr-3">
+          <Button
+            color='success'
+            outline
+            onClick={() => this.openLoginModal()}
+          >
+            S'identifier
+          </Button>
+        </NavItem>;
     }
 
     let renderButtonVote;
@@ -107,6 +133,7 @@ class Header extends Component {
                 tag={Link}
                 color='danger'
                 to='/logout'
+                onClick={() => this.closeLoginModal()}
               >
                 <FontAwesomeIcon icon={faPowerOff} />
               </Button>
@@ -136,6 +163,7 @@ class Header extends Component {
               tag={Link}
               color='danger'
               to='/logout'
+              onClick={() => this.closeLoginModal()}
             >
               <FontAwesomeIcon icon={faPowerOff} />
             </Button>
@@ -170,6 +198,7 @@ class Header extends Component {
             Accéder à mes votes
           </Tooltip>
           : ''}
+        {this.state.openLoginModal ? <LoginModal open /> : ''}
       </div>
     );
   }
