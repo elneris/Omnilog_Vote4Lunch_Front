@@ -10,6 +10,7 @@ import getPlacesListReducer from './getPlacesList';
 import getVoicesCountReducer from './getVoicesCount';
 import addVoiceReducer from './addVoice';
 import getUsersVotesReducer from './getUsersVotes';
+import getUserVoicesReducer from './getUserVoices';
 import getManyPlacesListReducer from './getManyPlacesList';
 import verifyIfUserHasVotedReducer from './verifyIfUserHasVoted';
 import userDataReducer from './userData';
@@ -25,6 +26,7 @@ export default combineReducers({
   getVoicesCount: getVoicesCountReducer,
   addVoice: addVoiceReducer,
   usersVotes: getUsersVotesReducer,
+  userVoices: getUserVoicesReducer,
   getManyPlacesList: getManyPlacesListReducer,
   verifyIfUserHasVoted: verifyIfUserHasVotedReducer,
   userData: userDataReducer,
