@@ -15,7 +15,8 @@ import { CopyToClipboard } from 'react-copy-to-clipboard';
 import PlaceCard from './PlaceCard';
 import VoteMap from './VoteMap';
 import LoginModal from './LoginModal';
-import MailToButton from '../components/atoms/MailToButton';
+
+import MailToButton from '../components/molecules/MailToButton';
 
 class AddAVoice extends Component {
   constructor() {
