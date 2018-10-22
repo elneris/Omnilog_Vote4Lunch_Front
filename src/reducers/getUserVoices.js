@@ -31,6 +31,11 @@ const userVoices = (state = initialState, action) => {
           loading: false,
           error: action.error,
         };
+      case 'RESET_VOTE_DATA':
+        return {
+          ...state,
+          result: [],
+        }
       default:
         return state;
   }
