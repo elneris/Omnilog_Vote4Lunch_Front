@@ -1,4 +1,3 @@
-import fs from 'fs';
 import Sequelize from 'sequelize';
 
 import { PlaceModel, VoteModel, VoiceModel } from './models';
@@ -55,22 +54,4 @@ Vote.belongsToMany(Place, { through: VotePlace });
 Place.belongsToMany(Vote, { through: VotePlace });
 
 // Database initialization
-if (development !== 'production') {
-  sequelize.sync({ force: true })
-    .then(() => {
-      const PlacesData = JSON.parse(fs.readFileSync('./.json_data/places.json', 'UTF-8'));
-
-      PlacesData.map(place => Place
-        .findOrCreate({
-          where: {
-            name: place.tags.name,
-            lat: parseFloat(place.lat),
-            lng: parseFloat(place.lon),
-            type: place.tags.amenity
-          }
-        })
-      );
-    });
-} else {
-  sequelize.sync();
-}
+sequelize.sync();
