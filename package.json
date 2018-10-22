@@ -11,7 +11,7 @@
     "start": "node ./bin/start",
     "start-dev": "concurrently \"npm start\" \"npm run-script start-front\"",
     "test": "mocha --recursive ./test/*Test.js --compilers js:babel-core/register --require babel-polyfill",
-    "heroku-postbuild": "cd front && npm install && npm run-script build-js",
+    "heroku-postbuild": "npm run-script build-js",
     "build-css": "node-sass-chokidar src/ -o src/",
     "watch-css": "npm --max-old-space-size=8192 run build-css && node-sass-chokidar src/ -o src/ --watch --recursive",
     "start-js": "react-scripts start",
