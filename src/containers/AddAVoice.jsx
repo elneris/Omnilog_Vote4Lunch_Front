@@ -1,6 +1,8 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faClipboard } from '@fortawesome/free-regular-svg-icons';
 
+import PropTypes from 'prop-types'; 
+
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
@@ -13,6 +15,7 @@ import { CopyToClipboard } from 'react-copy-to-clipboard';
 import PlaceCard from './PlaceCard';
 import VoteMap from './VoteMap';
 import LoginModal from './LoginModal';
+import MailToButton from '../components/atoms/MailToButton';
 
 class AddAVoice extends Component {
   constructor() {
@@ -69,7 +72,9 @@ class AddAVoice extends Component {
             xs="12"
             lg='8'
           >
-            <ButtonGroup>
+            <ButtonGroup
+              className="mr-3"
+            >
               <Button
                 disabled
               >
@@ -83,7 +88,9 @@ class AddAVoice extends Component {
                   <FontAwesomeIcon icon={faClipboard} />
                 </Button>
               </CopyToClipboard>
+              
             </ButtonGroup>
+            <MailToButton/>
           </Col>
         </Row >
         <Row className="justify-content-center pt-3">
@@ -117,10 +124,14 @@ class AddAVoice extends Component {
           Copier vers le presse-papiers
         </Tooltip>
       </Container >
-
-
     );
   }
+}
+
+AddAVoice.propTypes = { 
+  dispatch: PropTypes.func,
+  match: PropTypes.object,
+  restaurants: PropTypes.object,
 }
 
 const mstp = ({ getPlacesList }) => ({
