@@ -110,4 +110,25 @@ router.post('/count/all/foruser', (req, res) => {
   });
 });
 
+router.get('/get/foruser', (req, res) => {
+  Vote
+    .findOne({
+      where: {
+        url: req.query.vote_url
+      }
+    })
+    .then(vote => 
+      Voice
+        .findAll({
+          where: {
+            voteId: vote.id,
+            pseudo: req.query.pseudo,
+            email: req.query.email
+          }
+        })
+        .then(result => res.json(result))
+    )
+
+})
+
 export default router;
