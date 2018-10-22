@@ -7,6 +7,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
 import { getPlacesList } from '../actions/getPlacesList';
+import { getUserVoices } from '../actions/getUserVoices';
 
 import { Container, Row, Col, ButtonGroup, Button, Tooltip } from 'reactstrap';
 
@@ -28,6 +29,7 @@ class AddAVoice extends Component {
     };
 
     this.toggleTooltip = this.toggleTooltip.bind(this);
+
   }
 
   componentDidMount() {
@@ -44,6 +46,7 @@ class AddAVoice extends Component {
       this.setState({
         openLoginModal: false
       });
+      this.props.dispatch(getUserVoices(pseudo,email,this.props.match.params.url))
     }
   }
 
