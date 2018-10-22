@@ -1,8 +1,8 @@
 import { expect } from 'chai';
 
-import {PlaceModel} from '../models/place'
-import {VoiceModel} from '../models/voice'
-import {VoteModel} from '../models/vote'
+import PlaceModel from '../models/place'
+import VoiceModel from '../models/voice'
+import VoteModel from '../models/vote'
 
 describe('models/index', function () {
   it('returns the place model', function () {
