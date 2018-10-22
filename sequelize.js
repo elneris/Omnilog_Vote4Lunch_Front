@@ -3,10 +3,6 @@ import Sequelize from 'sequelize';
 
 import { PlaceModel, VoteModel, VoiceModel } from './models';
 
-// import PlaceModel from './models/place';
-// import VoiceModel from './models/voice';
-// import VoteModel from './models/vote';
-
 require('dotenv').config();
 
 const development = process.env.ENV;

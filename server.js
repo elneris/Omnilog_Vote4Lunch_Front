@@ -4,21 +4,15 @@ import Debug from 'debug';
 import express from 'express';
 import logger from 'morgan';
 import path from 'path';
-// import favicon from 'serve-favicon';
 
-import index from './routes/index';
-
-// set dotenv for environment variables
+import index from './routes';
 
 require('dotenv').config();
 
 const app = express();
+
 const debug = Debug('api:app');
-app.set('views', path.join(__dirname, 'views'));
-// view engine setup
-app.set('view engine', 'ejs');
-// uncomment after placing your favicon in /public
-// app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
+
 app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({
