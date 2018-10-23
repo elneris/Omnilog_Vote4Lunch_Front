@@ -14,12 +14,12 @@ export const getUserVoicesFailure = error => ({
   error,
 });
 
-export function getUserVoices(pseudo,email,voteUrl) {
+export function getUserVoices(pseudo,email,votesUrl) {
   return (dispatch) => {
     dispatch(getUserVoicesBegin());
     return (
       axios
-        .get(`/api/voice/get/foruser?pseudo=${pseudo}&email=${email}&vote_url=${voteUrl}`)
+        .get(`/api/voice/get/all/foruser?pseudo=${pseudo}&email=${email}&votes_url=${JSON.stringify(votesUrl)}`)
         .then((voices) => dispatch(getUserVoicesSuccess(voices.data)))
         .catch(error => dispatch(getUserVoicesFailure(error)))
     );
