@@ -23,6 +23,7 @@ router.post('/add', (req, res) => {
       pseudo: req.body.pseudo,
       email: req.body.email,
       date: req.body.date,
+      end_date: req.body.end_date,
       url: makeid()
     })
     .then(vote => res.json(vote));
