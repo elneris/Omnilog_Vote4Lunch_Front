@@ -13,8 +13,6 @@ import axios from 'axios';
 
 import { getVoiceCount } from '../actions/getVoiceCount';
 import { addVoice } from '../actions/addVoice';
-import { verifyIfUserHasVoted } from '../actions/verifyIfUserHasVoted';
-
 
 class PlaceCard extends Component {
   constructor(props) {
@@ -28,11 +26,8 @@ class PlaceCard extends Component {
   }
 
   async componentDidMount() {
-    const pseudo = await localStorage.getItem('pseudo');
-    const email = await localStorage.getItem('email');
     await this.props.dispatch(getVoiceCount(this.props.vote_url, this.props.restaurant.id));
     await this.getVoteId();
-    await this.props.dispatch(verifyIfUserHasVoted(this.props.vote_url, pseudo, email));
   }
 
   async getVoteId() {
