@@ -1,6 +1,6 @@
-import axios from 'axios'
+import axios from 'axios';
 
-//----------- Hack to create a delay ---------------------
+// ----------- Hack to create a delay ---------------------
 
 function sleep(ms) {
   return new Promise(resolve => setTimeout(resolve, ms));
@@ -13,37 +13,38 @@ async function delay() {
 //----------------------------------------------------------
 
 export const createAVoteBegin = () => ({
-    type: 'CREATE_A_VOTE_BEGIN',
-  });
-  
-  export const createAVoteSuccess = result => ({
-    type: 'CREATE_A_VOTE_SUCCESS',
-    result,
-  });
-  
-  export const createAVoteFailure = error => ({
-    type: 'CREATE_A_VOTE_FAILURE',
-    error,
-  });
-  
-  export function createAVote(pseudo, email, date) {
-    return (dispatch) => {
-      dispatch(createAVoteBegin());
-      return (
-        axios({
-            url:'/api/vote/add',
-            method:'post',
-            data: {
-                pseudo: pseudo,
-                email: email,
-                date: date,
-            }
+  type: 'CREATE_A_VOTE_BEGIN',
+});
+
+export const createAVoteSuccess = result => ({
+  type: 'CREATE_A_VOTE_SUCCESS',
+  result,
+});
+
+export const createAVoteFailure = error => ({
+  type: 'CREATE_A_VOTE_FAILURE',
+  error,
+});
+
+export function createAVote(pseudo, email, date, endDate, endTime) {
+  return (dispatch) => {
+    dispatch(createAVoteBegin());
+    return (
+      axios({
+        url: '/api/vote/add',
+        method: 'post',
+        data: {
+          pseudo,
+          email,
+          date,
+          end_date: `${endDate} ${endTime}`
+        }
+      })
+        .then(async (result) => {
+          await delay();
+          await dispatch(createAVoteSuccess(result.data));
         })
-          .then(async result => {
-            await delay()
-            await dispatch(createAVoteSuccess(result.data))
-          })
-          .catch(error => dispatch(createAVoteFailure(error)))
-      );
-    };
-  }
+        .catch(error => dispatch(createAVoteFailure(error)))
+    );
+  };
+}

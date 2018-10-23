@@ -1,7 +1,10 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faClipboard } from '@fortawesome/free-regular-svg-icons';
 
-import PropTypes from 'prop-types'; 
+import { Container, Row, Col, ButtonGroup, Button, Tooltip } from 'reactstrap';
+import { CopyToClipboard } from 'react-copy-to-clipboard';
+
+import PropTypes from 'prop-types';
 
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
@@ -9,15 +12,11 @@ import { connect } from 'react-redux';
 import { getPlacesList } from '../actions/getPlacesList';
 import { getUserVoices } from '../actions/getUserVoices';
 
-import { Container, Row, Col, ButtonGroup, Button, Tooltip } from 'reactstrap';
-
-import { CopyToClipboard } from 'react-copy-to-clipboard';
-
 import PlaceCard from './PlaceCard';
 import VoteMap from './VoteMap';
 import LoginModal from './LoginModal';
 
-import MailToButton from '../components/molecules/MailToButton';
+import MailToButton from '../components/atoms/MailToButton';
 
 class AddAVoice extends Component {
   constructor() {
@@ -29,7 +28,6 @@ class AddAVoice extends Component {
     };
 
     this.toggleTooltip = this.toggleTooltip.bind(this);
-
   }
 
   componentDidMount() {
@@ -46,7 +44,7 @@ class AddAVoice extends Component {
       this.setState({
         openLoginModal: false
       });
-      this.props.dispatch(getUserVoices(pseudo,email,[this.props.match.params.url]))
+      this.props.dispatch(getUserVoices(pseudo, email, [this.props.match.params.url]));
     }
   }
 
@@ -74,7 +72,7 @@ class AddAVoice extends Component {
           <Col
             className="bg-blue round-corners p-3"
             xs="12"
-            lg='8'
+            lg="8"
           >
             <ButtonGroup
               className="mr-3"
@@ -92,9 +90,9 @@ class AddAVoice extends Component {
                   <FontAwesomeIcon icon={faClipboard} />
                 </Button>
               </CopyToClipboard>
-              
+
             </ButtonGroup>
-            <MailToButton/>
+            <MailToButton />
           </Col>
         </Row >
         <Row className="justify-content-center pt-3">
@@ -113,7 +111,7 @@ class AddAVoice extends Component {
         >
           <Col
             xs="12"
-            lg='8'
+            lg="8"
           >
             <VoteMap restaurants={listOfRestaurants} />
           </Col>
@@ -132,11 +130,11 @@ class AddAVoice extends Component {
   }
 }
 
-AddAVoice.propTypes = { 
+AddAVoice.propTypes = {
   dispatch: PropTypes.func,
   match: PropTypes.object,
   restaurants: PropTypes.object,
-}
+};
 
 const mstp = ({ getPlacesList }) => ({
   restaurants: getPlacesList.result,
