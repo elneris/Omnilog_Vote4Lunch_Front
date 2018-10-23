@@ -19,6 +19,8 @@ import { faCalendar, faClock } from '@fortawesome/free-regular-svg-icons';
 import { createAVote } from '../actions/createAVote';
 import { saveVoteData } from '../actions';
 
+import Pseudo from './atoms/FormInput/Pseudo';
+
 class CreateAVote extends Component {
   constructor(props) {
     super(props);
@@ -132,17 +134,7 @@ class CreateAVote extends Component {
                     </InputGroupAddon>
                   </InputGroup></InputGroup>
               </FormGroup>
-              <FormGroup>
-                <Label className="text-white" for="pseudo">Indique ton pseudo</Label>
-                <Input
-                  type="text"
-                  name="pseudo"
-                  id="pseudo"
-                  value={this.state.pseudo}
-                  onChange={e => this.handleChange(e)}
-                  required
-                />
-              </FormGroup>
+              <Pseudo />
               <FormGroup>
                 <Label className="text-white" for="email">Indique ton email</Label>
                 <Input
