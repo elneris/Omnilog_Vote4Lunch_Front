@@ -1,5 +1,7 @@
+const getPseudo = localStorage.getItem('pseudo');
+
 const initialState = {
-  pseudo: '',
+  pseudo: getPseudo || '',
   email: '',
   date: '',
   endDate: '',
