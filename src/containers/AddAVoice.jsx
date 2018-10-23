@@ -46,7 +46,7 @@ class AddAVoice extends Component {
       this.setState({
         openLoginModal: false
       });
-      this.props.dispatch(getUserVoices(pseudo,email,this.props.match.params.url))
+      this.props.dispatch(getUserVoices(pseudo,email,[this.props.match.params.url]))
     }
   }
 
