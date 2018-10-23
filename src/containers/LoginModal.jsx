@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 
 import { Button, Modal, ModalHeader, ModalBody, Form, FormGroup, Label, Input } from 'reactstrap';
 
 import { updateUserData } from '../actions';
-import { verifyIfUserHasVoted } from '../actions/verifyIfUserHasVoted';
+import { getUserVoices } from '../actions/getUserVoices';
 
 class LoginModal extends Component {
   constructor(props) {
@@ -27,10 +28,11 @@ class LoginModal extends Component {
 
   componentDidUpdate() {
     if (!this.state.modal) {
-      this.props.dispatch(verifyIfUserHasVoted(
-        this.props.voteUrl,
+      this.props.dispatch(getUserVoices(
         this.state.pseudo,
-        this.state.email
+        this.state.email,
+        [this.props.voteUrl]
+        
       ));
     }
 
@@ -98,6 +100,13 @@ class LoginModal extends Component {
       </Modal>
     );
   }
+}
+
+LoginModal.propTypes = { 
+  dispatch: PropTypes.func,
+  open: PropTypes.boolean,
+  voteUrl: PropTypes.string,
+  className: PropTypes.string,
 }
 
 export default connect()(LoginModal);
