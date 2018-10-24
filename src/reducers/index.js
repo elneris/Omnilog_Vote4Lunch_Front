@@ -14,6 +14,7 @@ import getUserVoicesReducer from './getUserVoices';
 import getManyPlacesListReducer from './getManyPlacesList';
 import userDataReducer from './userData';
 import voteDataFormReducer from './FormInput';
+import getAVoteReducer from './getAVote';
 
 export default combineReducers({
   restaurants: fetchListOfRestaurantsReducer,
@@ -30,4 +31,5 @@ export default combineReducers({
   getManyPlacesList: getManyPlacesListReducer,
   userData: userDataReducer,
   voteDataForm: voteDataFormReducer,
+  getAVote: getAVoteReducer,
 });
