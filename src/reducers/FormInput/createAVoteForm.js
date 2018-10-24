@@ -6,6 +6,7 @@ const initialState = {
   email: getEmail || '',
   date: '',
   endDate: '',
+  endTime: '',
 };
 
 export default (state = initialState, action) => {
@@ -28,7 +29,8 @@ export default (state = initialState, action) => {
     case 'FORM_INPUT_END_DATE':
       return {
         ...state,
-        endDate: action.endDate
+        endDate: action.endDate,
+        endTime: action.endTime
       };
     case 'UPDATE_USER_DATA':
       return {

@@ -22,6 +22,7 @@ import { saveVoteData } from '../actions';
 import Pseudo from './atoms/FormInput/Pseudo';
 import Email from './atoms/FormInput/Email';
 import Date from './atoms/FormInput/Date';
+import EndDate from './atoms/FormInput/EndDate'
 
 class CreateAVote extends Component {
   constructor(props) {
@@ -94,38 +95,7 @@ class CreateAVote extends Component {
           >
             <Form onSubmit={e => this.submitForm(e)}>
               <Date />
-              <FormGroup>
-                <Label className="text-white" for="datetime">Choisis la fin du vote</Label>
-                <InputGroup>
-                  <InputGroup>
-                    <Input
-                      type="date"
-                      name="endDate"
-                      id="endDate"
-                      value={this.state.endDate}
-                      onChange={e => this.handleChange(e)}
-                      required
-                    />
-                    <InputGroupAddon addonType="append">
-                      <InputGroupText>
-                        <FontAwesomeIcon icon={faCalendar} />
-                      </InputGroupText>
-                    </InputGroupAddon>
-                    <Input
-                      type="time"
-                      name="endTime"
-                      id="endTime"
-                      value={this.state.endTime}
-                      onChange={e => this.handleChange(e)}
-                      required
-                    />
-                    <InputGroupAddon addonType="append">
-                      <InputGroupText>
-                        <FontAwesomeIcon icon={faClock} />
-                      </InputGroupText>
-                    </InputGroupAddon>
-                  </InputGroup></InputGroup>
-              </FormGroup>
+              <EndDate />
               <Pseudo />
               <Email />
               <div className="text-center mt-5">
