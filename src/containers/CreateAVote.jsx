@@ -7,14 +7,13 @@ import { connect } from 'react-redux';
 
 import PropTypes from 'prop-types';
 
-import { Container, Row, Col, Button, Form, FormGroup, Label, Input, InputGroup, InputGroupAddon, InputGroupText } from 'reactstrap';
+import { Container, Row, Col, Button, Form } from 'reactstrap';
 
 import 'react-dates/initialize';
 import 'react-dates/lib/css/_datepicker.css';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSpinner } from '@fortawesome/free-solid-svg-icons';
-import { faCalendar, faClock } from '@fortawesome/free-regular-svg-icons';
 
 import { createAVote } from '../actions/createAVote';
 import { saveVoteData } from '../actions';
@@ -22,50 +21,18 @@ import { saveVoteData } from '../actions';
 import Pseudo from './atoms/FormInput/Pseudo';
 import Email from './atoms/FormInput/Email';
 import Date from './atoms/FormInput/Date';
-import EndDate from './atoms/FormInput/EndDate'
+import EndDate from './atoms/FormInput/EndDate';
 
 class CreateAVote extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      date: null,
-      endDate: null,
-      endTime: null,
-      focused: null,
-      pseudo: '',
-      email: ''
-    };
-  }
-
-  componentDidMount() {
-    const getPseudo = localStorage.getItem('pseudo');
-    const getEmail = localStorage.getItem('email');
-    if (getPseudo && getEmail) {
-      this.setState({
-        pseudo: getPseudo,
-        email: getEmail,
-      });
-    }
-  }
-
-  handleChange(e) {
-    this.setState({ [e.target.name]: e.target.value });
-  }
-
-  handleDateChange(date) {
-    this.setState({
-      date,
-    });
-  }
-
   submitForm(e) {
+    const { pseudo, email, date, endDate, endTime } = this.props;
     e.preventDefault();
     this.props.createAVote(
-      this.state.pseudo,
-      this.state.email,
-      this.state.date,
-      this.state.endDate,
-      this.state.endTime);
+      pseudo,
+      email,
+      date,
+      endDate,
+      endTime);
   }
 
   render() {
@@ -110,21 +77,30 @@ class CreateAVote extends Component {
   }
 }
 
-const mstp = ({ vote }) => ({
+const mstp = ({ vote, voteDataForm }) => ({
   result: vote.result,
   error: vote.error,
-  loading: vote.loading
+  loading: vote.loading,
+  pseudo: voteDataForm.pseudo,
+  email: voteDataForm.email,
+  date: voteDataForm.date,
+  endDate: voteDataForm.endDate,
+  endTime: voteDataForm.endTime,
 });
 
 const mdtp = dispatch => bindActionCreators({ createAVote, saveVoteData }, dispatch);
 
 CreateAVote.propTypes = {
-  dispatch: PropTypes.func,
-  createAVote: PropTypes.func,
-  result: PropTypes.any,
-  error: PropTypes.any,
-  loading: PropTypes.any,
-  saveVoteData: PropTypes.any,
+  createAVote: PropTypes.func.isRequired,
+  result: PropTypes.any.isRequired,
+  error: PropTypes.any.isRequired,
+  loading: PropTypes.bool.isRequired,
+  saveVoteData: PropTypes.func.isRequired,
+  pseudo: PropTypes.string.isRequired,
+  email: PropTypes.string.isRequired,
+  date: PropTypes.string.isRequired,
+  endDate: PropTypes.string.isRequired,
+  endTime: PropTypes.string.isRequired,
 };
 
 export default connect(mstp, mdtp)(CreateAVote);
