@@ -7,16 +7,19 @@ import { CopyToClipboard } from 'react-copy-to-clipboard';
 import PropTypes from 'prop-types';
 
 import React, { Component } from 'react';
+import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 
 import { getPlacesList } from '../actions/getPlacesList';
 import { getUserVoices } from '../actions/getUserVoices';
+import { getAVote } from '../actions/getAVote';
 
 import PlaceCard from './PlaceCard';
 import VoteMap from './VoteMap';
 import LoginModal from './LoginModal';
 
 import MailToButton from '../components/atoms/MailToButton';
+import EndDate from './atoms/Button/EndDate';
 
 class AddAVoice extends Component {
   constructor() {
@@ -31,7 +34,7 @@ class AddAVoice extends Component {
   }
 
   componentDidMount() {
-    this.props.dispatch(getPlacesList(this.props.match.params.url));
+    this.props.getPlacesList(this.props.match.params.url);
     // open a modal if user is not connected. User must give a pseudo and email to vote.
     const pseudo = localStorage.getItem('pseudo');
     const email = localStorage.getItem('email');
@@ -44,7 +47,13 @@ class AddAVoice extends Component {
       this.setState({
         openLoginModal: false
       });
-      this.props.dispatch(getUserVoices(pseudo, email, [this.props.match.params.url]));
+      this.props.getUserVoices(pseudo, email, [this.props.match.params.url]);
+    }
+  }
+
+  componentDidUpdate() {
+    if (!this.props.getAVoteUrl) {
+      this.props.getAVote(this.props.match.params.url);
     }
   }
 
@@ -93,6 +102,7 @@ class AddAVoice extends Component {
 
             </ButtonGroup>
             <MailToButton />
+            <EndDate />
           </Col>
         </Row >
         <Row className="justify-content-center pt-3">
@@ -136,8 +146,11 @@ AddAVoice.propTypes = {
   restaurants: PropTypes.object,
 };
 
-const mstp = ({ getPlacesList }) => ({
+const mstp = ({ getPlacesList, getAVote }) => ({
   restaurants: getPlacesList.result,
+  getAVoteUrl: getAVote.result.url,
 });
 
-export default connect(mstp)(AddAVoice);
+const mdtp = dispatch => bindActionCreators({ getAVote, getPlacesList, getUserVoices }, dispatch);
+
+export default connect(mstp, mdtp)(AddAVoice);
