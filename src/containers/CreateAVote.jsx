@@ -21,6 +21,7 @@ import { saveVoteData } from '../actions';
 
 import Pseudo from './atoms/FormInput/Pseudo';
 import Email from './atoms/FormInput/Email';
+import Date from './atoms/FormInput/Date';
 
 class CreateAVote extends Component {
   constructor(props) {
@@ -92,17 +93,7 @@ class CreateAVote extends Component {
             className="bg-blue p-5 rounded"
           >
             <Form onSubmit={e => this.submitForm(e)}>
-              <FormGroup>
-                <Label className="text-white" for="date">Choisis la date du repas</Label>
-                <Input
-                  type="date"
-                  name="date"
-                  id="date"
-                  value={this.state.date}
-                  onChange={e => this.handleChange(e)}
-                  required
-                />
-              </FormGroup>
+              <Date />
               <FormGroup>
                 <Label className="text-white" for="datetime">Choisis la fin du vote</Label>
                 <InputGroup>

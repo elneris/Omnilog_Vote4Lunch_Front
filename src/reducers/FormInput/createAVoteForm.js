@@ -23,7 +23,7 @@ export default (state = initialState, action) => {
     case 'FORM_INPUT_DATE':
       return {
         ...state,
-        date: action.endDate
+        date: action.date
       };
     case 'FORM_INPUT_END_DATE':
       return {
