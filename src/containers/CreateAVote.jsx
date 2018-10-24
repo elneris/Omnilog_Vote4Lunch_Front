@@ -20,6 +20,7 @@ import { createAVote } from '../actions/createAVote';
 import { saveVoteData } from '../actions';
 
 import Pseudo from './atoms/FormInput/Pseudo';
+import Email from './atoms/FormInput/Email';
 
 class CreateAVote extends Component {
   constructor(props) {
@@ -135,17 +136,7 @@ class CreateAVote extends Component {
                   </InputGroup></InputGroup>
               </FormGroup>
               <Pseudo />
-              <FormGroup>
-                <Label className="text-white" for="email">Indique ton email</Label>
-                <Input
-                  type="email"
-                  name="email"
-                  id="email"
-                  value={this.state.email}
-                  onChange={e => this.handleChange(e)}
-                  required
-                />
-              </FormGroup>
+              <Email />
               <div className="text-center mt-5">
                 <Button color="success">{rendering}</Button>
               </div>
