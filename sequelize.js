@@ -11,32 +11,18 @@ let config;
 // add SSL support for production
 if (development !== 'production') {
   config = {
-    host: process.env.DB_HOST,
     dialect: 'postgresql',
-    poll: {
-      max: 10,
-      min: 0,
-      acquire: 30000,
-      idle: 10000
-    }
   };
 } else {
   config = {
-    host: process.env.DB_HOST,
     dialect: 'postgresql',
-    poll: {
-      max: 10,
-      min: 0,
-      acquire: 30000,
-      idle: 10000
-    },
     dialectOptions: {
       ssl: true
     }
   };
 }
 
-const sequelize = new Sequelize(process.env.POSTGRES_DB_URL, config);
+export const sequelize = new Sequelize(process.env.POSTGRES_DB_URL, config);
 
 // Model's initialization
 export const Place = PlaceModel(sequelize, Sequelize);
