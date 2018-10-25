@@ -1,38 +1,47 @@
-export const saveVoteData = (id,date, pseudo, email, url) => ({
-    type: 'SAVE_VOTE_DATA',
-    id,
-    date,
-    pseudo,
-    email,
-    url
-})
+import { FormInputPseudo, FormInputEmail, FormInputDate, FormInputEndDate } from './FormInput';
+
+export const saveVoteData = (id, date, pseudo, email, url) => ({
+  type: 'SAVE_VOTE_DATA',
+  id,
+  date,
+  pseudo,
+  email,
+  url
+});
 
 export const resetVoteData = () => ({
-    type: 'RESET_VOTE_DATA',
-})
+  type: 'RESET_VOTE_DATA',
+});
 
-export const updateUserData = (pseudo,email) => ({
+export const updateUserData = (pseudo, email) => ({
   type: 'UPDATE_USER_DATA',
   pseudo,
   email,
-})
+});
 
-export const onMapAlert = (message_type,message) => ({
+export const onMapAlert = (messageType, message) => ({
   type: 'ON_MAP_ALERT',
-  message_type,
+  messageType,
   message
-})
+});
 
 export const offMapAlert = () => ({
   type: 'OFF_MAP_ALERT',
-})
+});
 
-export const onTopAlert = (message_type,message) => ({
+export const onTopAlert = (messageType, message) => ({
   type: 'ON_TOP_ALERT',
-  message_type,
+  messageType,
   message
-})
+});
 
 export const offTopAlert = () => ({
   type: 'OFF_TOP_ALERT',
-})
+});
+
+export {
+  FormInputPseudo,
+  FormInputEmail,
+  FormInputDate,
+  FormInputEndDate
+};

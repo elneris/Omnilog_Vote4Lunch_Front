@@ -1,23 +1,25 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faClipboard } from '@fortawesome/free-regular-svg-icons';
 
-import PropTypes from 'prop-types'; 
+import { Container, Row, Col, ButtonGroup, Button, Tooltip } from 'reactstrap';
+import { CopyToClipboard } from 'react-copy-to-clipboard';
+
+import PropTypes from 'prop-types';
 
 import React, { Component } from 'react';
+import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 
 import { getPlacesList } from '../actions/getPlacesList';
 import { getUserVoices } from '../actions/getUserVoices';
-
-import { Container, Row, Col, ButtonGroup, Button, Tooltip } from 'reactstrap';
-
-import { CopyToClipboard } from 'react-copy-to-clipboard';
+import { getAVote } from '../actions/getAVote';
 
 import PlaceCard from './PlaceCard';
 import VoteMap from './VoteMap';
 import LoginModal from './LoginModal';
 
-import MailToButton from '../components/molecules/MailToButton';
+import MailToButton from '../components/atoms/MailToButton';
+import EndDate from './atoms/Button/EndDate';
 
 class AddAVoice extends Component {
   constructor() {
@@ -29,11 +31,10 @@ class AddAVoice extends Component {
     };
 
     this.toggleTooltip = this.toggleTooltip.bind(this);
-
   }
 
   componentDidMount() {
-    this.props.dispatch(getPlacesList(this.props.match.params.url));
+    this.props.getPlacesList(this.props.match.params.url);
     // open a modal if user is not connected. User must give a pseudo and email to vote.
     const pseudo = localStorage.getItem('pseudo');
     const email = localStorage.getItem('email');
@@ -46,7 +47,13 @@ class AddAVoice extends Component {
       this.setState({
         openLoginModal: false
       });
-      this.props.dispatch(getUserVoices(pseudo,email,[this.props.match.params.url]))
+      this.props.getUserVoices(pseudo, email, [this.props.match.params.url]);
+    }
+  }
+
+  componentDidUpdate() {
+    if (this.props.getAVoteUrl !== this.props.match.params.url) {
+      this.props.getAVote(this.props.match.params.url);
     }
   }
 
@@ -74,7 +81,7 @@ class AddAVoice extends Component {
           <Col
             className="bg-blue round-corners p-3"
             xs="12"
-            lg='8'
+            lg="8"
           >
             <ButtonGroup
               className="mr-3"
@@ -92,9 +99,10 @@ class AddAVoice extends Component {
                   <FontAwesomeIcon icon={faClipboard} />
                 </Button>
               </CopyToClipboard>
-              
+
             </ButtonGroup>
-            <MailToButton/>
+            <MailToButton />
+            <EndDate />
           </Col>
         </Row >
         <Row className="justify-content-center pt-3">
@@ -113,7 +121,7 @@ class AddAVoice extends Component {
         >
           <Col
             xs="12"
-            lg='8'
+            lg="8"
           >
             <VoteMap restaurants={listOfRestaurants} />
           </Col>
@@ -132,14 +140,17 @@ class AddAVoice extends Component {
   }
 }
 
-AddAVoice.propTypes = { 
+AddAVoice.propTypes = {
   dispatch: PropTypes.func,
   match: PropTypes.object,
   restaurants: PropTypes.object,
-}
+};
 
-const mstp = ({ getPlacesList }) => ({
+const mstp = ({ getPlacesList, getAVote }) => ({
   restaurants: getPlacesList.result,
+  getAVoteUrl: getAVote.result.url,
 });
 
-export default connect(mstp)(AddAVoice);
+const mdtp = dispatch => bindActionCreators({ getAVote, getPlacesList, getUserVoices }, dispatch);
+
+export default connect(mstp, mdtp)(AddAVoice);
