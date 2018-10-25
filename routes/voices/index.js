@@ -110,4 +110,53 @@ router.post('/count/all/foruser', (req, res) => {
   });
 });
 
+// Get all voices for a vote URL
+router.get('/get/foruser', (req, res) => {
+  Vote
+    .findOne({
+      where: {
+        url: req.query.vote_url
+      }
+    })
+    .then(vote => 
+      Voice
+        .findAll({
+          where: {
+            voteId: vote.id,
+            pseudo: req.query.pseudo,
+            email: req.query.email
+          }
+        })
+        .then(result => res.json(result))
+    )
+})
+
+// Get all voices for an array of votes URL
+router.get('/get/all/foruser', (req,res) => {
+  const request = JSON.parse(req.query.votes_url);
+  const resultPromises = request.map(voteUrl =>
+    Vote
+    .findOne({
+      where: {
+        url: voteUrl
+      }
+    })
+    .then(vote => 
+      Voice
+        .findAll({
+          where: {
+            voteId: vote.id,
+            pseudo: req.query.pseudo,
+            email: req.query.email
+          }
+        })
+        .then(result => result )
+    )  
+  )
+  Promise.all(resultPromises).then((result) => {
+    const resultToSend = [].concat(...result)
+    res.json(resultToSend);
+  });
+})
+
 export default router;

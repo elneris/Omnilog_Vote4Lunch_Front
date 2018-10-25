@@ -15,6 +15,18 @@ services:
     ports:
       - "5432:5432"
 
+  admin:
+    image: dpage/pgadmin4
+    container_name: vote4lunch_admin_db
+    restart: always
+    environment:
+      PGADMIN_DEFAULT_EMAIL: bob@bob.com
+      PGADMIN_DEFAULT_PASSWORD: password
+    ports:
+      - "8080:80"
+
 volumes:
   data-vote4lunch:
+    external: true
+  admin-db-v4l:
     external: true

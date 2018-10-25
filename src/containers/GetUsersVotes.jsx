@@ -1,14 +1,14 @@
 import React, { Component } from 'react';
 
 import { connect } from 'react-redux';
-
+import PropTypes from 'prop-types'; 
 import { Container } from 'reactstrap';
 
 import VoteCollapser from '../containers/VoteCollapser';
 
 import { getUsersVotes } from '../actions/getUsersVotes';
+import { getUserVoices } from '../actions/getUserVoices';
 
-/* eslint class-methods-use-this: ["error", { "exceptMethods": ["getMaxDate"] }] */
 class GetUsersVotes extends Component {
   constructor() {
     super();
@@ -20,12 +20,27 @@ class GetUsersVotes extends Component {
     this.props.dispatch(getUsersVotes(pseudo));
   }
 
+  componentDidUpdate() {
+    const pseudo = localStorage.getItem('pseudo');
+    const email = localStorage.getItem('email');
+    const votesUrl = this.props.usersVotes
+      .filter(vote => {
+        if (vote.active) {
+        return true;
+        }
+        return false;
+      })
+      .map(vote => vote.url)    
+    this.props.dispatch(getUserVoices(pseudo,email,votesUrl))
+  }
+
   getMaxDate(data) {
     return data[data.length - 1].date;
   }
 
   render() {
     const { usersVotes } = this.props;
+
     let maxDate;
     if (usersVotes.length > 0) {
       maxDate = this.getMaxDate(usersVotes);
@@ -53,6 +68,11 @@ class GetUsersVotes extends Component {
       </Container>
     );
   }
+}
+
+GetUsersVotes.propTypes = { 
+  dispatch: PropTypes.func,
+  usersVotes: PropTypes.array,
 }
 
 const mstp = ({ usersVotes }) => ({

@@ -1,7 +1,6 @@
 {
   "parser": "babel-eslint",
-  "extends": [
-    "plugin:react/recommended"
+  "extends": ["airbnb"
   ],
   "env": {
     "es6": true,
@@ -14,6 +13,7 @@
     "modules": true
   },
   "rules": {
+    "jsx-a11y/href-no-hash": "off",
     "comma-dangle": 0,
     "linebreak-style": 0,
     "react/jsx-uses-react": 2
