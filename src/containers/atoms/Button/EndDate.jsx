@@ -10,17 +10,20 @@ import { Button } from 'reactstrap';
 
 
 const EndDate = ({ remainingTime }) => {
-  
   moment.locale('fr');
 
+  let voteState = 'le vote termine';
+  if (moment(remainingTime) < moment()) {
+    voteState = "le vote s'est terminé";
+  }
   const fromNow = moment(remainingTime).fromNow();
-  console.log(fromNow);
-  
+
   return (
-  <Button>
-    le vote termine {fromNow}
-  </Button>
-)};
+    <Button>
+      {voteState} {fromNow}
+    </Button>
+  );
+};
 
 const mstp = ({ getAVote }) => ({
   remainingTime: getAVote.result.end_date,

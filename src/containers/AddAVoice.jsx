@@ -52,7 +52,7 @@ class AddAVoice extends Component {
   }
 
   componentDidUpdate() {
-    if (!this.props.getAVoteUrl) {
+    if (this.props.getAVoteUrl !== this.props.match.params.url) {
       this.props.getAVote(this.props.match.params.url);
     }
   }
