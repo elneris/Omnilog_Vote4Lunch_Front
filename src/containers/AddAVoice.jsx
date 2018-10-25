@@ -19,7 +19,7 @@ import VoteMap from './VoteMap';
 import LoginModal from './LoginModal';
 
 import MailToButton from '../components/atoms/MailToButton';
-import EndDate from './atoms/Button/EndDate';
+// import EndDate from './atoms/Button/EndDate';
 
 class AddAVoice extends Component {
   constructor() {
@@ -102,7 +102,7 @@ class AddAVoice extends Component {
 
             </ButtonGroup>
             <MailToButton />
-            <EndDate />
+            {/* <EndDate /> */}
           </Col>
         </Row >
         <Row className="justify-content-center pt-3">
