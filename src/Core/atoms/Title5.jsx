@@ -14,8 +14,8 @@ const Title5 = ({ content, color, alignment }) => {
 
 Title5.propTypes = {
   content: PropTypes.string.isRequired,
-  color: PropTypes.string.isRequired,
-  alignment: PropTypes.string.isRequired,
+  color: PropTypes.string,
+  alignment: PropTypes.string,
 };
 
 export default Title5;

@@ -1,3 +1,4 @@
-import { ButtonCollapser, Title5 } from './atoms';
+import { ButtonCollapser, TableBody, TableHead, Title5 } from './atoms';
+import { Table } from './molecules';
 
-export { ButtonCollapser, Title5 };
+export { ButtonCollapser, Table, TableBody, TableHead, Title5 };
