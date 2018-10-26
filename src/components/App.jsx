@@ -9,7 +9,7 @@ import NotFound from './NotFound'
 import About from './About'
 
 import CreateAVote from '../containers/CreateAVote';
-import AddAVoice from '../containers/AddAVoice';
+import { AddAVoice } from '../Votes';
 import Header from '../containers/Header';
 import GetUsersVotes from '../containers/GetUsersVotes';
 import BeginVote from '../containers/BeginVote';
