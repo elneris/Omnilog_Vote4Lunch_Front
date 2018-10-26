@@ -1,3 +1,3 @@
-import { Title5 } from './atoms';
+import { ButtonCollapser, Title5 } from './atoms';
 
-export { Title5 };
+export { ButtonCollapser, Title5 };
