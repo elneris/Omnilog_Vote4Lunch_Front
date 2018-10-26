@@ -1,14 +1,28 @@
 import React, { Component } from 'react';
+import { bindActionCreators } from 'redux';
+import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 
 import { Collapse, Row, Col } from 'reactstrap';
 
 import { ButtonCollapser, Title5 } from '../../Core';
 
+import { UsersVoicesTable } from '../molecules';
+
+import { getAllVoicesForAVote } from '../actions';
+
 class UsersVoices extends Component {
   constructor(props) {
     super(props);
+
     this.toggle = this.toggle.bind(this);
     this.state = { collapse: false };
+  }
+
+  componentDidMount() {
+    const { voteUrl, getAllVoicesForAVote: getAll } = this.props;
+
+    getAll(voteUrl);
   }
 
   toggle() {
@@ -16,6 +30,8 @@ class UsersVoices extends Component {
   }
 
   render() {
+    const { voteUrl } = this.props;
+
     return (
       <div className="UsersVoices">
         <Row noGutters>
@@ -34,10 +50,14 @@ class UsersVoices extends Component {
             />
           </Col>
         </Row>
-        <Row>
-          <Col>
+        <Row className="justify-content-center align-items-center">
+          <Col
+            xs="10"
+          >
             <Collapse isOpen={this.state.collapse}>
-              <p>pop</p>
+              <UsersVoicesTable
+                voteUrl={voteUrl}
+              />
             </Collapse>
           </Col>
         </Row>
@@ -47,4 +67,11 @@ class UsersVoices extends Component {
   }
 }
 
-export default UsersVoices;
+UsersVoices.propTypes = {
+  getAllVoicesForAVote: PropTypes.func.isRequired,
+  voteUrl: PropTypes.string.isRequired,
+};
+
+const mdtp = dispatch => bindActionCreators({ getAllVoicesForAVote }, dispatch);
+
+export default connect(null, mdtp)(UsersVoices);

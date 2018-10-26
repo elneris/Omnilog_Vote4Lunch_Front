@@ -121,7 +121,9 @@ class AddAVoice extends Component {
             xs="12"
             lg="8"
           >
-            <UsersVoices />
+            <UsersVoices
+              voteUrl={url}
+            />
           </Col>
         </Row >
         <Row
@@ -135,7 +137,7 @@ class AddAVoice extends Component {
             <VoteMap restaurants={listOfRestaurants} />
           </Col>
         </Row>
-        {this.state.openLoginModal ? <LoginModal open voteUrl={this.props.match.params.url} /> : ''}
+        {this.state.openLoginModal ? <LoginModal open voteUrl={url} /> : ''}
         <Tooltip
           placement="bottom"
           isOpen={this.state.tooltipOpen}
@@ -159,10 +161,8 @@ AddAVoice.propTypes = {
     })
   }).isRequired,
   restaurants: PropTypes.objectOf(
-    PropTypes.objectOf(
-      PropTypes.arrayOf(
-        PropTypes.object
-      )
+    PropTypes.arrayOf(
+      PropTypes.object
     )
   ).isRequired,
   getAVoteUrl: PropTypes.string.isRequired,
