@@ -5,24 +5,17 @@ import { Table as T } from 'reactstrap';
 
 import { TableBody, TableHead } from '../atoms';
 
-const Table = ({ data, headList = [] }) => {
-  const list = headList.sort((a, b) => a.id - b.id);
-  return (
-    <T>
-      <TableHead
-        headList={list}
-      />
-      <TableBody
-        headList={list}
-        data={data}
-      />
-    </T>
-  );
-};
-
-Table.defaultProps = {
-  headList: [],
-};
+const Table = ({ data, headList }) => (
+  <T>
+    <TableHead
+      headList={headList}
+    />
+    <TableBody
+      headList={headList}
+      data={data}
+    />
+  </T>
+);
 
 Table.propTypes = {
   headList: PropTypes.arrayOf(PropTypes.object).isRequired,
