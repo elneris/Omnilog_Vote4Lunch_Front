@@ -5,7 +5,7 @@ const TableHead = ({ headList }) => (
   <thead>
     <tr>
       <th />
-      {headList.map(e => <th key={e.id}>{e.name}</th>)}
+      {headList.map(e => <th key={e.id} className="text-center" >{e.name}</th>)}
     </tr>
   </thead>
 );
