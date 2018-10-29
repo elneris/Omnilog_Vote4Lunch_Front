@@ -1,5 +1,11 @@
 const initialState = {
-  result: '',
+  id: 0,
+  pseudo: '',
+  email: '',
+  date: '',
+  end_date: '',
+  url: '',
+  active: false,
   loading: false,
   error: null,
 };
@@ -17,7 +23,13 @@ const getAvote = (state = initialState, action) => {
         ...state,
         loading: false,
         error: null,
-        result: action.result,
+        id: action.result.id,
+        pseudo: action.result.pseudo,
+        email: action.result.email,
+        date: action.result.date,
+        end_date: action.result.end_date,
+        url: action.result.url,
+        active: action.result.active,
       };
     case 'GET_A_VOTE_FAILURE':
       return {

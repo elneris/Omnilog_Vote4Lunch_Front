@@ -170,7 +170,7 @@ AddAVoice.propTypes = {
 
 const mstp = ({ getPlacesList: gPL, getAVote: gAV }) => ({
   restaurants: gPL.result,
-  getAVoteUrl: gAV.result.url,
+  getAVoteUrl: gAV.url,
 });
 
 const mdtp = dispatch => bindActionCreators({ getAVote, getPlacesList, getUserVoices }, dispatch);
