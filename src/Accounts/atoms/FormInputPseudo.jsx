@@ -6,9 +6,9 @@ import PropTypes from 'prop-types';
 
 import { FormGroup, Label, Input } from 'reactstrap';
 
-import { FormInputPseudo } from '../../../actions';
+import { FormInputPseudo } from '../actions';
 
-const Pseudo = ({ pseudo, FormInputPseudo: FormInputPseudoFunc }) => (
+const Pseudo = ({ pseudo, FormInputPseudo: FormInputPseudoAction }) => (
   <FormGroup>
     <Label className="text-white" for="pseudo">Indique ton pseudo</Label>
     <Input
@@ -16,11 +16,11 @@ const Pseudo = ({ pseudo, FormInputPseudo: FormInputPseudoFunc }) => (
       name="pseudo"
       id="pseudo"
       value={pseudo}
-      onChange={e => FormInputPseudoFunc(e.target.value)}
+      onChange={e => FormInputPseudoAction(e.target.value)}
       required
     />
   </FormGroup>
-);
+)
 
 Pseudo.propTypes = {
   pseudo: PropTypes.string.isRequired,

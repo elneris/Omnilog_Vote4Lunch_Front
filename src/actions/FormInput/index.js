@@ -1,5 +1,5 @@
-import FormInputPseudo from './pseudo';
-import FormInputEmail from './email';
+import FormInputPseudo from '../../Accounts/actions/FormInputPseudo';
+import FormInputEmail from '../../Accounts/actions/FormInputEmail';
 import FormInputDate from './date';
 import FormInputEndDate from './endDate';
 

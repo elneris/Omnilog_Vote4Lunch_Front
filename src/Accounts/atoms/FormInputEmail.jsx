@@ -6,9 +6,9 @@ import PropTypes from 'prop-types';
 
 import { FormGroup, Label, Input } from 'reactstrap';
 
-import { FormInputEmail } from '../../../actions';
+import { FormInputEmail } from '../actions';
 
-const Email = ({ email, FormInputEmail: FormInputEmailFunc }) => (
+const Email = ({ email, FormInputEmail: FormInputEmailAction }) => (
   <FormGroup>
     <Label className="text-white" for="email">Indique ton email</Label>
     <Input
@@ -16,7 +16,7 @@ const Email = ({ email, FormInputEmail: FormInputEmailFunc }) => (
       name="email"
       id="email"
       value={email}
-      onChange={e => FormInputEmailFunc(e.target.value)}
+      onChange={e => FormInputEmailAction(e.target.value)}
       required
     />
   </FormGroup>

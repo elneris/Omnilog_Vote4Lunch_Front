@@ -16,8 +16,8 @@ import { getAVote } from '../actions/getAVote';
 
 import PlaceCard from '../containers/PlaceCard';
 import VoteMap from '../containers/VoteMap';
-import LoginModal from '../containers/LoginModal';
-import UsersVoices from './organisms';
+import { LoginModal } from '../Accounts/organisms';
+import { UsersVoices } from './';
 
 import MailToButton from './atoms/MailToButton';
 // import EndDate from './atoms/Button/EndDate';

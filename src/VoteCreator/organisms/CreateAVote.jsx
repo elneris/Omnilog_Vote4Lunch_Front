@@ -15,13 +15,12 @@ import 'react-dates/lib/css/_datepicker.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSpinner } from '@fortawesome/free-solid-svg-icons';
 
-import { createAVote } from '../actions/createAVote';
-import { saveVoteData } from '../actions';
+import { createAVote } from '../actions';
+import { saveVoteData } from '../../actions';
 
-import Pseudo from './atoms/FormInput/Pseudo';
-import Email from './atoms/FormInput/Email';
-import Date from './atoms/FormInput/Date';
-import EndDate from './atoms/FormInput/EndDate';
+import { FormInputPseudo, FormInputEmail } from '../../Accounts';
+import Date from '../../containers/atoms/FormInput/Date';
+import EndDate from '../../containers/atoms/FormInput/EndDate';
 
 class CreateAVote extends Component {
   submitForm(e) {
@@ -63,8 +62,8 @@ class CreateAVote extends Component {
             <Form onSubmit={e => this.submitForm(e)}>
               <Date />
               <EndDate />
-              <Pseudo />
-              <Email />
+              <FormInputPseudo />
+              <FormInputEmail />
               <div className="text-center mt-5">
                 <Button color="success">{rendering}</Button>
               </div>

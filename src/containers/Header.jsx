@@ -21,7 +21,7 @@ import { faPowerOff } from '@fortawesome/free-solid-svg-icons';
 
 import Link from 'react-router-dom/Link';
 
-import LoginModal from './LoginModal';
+import { LoginModal } from '../Accounts/organisms';
 
 import TopAlert from './TopAlert';
 import { updateUserData } from '../actions';

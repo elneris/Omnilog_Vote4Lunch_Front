@@ -4,8 +4,8 @@ import PropTypes from 'prop-types';
 
 import { Button, Modal, ModalHeader, ModalBody, Form, FormGroup, Label, Input } from 'reactstrap';
 
-import { updateUserData } from '../actions';
-import { getUserVoices } from '../actions/getUserVoices';
+import { updateUserData } from '../../actions';
+import { getUserVoices } from '../../actions/getUserVoices';
 
 class LoginModal extends Component {
   constructor(props) {
@@ -32,10 +32,8 @@ class LoginModal extends Component {
         this.state.pseudo,
         this.state.email,
         [this.props.voteUrl]
-        
       ));
     }
-
   }
 
   toggle() {
@@ -102,11 +100,11 @@ class LoginModal extends Component {
   }
 }
 
-LoginModal.propTypes = { 
+LoginModal.propTypes = {
   dispatch: PropTypes.func,
-  open: PropTypes.boolean,
+  open: PropTypes.bool,
   voteUrl: PropTypes.string,
   className: PropTypes.string,
-}
+};
 
 export default connect()(LoginModal);
