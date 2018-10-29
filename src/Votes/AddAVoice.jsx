@@ -19,7 +19,7 @@ import VoteMap from '../containers/VoteMap';
 import LoginModal from '../containers/LoginModal';
 import UsersVoices from './organisms';
 
-import MailToButton from '../components/atoms/MailToButton';
+import MailToButton from './atoms/MailToButton';
 // import EndDate from './atoms/Button/EndDate';
 
 class AddAVoice extends Component {
