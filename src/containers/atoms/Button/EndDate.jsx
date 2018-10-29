@@ -26,7 +26,7 @@ const EndDate = ({ remainingTime }) => {
 };
 
 const mstp = ({ getAVote }) => ({
-  remainingTime: getAVote.result.end_date,
+  remainingTime: getAVote.end_date,
 });
 
 EndDate.propTypes = {
