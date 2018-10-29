@@ -4,13 +4,11 @@ import PropTypes from 'prop-types';
 const TableBody = ({ data }) => (
   <tbody>
     {
-      data.map(e =>
+      data.map(row =>
         (
-          <tr>
-            <th scope="row">{e.pseudo}</th>
-            <td>Mark</td>
-            <td>Otto</td>
-            <td>@mdo</td>
+          <tr key={row.rowId} >
+            <th scope="row">{row.rowName}</th>
+            {row.rowData.map(cell => <td key={cell.id} className="text-center">{cell.data}</td>)}
           </tr>
         )
       )
