@@ -38,6 +38,10 @@ export default (state = initialState, action) => {
         pseudo: action.pseudo,
         email: action.email
       };
+    case 'RESET_VOTE_DATA':
+      return {
+        ...initialState
+      };
     default:
       return state;
   }
