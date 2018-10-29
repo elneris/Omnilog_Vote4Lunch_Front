@@ -16,6 +16,8 @@ import userDataReducer from './userData';
 import voteDataFormReducer from './FormInput';
 import getAVoteReducer from './getAVote';
 
+import { getAllVoicesForAVoteReducer } from '../Votes/reducers';
+
 export default combineReducers({
   restaurants: fetchListOfRestaurantsReducer,
   vote: createAVoteReducer,
@@ -32,4 +34,5 @@ export default combineReducers({
   userData: userDataReducer,
   voteDataForm: voteDataFormReducer,
   getAVote: getAVoteReducer,
+  allVoicesForAVote: getAllVoicesForAVoteReducer,
 });

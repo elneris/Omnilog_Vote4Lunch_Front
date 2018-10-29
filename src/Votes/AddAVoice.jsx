@@ -14,19 +14,31 @@ import { getPlacesList } from '../actions/getPlacesList';
 import { getUserVoices } from '../actions/getUserVoices';
 import { getAVote } from '../actions/getAVote';
 
-import PlaceCard from './PlaceCard';
-import VoteMap from './VoteMap';
-import LoginModal from './LoginModal';
+import PlaceCard from '../containers/PlaceCard';
+import VoteMap from '../containers/VoteMap';
+import LoginModal from '../containers/LoginModal';
+import UsersVoices from './organisms';
 
 import MailToButton from '../components/atoms/MailToButton';
 // import EndDate from './atoms/Button/EndDate';
 
 class AddAVoice extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
+    const { url } = this.props.match.params;
+    const pseudo = localStorage.getItem('pseudo');
+    const email = localStorage.getItem('email');
+
+    // open a modal if user is not connected. User must give a pseudo and email to vote.
+    let openLoginModal = false;
+    if (!pseudo || !email) {
+      openLoginModal = true;
+    } else {
+      this.props.getUserVoices(pseudo, email, [url]);
+    }
 
     this.state = {
-      openLoginModal: false,
+      openLoginModal,
       tooltipOpen: false,
     };
 
@@ -34,26 +46,14 @@ class AddAVoice extends Component {
   }
 
   componentDidMount() {
-    this.props.getPlacesList(this.props.match.params.url);
-    // open a modal if user is not connected. User must give a pseudo and email to vote.
-    const pseudo = localStorage.getItem('pseudo');
-    const email = localStorage.getItem('email');
-
-    if (!pseudo || !email) {
-      this.setState({
-        openLoginModal: true
-      });
-    } else {
-      this.setState({
-        openLoginModal: false
-      });
-      this.props.getUserVoices(pseudo, email, [this.props.match.params.url]);
-    }
+    const { url } = this.props.match.params;
+    this.props.getPlacesList(url);
   }
 
   componentDidUpdate() {
-    if (this.props.getAVoteUrl !== this.props.match.params.url) {
-      this.props.getAVote(this.props.match.params.url);
+    const { url } = this.props.match.params;
+    if (this.props.getAVoteUrl !== url) {
+      this.props.getAVote(url);
     }
   }
 
@@ -65,11 +65,11 @@ class AddAVoice extends Component {
 
   render() {
     const { restaurants } = this.props;
-
+    const { url } = this.props.match.params;
     // filter the list of restaurants with url parameter to display only one
     let listOfRestaurants;
-    if (restaurants[this.props.match.params.url]) {
-      listOfRestaurants = restaurants[this.props.match.params.url];
+    if (restaurants[url]) {
+      listOfRestaurants = restaurants[url];
     } else {
       listOfRestaurants = [];
     }
@@ -111,10 +111,21 @@ class AddAVoice extends Component {
             <PlaceCard
               key={restaurant.id}
               restaurant={restaurant}
-              vote_url={this.props.match.params.url}
+              vote_url={url}
             />
           ))}
         </Row>
+        <Row className="justify-content-center">
+          <Col
+            className="bg-blue round-corners mt-3 p-1"
+            xs="12"
+            lg="8"
+          >
+            <UsersVoices
+              voteUrl={url}
+            />
+          </Col>
+        </Row >
         <Row
           className="justify-content-center align-items-center"
           noGutters
@@ -126,7 +137,7 @@ class AddAVoice extends Component {
             <VoteMap restaurants={listOfRestaurants} />
           </Col>
         </Row>
-        {this.state.openLoginModal ? <LoginModal open voteUrl={this.props.match.params.url} /> : ''}
+        {this.state.openLoginModal ? <LoginModal open voteUrl={url} /> : ''}
         <Tooltip
           placement="bottom"
           isOpen={this.state.tooltipOpen}
@@ -141,14 +152,25 @@ class AddAVoice extends Component {
 }
 
 AddAVoice.propTypes = {
-  dispatch: PropTypes.func,
-  match: PropTypes.object,
-  restaurants: PropTypes.object,
+  getPlacesList: PropTypes.func.isRequired,
+  getAVote: PropTypes.func.isRequired,
+  getUserVoices: PropTypes.func.isRequired,
+  match: PropTypes.shape({
+    params: PropTypes.shape({
+      url: PropTypes.string.isRequired
+    })
+  }).isRequired,
+  restaurants: PropTypes.objectOf(
+    PropTypes.arrayOf(
+      PropTypes.object
+    )
+  ).isRequired,
+  getAVoteUrl: PropTypes.string.isRequired,
 };
 
-const mstp = ({ getPlacesList, getAVote }) => ({
-  restaurants: getPlacesList.result,
-  getAVoteUrl: getAVote.result.url,
+const mstp = ({ getPlacesList: gPL, getAVote: gAV }) => ({
+  restaurants: gPL.result,
+  getAVoteUrl: gAV.result.url,
 });
 
 const mdtp = dispatch => bindActionCreators({ getAVote, getPlacesList, getUserVoices }, dispatch);
