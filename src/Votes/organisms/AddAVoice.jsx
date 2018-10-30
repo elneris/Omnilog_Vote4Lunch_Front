@@ -4,22 +4,19 @@ import { faClipboard } from '@fortawesome/free-regular-svg-icons';
 import { Container, Row, Col, ButtonGroup, Button, Tooltip } from 'reactstrap';
 import { CopyToClipboard } from 'react-copy-to-clipboard';
 
-import PropTypes from 'prop-types';
-
 import React, { Component } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 
-import { getPlacesList } from '../actions/getPlacesList';
-import { getUserVoices } from '../actions/getUserVoices';
-import { getAVote } from '../actions/getAVote';
+import { getPlacesList } from '../../actions/getPlacesList';
+import { getUserVoices } from '../../actions/getUserVoices';
+import { getAVote } from '../../actions/getAVote';
 
-import PlaceCard from '../containers/PlaceCard';
-import VoteMap from '../containers/VoteMap';
-import { LoginModal } from '../Accounts/organisms';
-import { UsersVoices } from './';
-
-import MailToButton from './atoms/MailToButton';
+import { PlaceCard, UsersVoices } from './';
+import { MailToButton } from '../';
+import { VoteMap } from '../../Map';
+import { LoginModal } from '../../Accounts';
 // import EndDate from './atoms/Button/EndDate';
 
 class AddAVoice extends Component {
@@ -75,7 +72,6 @@ class AddAVoice extends Component {
     }
 
     return (
-
       <Container fluid className="AddVoice">
         <Row className="justify-content-center">
           <Col
@@ -99,14 +95,12 @@ class AddAVoice extends Component {
                   <FontAwesomeIcon icon={faClipboard} />
                 </Button>
               </CopyToClipboard>
-
             </ButtonGroup>
             <MailToButton />
             {/* <EndDate /> */}
           </Col>
         </Row >
         <Row className="justify-content-center pt-3">
-
           {listOfRestaurants.map(restaurant => (
             <PlaceCard
               key={restaurant.id}

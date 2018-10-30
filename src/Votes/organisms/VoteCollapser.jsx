@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
+import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 
 import { Row, Col, Collapse, Button } from 'reactstrap';
 
@@ -11,12 +13,12 @@ import { Link } from 'react-router-dom';
 import moment from 'moment';
 import 'moment/locale/fr';
 
-import PlaceCard from './PlaceCard';
+import { PlaceCard } from './';
 
-import { getPlacesList } from '../actions/getPlacesList';
-import { deleteAVote } from '../actions/deleteAVote';
-import { onTopAlert, offTopAlert } from '../actions';
-import { getUsersVotes } from '../actions/getUsersVotes';
+import { getPlacesList } from '../../actions/getPlacesList';
+import { deleteAVote } from '../../actions/deleteAVote';
+import { onTopAlert, offTopAlert } from '../../actions';
+import { getUsersVotes } from '../../actions/getUsersVotes';
 
 class VoteCollapser extends Component {
   constructor(props) {
@@ -26,7 +28,9 @@ class VoteCollapser extends Component {
   }
 
   componentDidMount() {
-    this.props.dispatch(getPlacesList(this.props.vote.url));
+    const { getPlacesList: getPL } = this.props;
+    const { url } = this.props.vote;
+    getPL(url);
   }
 
   toggle() {
@@ -34,13 +38,24 @@ class VoteCollapser extends Component {
   }
 
   render() {
-    const { vote, restaurants, maxDate, delVoteResult } = this.props;
+    const {
+      vote,
+      restaurants,
+      maxDate,
+      delVoteResult,
+      onTopAlert: onTA,
+      offTopAlert: offTA,
+      deleteAVote: deleteAV,
+      getUsersVotes: getUV
+    } = this.props;
 
     moment.locale('fr');
 
     const dateVote = moment(vote.date).format('dddd D MMMM YYYY');
     let listOfRestaurants = [];
-    const myRestaurants = restaurants.find(obj => obj.hasOwnProperty(vote.url));
+    const myRestaurants = restaurants.find(
+      obj => Object.prototype.hasOwnProperty.call(obj, vote.url)
+    );
 
     if (myRestaurants) {
       listOfRestaurants = myRestaurants[vote.url];
@@ -55,9 +70,9 @@ class VoteCollapser extends Component {
     const voteDetailUrl = `/vote/${vote.url}`;
 
     if (delVoteResult.delete === true) {
-      this.props.dispatch(onTopAlert('success', 'Ce vote a bien été supprimé'));
-      setTimeout(() => { this.props.dispatch(offTopAlert()); }, 3000);
-      this.props.dispatch(getUsersVotes(vote.pseudo));
+      onTA('success', 'Ce vote a bien été supprimé');
+      setTimeout(() => { offTA(); }, 3000);
+      getUV(vote.pseudo);
     }
 
     return (
@@ -65,8 +80,8 @@ class VoteCollapser extends Component {
         <Col className="rounded bg-blue pt-2">
           <p className="text-white">
             <Button
-              size='sm'
-              color='info'
+              size="sm"
+              color="info"
               onClick={this.toggle}
               className="mr-3"
             >
@@ -77,8 +92,8 @@ class VoteCollapser extends Component {
             </Button>
             {dateVote}
             <Button
-              size='sm'
-              color='info'
+              size="sm"
+              color="info"
               tag={Link}
               to={voteDetailUrl}
               className="ml-3"
@@ -86,9 +101,9 @@ class VoteCollapser extends Component {
               voir le détail
             </Button>
             <Button
-              size='sm'
-              color='danger'
-              onClick={() => this.props.dispatch(deleteAVote(vote.url))}
+              size="sm"
+              color="danger"
+              onClick={() => deleteAV(vote.url)}
               className="ml-3"
             >
               supprimer le vote
@@ -114,10 +129,33 @@ class VoteCollapser extends Component {
   }
 }
 
+VoteCollapser.propTypes = {
+  getPlacesList: PropTypes.func.isRequired,
+  onTopAlert: PropTypes.func.isRequired,
+  offTopAlert: PropTypes.func.isRequired,
+  deleteAVote: PropTypes.func.isRequired,
+  getUsersVotes: PropTypes.func.isRequired,
+  restaurants: PropTypes.objectOf(
+    PropTypes.arrayOf(
+      PropTypes.object
+    )
+  ).isRequired,
+  delVoteResult: PropTypes.objectOf(PropTypes.bool).isRequired,
+  vote: PropTypes.objectOf(PropTypes.string).isRequired,
+  maxDate: PropTypes.string.isRequired,
+};
+
 const mstp = ({ getManyPlacesList, delVote }) => ({
   restaurants: getManyPlacesList.result,
   delVoteResult: delVote.result
-
 });
 
-export default connect(mstp)(VoteCollapser);
+const mdtp = dispatch => bindActionCreators({
+  getPlacesList,
+  onTopAlert,
+  offTopAlert,
+  deleteAVote,
+  getUsersVotes
+}, dispatch);
+
+export default connect(mstp, mdtp)(VoteCollapser);

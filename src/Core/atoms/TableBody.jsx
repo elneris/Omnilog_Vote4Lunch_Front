@@ -13,7 +13,8 @@ const TableBody = ({ data }) => (
         )
       )
     }
-  </tbody>);
+  </tbody>
+);
 
 TableBody.propTypes = {
   data: PropTypes.arrayOf(PropTypes.object).isRequired,

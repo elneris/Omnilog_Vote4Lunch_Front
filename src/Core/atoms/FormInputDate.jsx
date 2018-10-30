@@ -6,7 +6,7 @@ import PropTypes from 'prop-types';
 
 import { FormGroup, Label, Input } from 'reactstrap';
 
-import { FormInputDate } from '../../../actions';
+import { FormInputDate } from '../../actions';
 
 const Date = ({ date, FormInputDate: FormInputDateFunc }) => (
   <FormGroup>

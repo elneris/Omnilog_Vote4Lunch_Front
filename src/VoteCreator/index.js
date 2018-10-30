@@ -1,3 +1,15 @@
-import { CreateAVote } from './organisms';
+import { Place } from './molecules';
+import {
+  CreateAVote,
+  BeginVote,
+  AddPlace,
+  CreateAVotePlaces
+} from './organisms';
 
-export { CreateAVote };
+export {
+  Place,
+  CreateAVote,
+  BeginVote,
+  AddPlace,
+  CreateAVotePlaces
+};

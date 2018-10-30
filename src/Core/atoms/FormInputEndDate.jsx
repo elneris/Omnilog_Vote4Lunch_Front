@@ -9,7 +9,7 @@ import { FormGroup, Label, Input, InputGroup, InputGroupAddon, InputGroupText } 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCalendar, faClock } from '@fortawesome/free-regular-svg-icons';
 
-import { FormInputEndDate } from '../../../actions';
+import { FormInputEndDate } from '../../actions';
 
 const EndDate = ({ endDate, endTime, FormInputEndDate: FormInputEndDateFunc }) => (
   <FormGroup>

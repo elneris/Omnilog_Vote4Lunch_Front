@@ -19,8 +19,7 @@ import { createAVote } from '../actions';
 import { saveVoteData } from '../../actions';
 
 import { FormInputPseudo, FormInputEmail } from '../../Accounts';
-import Date from '../../containers/atoms/FormInput/Date';
-import EndDate from '../../containers/atoms/FormInput/EndDate';
+import { FormInputDate, FormInputEndDate } from '../../Core';
 
 class CreateAVote extends Component {
   submitForm(e) {
@@ -60,8 +59,8 @@ class CreateAVote extends Component {
             className="bg-blue p-5 rounded"
           >
             <Form onSubmit={e => this.submitForm(e)}>
-              <Date />
-              <EndDate />
+              <FormInputDate />
+              <FormInputEndDate />
               <FormInputPseudo />
               <FormInputEmail />
               <div className="text-center mt-5">
@@ -76,6 +75,19 @@ class CreateAVote extends Component {
   }
 }
 
+CreateAVote.propTypes = {
+  createAVote: PropTypes.func.isRequired,
+  result: PropTypes.objectOf(PropTypes.object),
+  error: PropTypes.objectOf(PropTypes.object),
+  loading: PropTypes.bool.isRequired,
+  saveVoteData: PropTypes.func.isRequired,
+  pseudo: PropTypes.string.isRequired,
+  email: PropTypes.string.isRequired,
+  date: PropTypes.string.isRequired,
+  endDate: PropTypes.string.isRequired,
+  endTime: PropTypes.string.isRequired,
+};
+
 const mstp = ({ vote, voteDataForm }) => ({
   result: vote.result,
   error: vote.error,
@@ -88,18 +100,5 @@ const mstp = ({ vote, voteDataForm }) => ({
 });
 
 const mdtp = dispatch => bindActionCreators({ createAVote, saveVoteData }, dispatch);
-
-CreateAVote.propTypes = {
-  createAVote: PropTypes.func.isRequired,
-  result: PropTypes.any.isRequired,
-  error: PropTypes.any.isRequired,
-  loading: PropTypes.bool.isRequired,
-  saveVoteData: PropTypes.func.isRequired,
-  pseudo: PropTypes.string.isRequired,
-  email: PropTypes.string.isRequired,
-  date: PropTypes.string.isRequired,
-  endDate: PropTypes.string.isRequired,
-  endTime: PropTypes.string.isRequired,
-};
 
 export default connect(mstp, mdtp)(CreateAVote);

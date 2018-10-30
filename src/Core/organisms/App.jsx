@@ -2,15 +2,11 @@ import React from 'react';
 
 import { Route, Switch } from 'react-router-dom';
 
-import { Footer, NotFound, About } from './';
+import { Footer, NotFound, Header, About } from './';
 
-import { CreateAVote } from '../../VoteCreator';
-import { AddAVoice } from '../../Votes';
-import Header from '../../containers/Header';
-import GetUsersVotes from '../../containers/GetUsersVotes';
-import BeginVote from '../../containers/BeginVote';
-import AddPlace from '../../containers/AddPlace';
-import LogoutView from '../../containers/LogoutView';
+import { CreateAVote, BeginVote, AddPlace } from '../../VoteCreator';
+import { AddAVoice, GetUsersVotes } from '../../Votes';
+import { LogoutView } from '../../Accounts';
 
 export default () => (
   <div className="App">

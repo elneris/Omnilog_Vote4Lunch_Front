@@ -4,15 +4,14 @@ import MaterialIcon from 'material-icons-react';
 
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-
 import PropTypes from 'prop-types';
 
 import { Col, Card, CardBody, CardTitle, CardText, Button } from 'reactstrap';
 
 import axios from 'axios';
 
-import { getVoiceCount } from '../actions/getVoiceCount';
-import { addVoice } from '../actions/addVoice';
+import { getVoiceCount } from '../../actions/getVoiceCount';
+import { addVoice } from '../../actions/addVoice';
 
 class PlaceCard extends Component {
   constructor(props) {
@@ -44,7 +43,7 @@ class PlaceCard extends Component {
     const { restaurant, voiceCount, voteData, userData, userVoices } = this.props;
 
 
-// Control if the user has voted for the restaurant, if not, enable the button
+    // Control if the user has voted for the restaurant, if not, enable the button
     let filteredUserVoteValue = false;
 
     if (userVoices.result.length > 0) {
@@ -54,13 +53,13 @@ class PlaceCard extends Component {
             && element.pseudo === userData.pseudo
             && element.email === userData.email
             && parseInt(element.placeId, 10) === restaurant.id
-            );
+        );
       if (filteredUserVoices.length !== 0) {
         filteredUserVoteValue = true;
       }
     }
 
-// Get the number of voices for the place
+    // Get the number of voices for the place
     let filteredVoiceCountValue = { count: 0, place: restaurant.id };
 
     if (voiceCount.length > 0) {
@@ -77,23 +76,23 @@ class PlaceCard extends Component {
 
     return (
       <Col
-        xs='6'
-        sm='4'
-        lg='3'
-        xl='2'
-        className='PlaceCard'
+        xs="6"
+        sm="4"
+        lg="3"
+        xl="2"
+        className="PlaceCard"
       >
         <Card
-          className='h-100'
+          className="h-100"
         >
           <Button
-            size='sm'
-            className='float-right'
-            color='info'
+            size="sm"
+            className="float-right"
+            color="info"
           >
             {restaurant.type === 'restaurant' ? <MaterialIcon icon="restaurant" /> : <MaterialIcon icon="fastfood" />}
           </Button>
-          <CardBody className='text-center d-flex flex-column'>
+          <CardBody className="text-center d-flex flex-column">
             <CardTitle>
               {restaurant.name}
             </CardTitle>
@@ -107,9 +106,9 @@ class PlaceCard extends Component {
                 )
               }
               size="sm"
-              color='success'
+              color="success"
               disabled={filteredUserVoteValue}
-              className='mt-auto'
+              className="mt-auto"
             >Je vote pour ! <FontAwesomeIcon icon={faSmileBeam} /></Button>
           </CardBody>
         </Card>
@@ -118,23 +117,21 @@ class PlaceCard extends Component {
   }
 }
 
+PlaceCard.propTypes = {
+  dispatch: PropTypes.func,
+  restaurant: PropTypes.objectOf(PropTypes.object).isRequired,
+  vote_url: PropTypes.string,
+  voiceCount: PropTypes.arrayOf(PropTypes.object),
+  voteData: PropTypes.objectOf().isRequired,
+  userData: PropTypes.objectOf(PropTypes.string).isRequired,
+  userVoices: PropTypes.objectOf().isRequired,
+};
+
 const mstp = ({ getVoicesCount, voteData, userData, userVoices }) => ({
   voiceCount: getVoicesCount,
   voteData,
   userData,
   userVoices,
 });
-
-PlaceCard.propTypes = { 
-  dispatch: PropTypes.func,
-  match: PropTypes.object,
-  restaurant: PropTypes.object,
-  vote_url: PropTypes.string,
-  voiceCount: PropTypes.array,
-  voteData: PropTypes.object,
-  userVote: PropTypes.array,
-  userData: PropTypes.object,
-  userVoices: PropTypes.object,
-}
 
 export default connect(mstp)(PlaceCard);

@@ -1,41 +1,35 @@
 import React, { Component } from 'react';
-
+import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import PropTypes from 'prop-types'; 
+import PropTypes from 'prop-types';
+
 import { Container } from 'reactstrap';
 
-import VoteCollapser from '../containers/VoteCollapser';
+import { VoteCollapser } from './';
 
-import { getUsersVotes } from '../actions/getUsersVotes';
-import { getUserVoices } from '../actions/getUserVoices';
+import { getUsersVotes } from '../../actions/getUsersVotes';
+import { getUserVoices } from '../../actions/getUserVoices';
 
 class GetUsersVotes extends Component {
-  constructor() {
-    super();
-    this.getMaxDate = this.getMaxDate.bind(this);
-  }
-
   componentDidMount() {
+    const { getUsersVotes: getUV } = this.props;
     const pseudo = localStorage.getItem('pseudo');
-    this.props.dispatch(getUsersVotes(pseudo));
+    getUV(pseudo);
   }
 
   componentDidUpdate() {
     const pseudo = localStorage.getItem('pseudo');
     const email = localStorage.getItem('email');
-    const votesUrl = this.props.usersVotes
-      .filter(vote => {
+    const { usersVotes, getUserVoices: getUV } = this.props;
+    const votesUrl = usersVotes
+      .filter((vote) => {
         if (vote.active) {
-        return true;
+          return true;
         }
         return false;
       })
-      .map(vote => vote.url)    
-    this.props.dispatch(getUserVoices(pseudo,email,votesUrl))
-  }
-
-  getMaxDate(data) {
-    return data[data.length - 1].date;
+      .map(vote => vote.url);
+    getUV(pseudo, email, votesUrl);
   }
 
   render() {
@@ -43,7 +37,7 @@ class GetUsersVotes extends Component {
 
     let maxDate;
     if (usersVotes.length > 0) {
-      maxDate = this.getMaxDate(usersVotes);
+      maxDate = usersVotes[usersVotes.length - 1].date;
     }
 
     return (
@@ -55,12 +49,12 @@ class GetUsersVotes extends Component {
               maxDateValue = true;
             }
             if (vote.active) {
-              return <VoteCollapser
+              return (<VoteCollapser
                 key={vote.id}
                 vote={vote}
                 maxDate={maxDateValue}
 
-              />;
+              />);
             }
             return '';
           })
@@ -70,13 +64,16 @@ class GetUsersVotes extends Component {
   }
 }
 
-GetUsersVotes.propTypes = { 
-  dispatch: PropTypes.func,
-  usersVotes: PropTypes.array,
-}
+GetUsersVotes.propTypes = {
+  getUserVoices: PropTypes.func.isRequired,
+  getUsersVotes: PropTypes.func.isRequired,
+  usersVotes: PropTypes.arrayOf(PropTypes.object),
+};
 
 const mstp = ({ usersVotes }) => ({
   usersVotes,
 });
 
-export default connect(mstp)(GetUsersVotes);
+const mdtp = dispatch => bindActionCreators({ getUserVoices, getUsersVotes }, dispatch);
+
+export default connect(mstp, mdtp)(GetUsersVotes);

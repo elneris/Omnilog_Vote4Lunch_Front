@@ -19,16 +19,6 @@ export const updateUserData = (pseudo, email) => ({
   email,
 });
 
-export const onMapAlert = (messageType, message) => ({
-  type: 'ON_MAP_ALERT',
-  messageType,
-  message
-});
-
-export const offMapAlert = () => ({
-  type: 'OFF_MAP_ALERT',
-});
-
 export const onTopAlert = (messageType, message) => ({
   type: 'ON_TOP_ALERT',
   messageType,

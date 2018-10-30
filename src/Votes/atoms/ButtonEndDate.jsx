@@ -25,12 +25,12 @@ const EndDate = ({ remainingTime }) => {
   );
 };
 
-const mstp = ({ getAVote }) => ({
-  remainingTime: getAVote.end_date,
-});
-
 EndDate.propTypes = {
   remainingTime: PropTypes.string.isRequired,
 };
+
+const mstp = ({ getAVote }) => ({
+  remainingTime: getAVote.end_date,
+});
 
 export default connect(mstp)(EndDate);

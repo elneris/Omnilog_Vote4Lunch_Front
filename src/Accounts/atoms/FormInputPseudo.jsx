@@ -20,7 +20,7 @@ const Pseudo = ({ pseudo, FormInputPseudo: FormInputPseudoAction }) => (
       required
     />
   </FormGroup>
-)
+);
 
 Pseudo.propTypes = {
   pseudo: PropTypes.string.isRequired,

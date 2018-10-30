@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
-
+import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 
 import {
   Collapse,
@@ -21,10 +22,10 @@ import { faPowerOff } from '@fortawesome/free-solid-svg-icons';
 
 import Link from 'react-router-dom/Link';
 
-import { LoginModal } from '../Accounts/organisms';
+import { LoginModal } from '../../Accounts';
 
-import TopAlert from './TopAlert';
-import { updateUserData } from '../actions';
+import { TopAlert } from '../';
+import { updateUserData } from '../../actions';
 
 class Header extends Component {
   constructor(props) {
@@ -46,7 +47,7 @@ class Header extends Component {
     const getPseudo = localStorage.getItem('pseudo');
     const getEmail = localStorage.getItem('email');
     if (getPseudo && getEmail) {
-      this.props.dispatch(updateUserData(getPseudo, getEmail));
+      updateUserData(getPseudo, getEmail);
     }
   }
 
@@ -67,7 +68,7 @@ class Header extends Component {
       openLoginModal: true
     });
   }
-  
+
   closeLoginModal() {
     this.setState({
       openLoginModal: false
@@ -75,8 +76,8 @@ class Header extends Component {
   }
 
   render() {
-    const { vote } = this.props;
-    const votePseudo = vote.pseudo;
+    const { voteData } = this.props;
+    const votePseudo = voteData.pseudo;
 
     let pseudo = '';
 
@@ -91,22 +92,22 @@ class Header extends Component {
 
     let renderBonjour;
     if (pseudo) {
-      renderBonjour = <NavItem className="mr-3 pt-1">
+      renderBonjour = (<NavItem className="mr-3 pt-1">
         <NavLink>
           Bonjour, {pseudo}
         </NavLink>
-      </NavItem>;
+      </NavItem>);
     } else {
       renderBonjour =
-        <NavItem className="mr-3">
+        (<NavItem className="mr-3">
           <Button
-            color='success'
+            color="success"
             outline
             onClick={() => this.openLoginModal()}
           >
-            S'identifier
+            {"S'identifier"}
           </Button>
-        </NavItem>;
+        </NavItem>);
     }
 
     let renderButtonVote;
@@ -114,12 +115,12 @@ class Header extends Component {
     if (pseudo) {
       if (window.innerWidth <= 768) {
         renderButtonVote =
-          <NavItem className="mr-3">
+          (<NavItem className="mr-3">
             <ButtonGroup>
               <Button
                 tag={Link}
-                color='info'
-                to='/my-votes'
+                color="info"
+                to="/my-votes"
                 href="#"
                 id="TooltipMyVotes"
               >
@@ -131,22 +132,22 @@ class Header extends Component {
               </Button>
               <Button
                 tag={Link}
-                color='danger'
-                to='/logout'
+                color="danger"
+                to="/logout"
                 onClick={() => this.closeLoginModal()}
               >
                 <FontAwesomeIcon icon={faPowerOff} />
               </Button>
             </ButtonGroup>
-          </NavItem>;
+          </NavItem>);
         renderButtonLogout = '';
       } else {
         renderButtonVote =
-          <NavItem className="mr-3">
+          (<NavItem className="mr-3">
             <Button
               tag={Link}
-              color='info'
-              to='/my-votes'
+              color="info"
+              to="/my-votes"
               href="#"
               id="TooltipMyVotes"
             >
@@ -156,18 +157,18 @@ class Header extends Component {
                 size="tiny"
               />
             </Button>
-          </NavItem>;
+          </NavItem>);
         renderButtonLogout =
-          <NavItem className="mr-3">
+          (<NavItem className="mr-3">
             <Button
               tag={Link}
-              color='danger'
-              to='/logout'
+              color="danger"
+              to="/logout"
               onClick={() => this.closeLoginModal()}
             >
               <FontAwesomeIcon icon={faPowerOff} />
             </Button>
-          </NavItem>;
+          </NavItem>);
       }
     } else {
       renderButtonVote = '';
@@ -204,8 +205,17 @@ class Header extends Component {
   }
 }
 
+Header.propTypes = {
+  voteData: PropTypes.shape({
+    id: PropTypes.number.isRequired,
+    pseudo: PropTypes.string.isRequired,
+  }).isRequired,
+};
+
 const mstp = ({ voteData }) => ({
-  vote: voteData,
+  voteData,
 });
 
-export default connect(mstp)(Header);
+const mdtp = dispatch => bindActionCreators({ updateUserData }, dispatch);
+
+export default connect(mstp, mdtp)(Header);

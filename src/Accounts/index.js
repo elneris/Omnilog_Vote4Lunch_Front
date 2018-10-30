@@ -1,4 +1,4 @@
 import { FormInputPseudo, FormInputEmail } from './atoms';
-import { LoginModal } from './organisms';
+import { LoginModal, LogoutView } from './organisms';
 
-export { FormInputPseudo, FormInputEmail, LoginModal };
+export { FormInputPseudo, FormInputEmail, LoginModal, LogoutView };
