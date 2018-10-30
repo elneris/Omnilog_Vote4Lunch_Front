@@ -17,7 +17,7 @@ import { PlaceCard } from './';
 
 import { getPlacesList } from '../../actions/getPlacesList';
 import { deleteAVote } from '../../actions/deleteAVote';
-import { onTopAlert, offTopAlert } from '../../actions';
+import { onTopAlert, offTopAlert } from '../../Core/actions';
 import { getUsersVotes } from '../../actions/getUsersVotes';
 
 class VoteCollapser extends Component {

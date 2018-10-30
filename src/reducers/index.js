@@ -4,8 +4,8 @@ import fetchListOfRestaurantsReducer from './listOfRestaurants';
 import createAVoteReducer from './createAVote';
 import deleteAVoteReducer from './deleteAVote';
 import voteDataReducer from './voteData';
-import OnMapAlertReducer from './onMapAlert';
-import topAlertReducer from './topAlert';
+import { onMapAlertReducer } from '../Map/reducers';
+import { topAlertReducer } from '../Core/reducers';
 import getPlacesListReducer from './getPlacesList';
 import getVoicesCountReducer from './getVoicesCount';
 import addVoiceReducer from './addVoice';
@@ -23,7 +23,7 @@ export default combineReducers({
   vote: createAVoteReducer,
   delVote: deleteAVoteReducer,
   voteData: voteDataReducer,
-  onMapAlert: OnMapAlertReducer,
+  onMapAlert: onMapAlertReducer,
   topAlert: topAlertReducer,
   getPlacesList: getPlacesListReducer,
   getVoicesCount: getVoicesCountReducer,

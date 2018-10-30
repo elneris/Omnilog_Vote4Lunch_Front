@@ -20,7 +20,7 @@ import L from 'leaflet';
 
 import { offMapAlert, onMapAlert } from '../actions';
 import { fetchRestaurants } from '../../actions/listOfRestaurants';
-import { addAPlace } from '../../actions/addAPlace';
+import { addAPlace } from '../../VoteCreator/actions/addAPlace';
 
 
 import { Controls } from '../';

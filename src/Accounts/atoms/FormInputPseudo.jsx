@@ -6,9 +6,9 @@ import PropTypes from 'prop-types';
 
 import { FormGroup, Label, Input } from 'reactstrap';
 
-import { FormInputPseudo } from '../actions';
+import { formInputPseudo } from '../actions';
 
-const Pseudo = ({ pseudo, FormInputPseudo: FormInputPseudoAction }) => (
+const Pseudo = ({ pseudo, formInputPseudo: formInputPseudoAction }) => (
   <FormGroup>
     <Label className="text-white" for="pseudo">Indique ton pseudo</Label>
     <Input
@@ -16,7 +16,7 @@ const Pseudo = ({ pseudo, FormInputPseudo: FormInputPseudoAction }) => (
       name="pseudo"
       id="pseudo"
       value={pseudo}
-      onChange={e => FormInputPseudoAction(e.target.value)}
+      onChange={e => formInputPseudoAction(e.target.value)}
       required
     />
   </FormGroup>
@@ -24,13 +24,13 @@ const Pseudo = ({ pseudo, FormInputPseudo: FormInputPseudoAction }) => (
 
 Pseudo.propTypes = {
   pseudo: PropTypes.string.isRequired,
-  FormInputPseudo: PropTypes.func.isRequired,
+  formInputPseudo: PropTypes.func.isRequired,
 };
 
 const mstp = ({ voteDataForm }) => ({
   pseudo: voteDataForm.pseudo,
 });
 
-const mdtp = dispatch => bindActionCreators({ FormInputPseudo }, dispatch);
+const mdtp = dispatch => bindActionCreators({ formInputPseudo }, dispatch);
 
 export default connect(mstp, mdtp)(Pseudo);

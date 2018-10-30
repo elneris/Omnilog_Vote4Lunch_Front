@@ -11,7 +11,7 @@ import { Col, Card, CardBody, CardTitle, CardText, Button } from 'reactstrap';
 import axios from 'axios';
 
 import { getVoiceCount } from '../../actions/getVoiceCount';
-import { addVoice } from '../../actions/addVoice';
+import { addVoice } from '../actions';
 
 class PlaceCard extends Component {
   constructor(props) {

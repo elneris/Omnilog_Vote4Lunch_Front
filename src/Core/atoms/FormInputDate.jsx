@@ -6,9 +6,9 @@ import PropTypes from 'prop-types';
 
 import { FormGroup, Label, Input } from 'reactstrap';
 
-import { FormInputDate } from '../../actions';
+import { formInputDate } from '../actions';
 
-const Date = ({ date, FormInputDate: FormInputDateFunc }) => (
+const Date = ({ date, formInputDate: formInputDateFunc }) => (
   <FormGroup>
     <Label className="text-white" for="date">Choisis la date du repas</Label>
     <Input
@@ -16,7 +16,7 @@ const Date = ({ date, FormInputDate: FormInputDateFunc }) => (
       name="date"
       id="date"
       value={date}
-      onChange={e => FormInputDateFunc(e.target.value)}
+      onChange={e => formInputDateFunc(e.target.value)}
       required
     />
   </FormGroup>
@@ -24,13 +24,13 @@ const Date = ({ date, FormInputDate: FormInputDateFunc }) => (
 
 Date.propTypes = {
   date: PropTypes.string.isRequired,
-  FormInputDate: PropTypes.func.isRequired,
+  formInputDate: PropTypes.func.isRequired,
 };
 
 const mstp = ({ voteDataForm }) => ({
   date: voteDataForm.date,
 });
 
-const mdtp = dispatch => bindActionCreators({ FormInputDate }, dispatch);
+const mdtp = dispatch => bindActionCreators({ formInputDate }, dispatch);
 
 export default connect(mstp, mdtp)(Date);

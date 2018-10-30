@@ -9,9 +9,9 @@ import { FormGroup, Label, Input, InputGroup, InputGroupAddon, InputGroupText } 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCalendar, faClock } from '@fortawesome/free-regular-svg-icons';
 
-import { FormInputEndDate } from '../../actions';
+import { formInputEndDate } from '../actions';
 
-const EndDate = ({ endDate, endTime, FormInputEndDate: FormInputEndDateFunc }) => (
+const EndDate = ({ endDate, endTime, formInputEndDate: formInputEndDateFunc }) => (
   <FormGroup>
     <Label className="text-white" for="datetime">Choisis la fin du vote</Label>
     <InputGroup>
@@ -21,7 +21,7 @@ const EndDate = ({ endDate, endTime, FormInputEndDate: FormInputEndDateFunc }) =
           name="endDate"
           id="endDate"
           value={endDate}
-          onChange={e => FormInputEndDateFunc(e.target.value, endTime)}
+          onChange={e => formInputEndDateFunc(e.target.value, endTime)}
           required
         />
         <InputGroupAddon addonType="append">
@@ -34,7 +34,7 @@ const EndDate = ({ endDate, endTime, FormInputEndDate: FormInputEndDateFunc }) =
           name="endTime"
           id="endTime"
           value={endTime}
-          onChange={e => FormInputEndDateFunc(endDate, e.target.value)}
+          onChange={e => formInputEndDateFunc(endDate, e.target.value)}
           required
         />
         <InputGroupAddon addonType="append">
@@ -49,7 +49,7 @@ const EndDate = ({ endDate, endTime, FormInputEndDate: FormInputEndDateFunc }) =
 EndDate.propTypes = {
   endDate: PropTypes.string.isRequired,
   endTime: PropTypes.string.isRequired,
-  FormInputEndDate: PropTypes.func.isRequired,
+  formInputEndDate: PropTypes.func.isRequired,
 };
 
 const mstp = ({ voteDataForm }) => ({
@@ -57,6 +57,6 @@ const mstp = ({ voteDataForm }) => ({
   endTime: voteDataForm.endTime,
 });
 
-const mdtp = dispatch => bindActionCreators({ FormInputEndDate }, dispatch);
+const mdtp = dispatch => bindActionCreators({ formInputEndDate }, dispatch);
 
 export default connect(mstp, mdtp)(EndDate);

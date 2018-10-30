@@ -1,3 +1,4 @@
+import { addVoice } from './addVoice';
 import { getAllVoicesForAVote } from './getAllVoicesForAVote';
 
-export { getAllVoicesForAVote };
+export { addVoice, getAllVoicesForAVote };

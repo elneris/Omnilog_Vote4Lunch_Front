@@ -26,7 +26,7 @@ TopAlert.propTypes = {
 };
 
 const mstp = ({ topAlert }) => ({
-  message_type: topAlert.message_type,
+  messageType: topAlert.messageType,
   status: topAlert.status,
   message: topAlert.message,
 });

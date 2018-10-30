@@ -6,9 +6,9 @@ import PropTypes from 'prop-types';
 
 import { FormGroup, Label, Input } from 'reactstrap';
 
-import { FormInputEmail } from '../actions';
+import { formInputEmail } from '../actions';
 
-const Email = ({ email, FormInputEmail: FormInputEmailAction }) => (
+const Email = ({ email, formInputEmail: formInputEmailAction }) => (
   <FormGroup>
     <Label className="text-white" for="email">Indique ton email</Label>
     <Input
@@ -16,7 +16,7 @@ const Email = ({ email, FormInputEmail: FormInputEmailAction }) => (
       name="email"
       id="email"
       value={email}
-      onChange={e => FormInputEmailAction(e.target.value)}
+      onChange={e => formInputEmailAction(e.target.value)}
       required
     />
   </FormGroup>
@@ -24,13 +24,13 @@ const Email = ({ email, FormInputEmail: FormInputEmailAction }) => (
 
 Email.propTypes = {
   email: PropTypes.string.isRequired,
-  FormInputEmail: PropTypes.func.isRequired,
+  formInputEmail: PropTypes.func.isRequired,
 };
 
 const mstp = ({ voteDataForm }) => ({
   email: voteDataForm.email,
 });
 
-const mdtp = dispatch => bindActionCreators({ FormInputEmail }, dispatch);
+const mdtp = dispatch => bindActionCreators({ formInputEmail }, dispatch);
 
 export default connect(mstp, mdtp)(Email);

@@ -9,7 +9,7 @@ import PropTypes from 'prop-types';
 
 import { ListGroupItem, Button } from 'reactstrap';
 
-import { deleteAPlace } from '../../actions/deleteAPlace';
+import { deleteAPlace } from '../actions';
 
 const Place = ({ place, type, vote_id, place_id, deleteAPlace: dAP }) => (
   <ListGroupItem>
