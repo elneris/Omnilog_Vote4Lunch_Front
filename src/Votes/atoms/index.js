@@ -1,3 +1,4 @@
 import MailToButton from './MailToButton';
+import ButtonEndDate from './ButtonEndDate';
 
-export default MailToButton;
+export { ButtonEndDate, MailToButton };
