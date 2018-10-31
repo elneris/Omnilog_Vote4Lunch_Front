@@ -9,8 +9,8 @@ import PropTypes from 'prop-types';
 
 import { Container, Row, Col, Button, Form } from 'reactstrap';
 
-import 'react-dates/initialize';
-import 'react-dates/lib/css/_datepicker.css';
+import moment from 'moment';
+import 'moment/locale/fr';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSpinner } from '@fortawesome/free-solid-svg-icons';
@@ -18,9 +18,53 @@ import { faSpinner } from '@fortawesome/free-solid-svg-icons';
 import { FormInputPseudo, FormInputEmail } from '../../Accounts';
 import { FormInputDate, FormInputEndDate } from '../../Core';
 
+import { onTopAlert, offTopAlert } from '../../Core/actions';
 import { createAVote, saveVoteData } from '../actions';
 
+moment.locale('fr');
+
 class CreateAVote extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      disabledButton: false,
+    };
+    this.toggleButton = this.toggleButton.bind(this);
+  }
+
+  componentDidUpdate(prevProps) {
+    const {
+      date,
+      endDate,
+      onTopAlert: onTA,
+      offTopAlert: offTA,
+    } = this.props;
+
+    if (date !== '' && endDate !== '' && (date !== prevProps.date || endDate !== prevProps.endDate)) {
+      if (moment(date).isBefore(moment(endDate))) {
+        this.toggleButton(true);
+        onTA('danger', 'La date de fin du vote ne peut pas être supérieure à la date du repas');
+        setTimeout(() => { offTA(); }, 5000);
+      }
+    } else if (date !== '' && date !== prevProps.date) {
+      if (moment(date).isBefore(moment())) {
+        onTA('warning', "Ca c'était avant, un peu tard pour programmer un déjeuner ;-) !");
+        setTimeout(() => { offTA(); }, 5000);
+      }
+    } else if (
+      this.state.disabledButton === true
+      && (date !== prevProps.date || endDate !== prevProps.endDate
+      )) {
+      this.toggleButton(false);
+    }
+  }
+
+  toggleButton(value) {
+    this.setState({
+      disabledButton: value,
+    });
+  }
+
   submitForm(e) {
     const { pseudo, email, date, endDate, endTime } = this.props;
     e.preventDefault();
@@ -35,7 +79,16 @@ class CreateAVote extends Component {
   render() {
     let rendering = "C'est bon, je suis prêt";
 
-    const { result, error, loading } = this.props;
+    const { disabledButton } = this.state;
+
+    const {
+      result,
+      error,
+      loading,
+      onTopAlert: onTA,
+      offTopAlert: offTA
+    } = this.props;
+
     if (result !== '' && result.createdAt) {
       this.props.saveVoteData(result.id, result.date, result.pseudo, result.email, result.url);
       localStorage.setItem('pseudo', result.pseudo);
@@ -44,7 +97,8 @@ class CreateAVote extends Component {
     } else if (loading) {
       rendering = <FontAwesomeIcon icon={faSpinner} spin />;
     } else if (error) {
-      console.log(error);
+      onTA('danger', "Oups, quelque chose s'est mal passé");
+      setTimeout(() => { offTA(); }, 3000);
     }
 
     return (
@@ -54,7 +108,6 @@ class CreateAVote extends Component {
             xs="12"
             sm="8"
             md="6"
-            xl="4"
             className="bg-blue p-5 rounded"
           >
             <Form onSubmit={e => this.submitForm(e)}>
@@ -63,7 +116,7 @@ class CreateAVote extends Component {
               <FormInputPseudo />
               <FormInputEmail />
               <div className="text-center mt-5">
-                <Button color="success">{rendering}</Button>
+                <Button disabled={disabledButton} color="success">{rendering}</Button>
               </div>
 
             </Form>
@@ -76,6 +129,8 @@ class CreateAVote extends Component {
 
 CreateAVote.propTypes = {
   createAVote: PropTypes.func.isRequired,
+  onTopAlert: PropTypes.func.isRequired,
+  offTopAlert: PropTypes.func.isRequired,
   result: PropTypes.objectOf(PropTypes.object),
   error: PropTypes.objectOf(PropTypes.object),
   loading: PropTypes.bool.isRequired,
@@ -98,6 +153,11 @@ const mstp = ({ vote, voteDataForm }) => ({
   endTime: voteDataForm.endTime,
 });
 
-const mdtp = dispatch => bindActionCreators({ createAVote, saveVoteData }, dispatch);
+const mdtp = dispatch => bindActionCreators({
+  createAVote,
+  saveVoteData,
+  onTopAlert,
+  offTopAlert
+}, dispatch);
 
 export default connect(mstp, mdtp)(CreateAVote);
