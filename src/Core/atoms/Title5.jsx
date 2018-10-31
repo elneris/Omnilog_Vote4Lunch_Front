@@ -6,7 +6,6 @@ const Title5 = ({ content, color, alignment }) => {
   const textColor = color ? ` text-${color}` : '';
   const textAlignment = alignment ? ` text-${alignment}` : '';
   const classList = `${textColor}${textAlignment}`;
-
   return (
     <h5 className={classList}>{content}</h5>
   );

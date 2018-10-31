@@ -1,4 +1,13 @@
-import AddAVoice from './AddAVoice';
-import UsersVoices from './organisms';
+import MailToButton from './atoms';
+import { UsersVoicesTable } from './molecules';
+import { AddAVoice, GetUsersVotes, PlaceCard, UsersVoices, VoteCollapser } from './organisms';
 
-export { AddAVoice, UsersVoices };
+export {
+  MailToButton,
+  UsersVoicesTable,
+  AddAVoice,
+  GetUsersVotes,
+  PlaceCard,
+  UsersVoices,
+  VoteCollapser
+};

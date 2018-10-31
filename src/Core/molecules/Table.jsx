@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 import { Table as T } from 'reactstrap';
 
-import { TableBody, TableHead } from '../atoms';
+import { TableBody, TableHead } from '../';
 
 const Table = ({ data, headList, dark }) => (
   <T
