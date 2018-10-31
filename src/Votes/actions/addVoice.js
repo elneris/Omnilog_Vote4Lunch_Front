@@ -1,6 +1,6 @@
 import axios from 'axios';
-import { getVoiceCount } from '../../actions/getVoiceCount';
-import { getUserVoices } from '../../actions/getUserVoices';
+import { getVoiceCount } from './getVoiceCount';
+import { getUserVoices } from './getUserVoices';
 
 export const addVoiceBegin = () => ({
   type: 'ADD_VOICE_BEGIN',

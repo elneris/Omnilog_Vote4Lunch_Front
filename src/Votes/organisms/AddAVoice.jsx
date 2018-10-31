@@ -9,9 +9,9 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
-import { getPlacesList } from '../../actions/getPlacesList';
-import { getUserVoices } from '../../actions/getUserVoices';
-import { getAVote } from '../../actions/getAVote';
+import { getPlacesList } from '../actions/getPlacesList';
+import { getUserVoices } from '../actions/getUserVoices';
+import { getAVote } from '../actions';
 
 import { PlaceCard, UsersVoices } from './';
 import { MailToButton } from '../';

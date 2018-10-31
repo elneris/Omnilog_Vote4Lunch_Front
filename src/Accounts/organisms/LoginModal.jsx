@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 import { Button, Modal, ModalHeader, ModalBody, Form, FormGroup, Label, Input } from 'reactstrap';
 
 import { updateUserData } from '../../actions';
-import { getUserVoices } from '../../actions/getUserVoices';
+import { getUserVoices } from '../../Votes/actions/getUserVoices';
 
 class LoginModal extends Component {
   constructor(props) {

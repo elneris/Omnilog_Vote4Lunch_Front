@@ -10,8 +10,7 @@ import { Col, Card, CardBody, CardTitle, CardText, Button } from 'reactstrap';
 
 import axios from 'axios';
 
-import { getVoiceCount } from '../../actions/getVoiceCount';
-import { addVoice } from '../actions';
+import { addVoice, getVoiceCount } from '../actions';
 
 class PlaceCard extends Component {
   constructor(props) {
@@ -66,7 +65,7 @@ class PlaceCard extends Component {
       const filteredVoiceCount = voiceCount
         .filter(
           element => element.place === restaurant.id
-          && element.vote_id === this.state.vote_id
+          && element.voteId === this.state.vote_id
         );
 
       if (filteredVoiceCount.length !== 0) {

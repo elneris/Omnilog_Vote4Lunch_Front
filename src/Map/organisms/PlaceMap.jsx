@@ -18,8 +18,7 @@ import markerShadow from 'leaflet/dist/images/marker-shadow.png';
 
 import L from 'leaflet';
 
-import { offMapAlert, onMapAlert } from '../actions';
-import { fetchRestaurants } from '../../actions/listOfRestaurants';
+import { fetchRestaurants, offMapAlert, onMapAlert } from '../actions';
 import { addAPlace } from '../../VoteCreator/actions/addAPlace';
 
 

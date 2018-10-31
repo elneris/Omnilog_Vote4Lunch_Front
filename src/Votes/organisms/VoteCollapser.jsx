@@ -15,10 +15,8 @@ import 'moment/locale/fr';
 
 import { PlaceCard } from './';
 
-import { getPlacesList } from '../../actions/getPlacesList';
-import { deleteAVote } from '../../actions/deleteAVote';
+import { deleteAVote, getUsersVotes, getPlacesList } from '../actions';
 import { onTopAlert, offTopAlert } from '../../Core/actions';
-import { getUsersVotes } from '../../actions/getUsersVotes';
 
 class VoteCollapser extends Component {
   constructor(props) {

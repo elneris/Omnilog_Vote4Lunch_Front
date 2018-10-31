@@ -7,8 +7,8 @@ import { Container } from 'reactstrap';
 
 import { VoteCollapser } from './';
 
-import { getUsersVotes } from '../../actions/getUsersVotes';
-import { getUserVoices } from '../../actions/getUserVoices';
+import { getUsersVotes } from '../actions/getUsersVotes';
+import { getUserVoices } from '../actions/getUserVoices';
 
 class GetUsersVotes extends Component {
   componentDidMount() {
