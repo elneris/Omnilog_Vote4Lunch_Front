@@ -47,8 +47,9 @@ class AddAVoice extends Component {
 
   componentDidUpdate() {
     const { url } = this.props.match.params;
-    if (this.props.getAVoteUrl !== url) {
-      this.props.getAVote(url);
+    const { getAVoteUrl, getAVote: getAV } = this.props;
+    if (getAVoteUrl !== url) {
+      getAV(url);
     }
   }
 
@@ -59,7 +60,7 @@ class AddAVoice extends Component {
   }
 
   render() {
-    const { restaurants } = this.props;
+    const { restaurants, getVoicesCount } = this.props;
     const { url } = this.props.match.params;
     // filter the list of restaurants with url parameter to display only one
     let listOfRestaurants;
@@ -67,6 +68,27 @@ class AddAVoice extends Component {
       listOfRestaurants = restaurants[url];
     } else {
       listOfRestaurants = [];
+    }
+
+    // Test if someone has voted
+    let renderWhoHasVoted;
+    if (getVoicesCount.length > 0) {
+      const UsersVoicesCount = getVoicesCount.reduce((a, b) => ({ count: a.count + b.count }));
+      if (UsersVoicesCount.count !== 0) {
+        renderWhoHasVoted = (
+          <Row className="justify-content-center">
+            <Col
+              className="bg-blue round-corners mt-3 p-1"
+              xs="12"
+              lg="8"
+            >
+              <UsersVoices
+                voteUrl={url}
+              />
+            </Col>
+          </Row >
+        );
+      }
     }
 
     return (
@@ -102,21 +124,11 @@ class AddAVoice extends Component {
             <PlaceCard
               key={restaurant.id}
               restaurant={restaurant}
-              vote_url={url}
+              voteUrl={url}
             />
           ))}
         </Row>
-        <Row className="justify-content-center">
-          <Col
-            className="bg-blue round-corners mt-3 p-1"
-            xs="12"
-            lg="8"
-          >
-            <UsersVoices
-              voteUrl={url}
-            />
-          </Col>
-        </Row >
+        {renderWhoHasVoted}
         <Row
           className="justify-content-center align-items-center"
           noGutters
@@ -157,11 +169,15 @@ AddAVoice.propTypes = {
     )
   ).isRequired,
   getAVoteUrl: PropTypes.string.isRequired,
+  getVoicesCount: PropTypes.arrayOf(
+    PropTypes.object
+  ).isRequired,
 };
 
-const mstp = ({ getPlacesList: gPL, getAVote: gAV }) => ({
+const mstp = ({ getPlacesList: gPL, getAVote: gAV, getVoicesCount }) => ({
   restaurants: gPL.result,
   getAVoteUrl: gAV.url,
+  getVoicesCount,
 });
 
 const mdtp = dispatch => bindActionCreators({ getAVote, getPlacesList, getUserVoices }, dispatch);

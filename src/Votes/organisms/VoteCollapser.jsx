@@ -114,7 +114,7 @@ class VoteCollapser extends Component {
                   <PlaceCard
                     key={restaurant.id}
                     restaurant={restaurant}
-                    vote_url={this.props.vote.url}
+                    voteUrl={this.props.vote.url}
                   />
                 ))
               }

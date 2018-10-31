@@ -24,22 +24,21 @@ class PlaceCard extends Component {
   }
 
   async componentDidMount() {
-    await this.props.dispatch(getVoiceCount(this.props.vote_url, this.props.restaurant.id));
+    await this.props.dispatch(getVoiceCount(this.props.voteUrl, this.props.restaurant.id));
     await this.getVoteId();
   }
 
   async getVoteId() {
     const voteId = await axios
-      .get(`/api/vote/get?vote_url=${this.props.vote_url}`)
+      .get(`/api/vote/get?vote_url=${this.props.voteUrl}`)
       .then(result => result.data.id);
-
     await this.setState({
       vote_id: voteId
     });
   }
 
   render() {
-    const { restaurant, voiceCount, voteData, userData, userVoices } = this.props;
+    const { restaurant, voiceCount, userData, userVoices } = this.props;
 
 
     // Control if the user has voted for the restaurant, if not, enable the button
@@ -100,7 +99,7 @@ class PlaceCard extends Component {
               onClick={
                 () => this.props.dispatch(
                   addVoice(
-                    this.props.vote_url, this.props.restaurant.id, voteData.pseudo, voteData.email
+                    this.props.voteUrl, this.props.restaurant.id, userData.pseudo, userData.email
                   )
                 )
               }
@@ -119,16 +118,14 @@ class PlaceCard extends Component {
 PlaceCard.propTypes = {
   dispatch: PropTypes.func,
   restaurant: PropTypes.objectOf(PropTypes.object).isRequired,
-  vote_url: PropTypes.string,
+  voteUrl: PropTypes.string,
   voiceCount: PropTypes.arrayOf(PropTypes.object),
-  voteData: PropTypes.objectOf().isRequired,
   userData: PropTypes.objectOf(PropTypes.string).isRequired,
   userVoices: PropTypes.objectOf().isRequired,
 };
 
-const mstp = ({ getVoicesCount, voteData, userData, userVoices }) => ({
+const mstp = ({ getVoicesCount, userData, userVoices }) => ({
   voiceCount: getVoicesCount,
-  voteData,
   userData,
   userVoices,
 });
