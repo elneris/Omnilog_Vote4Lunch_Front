@@ -12,10 +12,9 @@ import PropTypes from 'prop-types';
 import { getPlacesList, getAVote, getUserVoices } from '../actions';
 
 import { PlaceCard, UsersVoices } from './';
-import { MailToButton } from '../';
+import { MailToButton, ButtonEndDate } from '../';
 import { VoteMap } from '../../Map';
 import { LoginModal } from '../../Accounts';
-// import EndDate from './atoms/Button/EndDate';
 
 class AddAVoice extends Component {
   constructor(props) {
@@ -100,7 +99,7 @@ class AddAVoice extends Component {
             lg="8"
           >
             <ButtonGroup
-              className="mr-3"
+              className="mr-2"
             >
               <Button
                 disabled
@@ -116,7 +115,8 @@ class AddAVoice extends Component {
                 </Button>
               </CopyToClipboard>
             </ButtonGroup>
-            <MailToButton />
+            <MailToButton className="mr-2" />
+            <ButtonEndDate />
           </Col>
         </Row >
         <Row className="justify-content-center pt-3">
