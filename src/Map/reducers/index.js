@@ -1,3 +1,4 @@
+import listOfRestaurantsReducer from './listOfRestaurants';
 import onMapAlertReducer from './onMapAlert';
 
-export { onMapAlertReducer };
+export { listOfRestaurantsReducer, onMapAlertReducer };

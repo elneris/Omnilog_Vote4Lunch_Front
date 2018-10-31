@@ -1,3 +1,3 @@
 import topAlertReducer from './topAlert';
 
-export { topAlertReducer };
+export default topAlertReducer;

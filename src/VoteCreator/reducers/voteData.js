@@ -6,7 +6,7 @@ const initialState = {
   places: [],
 };
 
-const vote = (state = initialState, action) => {
+export default (state = initialState, action) => {
   switch (action.type) {
     case 'SAVE_VOTE_DATA':
       return {
@@ -42,7 +42,7 @@ const vote = (state = initialState, action) => {
     case 'RESET_VOTE_DATA':
       return {
         ...state,
-        id: '',
+        id: 0,
         date: null,
         pseudo: '',
         email: '',
@@ -59,5 +59,3 @@ const vote = (state = initialState, action) => {
       return state;
   }
 };
-
-export default vote;

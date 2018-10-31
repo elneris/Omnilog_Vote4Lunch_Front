@@ -25,7 +25,7 @@ import Link from 'react-router-dom/Link';
 import { LoginModal } from '../../Accounts';
 
 import { TopAlert } from '../';
-import { updateUserData } from '../../actions';
+import { updateUserData } from '../../Accounts/actions';
 
 class Header extends Component {
   constructor(props) {

@@ -6,7 +6,7 @@ import PropTypes from 'prop-types';
 import { Container, Row, Col, Button } from 'reactstrap';
 import { Link } from 'react-router-dom';
 
-import { updateUserData } from '../../actions';
+import { updateUserData } from '../../Accounts/actions';
 
 class BeginVote extends Component {
   componentDidMount() {

@@ -9,9 +9,7 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
-import { getPlacesList } from '../actions/getPlacesList';
-import { getUserVoices } from '../actions/getUserVoices';
-import { getAVote } from '../actions';
+import { getPlacesList, getAVote, getUserVoices } from '../actions';
 
 import { PlaceCard, UsersVoices } from './';
 import { MailToButton } from '../';
@@ -97,7 +95,6 @@ class AddAVoice extends Component {
               </CopyToClipboard>
             </ButtonGroup>
             <MailToButton />
-            {/* <EndDate /> */}
           </Col>
         </Row >
         <Row className="justify-content-center pt-3">

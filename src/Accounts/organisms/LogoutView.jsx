@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 
 import { Redirect } from 'react-router-dom';
 
-import { resetVoteData } from '../../actions';
+import { resetVoteData } from '../../VoteCreator/actions';
 
 class LogoutView extends Component {
   componentDidMount() {

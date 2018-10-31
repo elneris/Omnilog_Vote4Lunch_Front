@@ -1,3 +1,3 @@
 import MailToButton from './MailToButton';
 
-export { MailToButton };
+export default MailToButton;
