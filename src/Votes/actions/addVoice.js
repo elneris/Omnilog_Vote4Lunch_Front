@@ -1,6 +1,5 @@
 import axios from 'axios';
-import { getVoiceCount } from './getVoiceCount';
-import { getUserVoices } from './getUserVoices';
+import { getVoiceCount, getUserVoices, getAllVoicesForAVote } from './';
 
 export const addVoiceBegin = () => ({
   type: 'ADD_VOICE_BEGIN',
@@ -40,6 +39,7 @@ export function addVoice(voteUrl, placeId, pseudo, email) {
           dispatch(addVoiceSuccess(result.result));
           dispatch(getVoiceCount(voteUrl, placeId));
           dispatch(getUserVoices(pseudo, email, [voteUrl]));
+          dispatch(getAllVoicesForAVote(voteUrl));
         })
         .catch(error => dispatch(addVoiceFailure(error)))
     );
