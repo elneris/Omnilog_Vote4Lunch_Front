@@ -1,3 +1,4 @@
+import DisplayWinner from './DisplayWinner';
 import UsersVoicesTable from './UsersVoicesTable';
 
-export { UsersVoicesTable };
+export { DisplayWinner, UsersVoicesTable };
