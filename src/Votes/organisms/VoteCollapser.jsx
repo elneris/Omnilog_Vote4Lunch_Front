@@ -73,6 +73,9 @@ class VoteCollapser extends Component {
       getUV(vote.pseudo);
     }
 
+    // delete date if date of vote is exceeded
+    const tooLate = moment(vote.date).isBefore(moment(), 'day');
+
     return (
       <Row className={classNameForRow} >
         <Col className="rounded bg-blue pt-2">
@@ -88,7 +91,7 @@ class VoteCollapser extends Component {
                 icon={this.state.collapse ? faAngleDown : faAngleRight}
               />
             </Button>
-            {dateVote}
+            {tooLate ? <del>{dateVote}</del> : dateVote }
             <Button
               size="sm"
               color="info"

@@ -6,11 +6,16 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
+import moment from 'moment';
+import 'moment/locale/fr';
+
 import { Col, Card, CardBody, CardTitle, CardText, Button } from 'reactstrap';
 
 import axios from 'axios';
 
 import { addVoice, getVoiceCount } from '../actions';
+
+moment.locale('fr');
 
 class PlaceCard extends Component {
   constructor(props) {
@@ -38,11 +43,17 @@ class PlaceCard extends Component {
   }
 
   render() {
-    const { restaurant, voiceCount, userData, userVoices } = this.props;
+    const { restaurant, voiceCount, userData, userVoices, remainingTime } = this.props;
 
 
     // Control if the user has voted for the restaurant, if not, enable the button
-    let filteredUserVoteValue = false;
+    let disabledButton = false;
+
+    // disable button if vote end date is exceeded
+    const tooLate = moment(remainingTime).isBefore();
+    if (tooLate) {
+      disabledButton = true;
+    }
 
     if (userVoices.result.length > 0) {
       const filteredUserVoices = userVoices.result
@@ -53,7 +64,7 @@ class PlaceCard extends Component {
             && parseInt(element.placeId, 10) === restaurant.id
         );
       if (filteredUserVoices.length !== 0) {
-        filteredUserVoteValue = true;
+        disabledButton = true;
       }
     }
 
@@ -105,7 +116,7 @@ class PlaceCard extends Component {
               }
               size="sm"
               color="success"
-              disabled={filteredUserVoteValue}
+              disabled={disabledButton}
               className="mt-auto"
             >Je vote pour ! <FontAwesomeIcon icon={faSmileBeam} /></Button>
           </CardBody>
@@ -122,12 +133,14 @@ PlaceCard.propTypes = {
   voiceCount: PropTypes.arrayOf(PropTypes.object),
   userData: PropTypes.objectOf(PropTypes.string).isRequired,
   userVoices: PropTypes.objectOf().isRequired,
+  remainingTime: PropTypes.string.isRequired,
 };
 
-const mstp = ({ getVoicesCount, userData, userVoices }) => ({
+const mstp = ({ getVoicesCount, userData, userVoices, getAVote }) => ({
   voiceCount: getVoicesCount,
   userData,
   userVoices,
+  remainingTime: getAVote.end_date,
 });
 
 export default connect(mstp)(PlaceCard);

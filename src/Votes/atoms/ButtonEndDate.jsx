@@ -19,7 +19,9 @@ const EndDate = ({ remainingTime }) => {
   const fromNow = moment(remainingTime).fromNow();
 
   return (
-    <Button>
+    <Button
+      color="info"
+    >
       {voteState} {fromNow}
     </Button>
   );

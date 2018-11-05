@@ -9,13 +9,17 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
+import moment from 'moment';
+import 'moment/locale/fr';
+
 import { getPlacesList, getAVote, getUserVoices } from '../actions';
 
 import { PlaceCard, UsersVoices } from './';
-import { MailToButton } from '../';
+import { DisplayWinner, MailToButton, ButtonEndDate } from '../';
 import { VoteMap } from '../../Map';
 import { LoginModal } from '../../Accounts';
-// import EndDate from './atoms/Button/EndDate';
+
+moment.locale('fr');
 
 class AddAVoice extends Component {
   constructor(props) {
@@ -60,7 +64,7 @@ class AddAVoice extends Component {
   }
 
   render() {
-    const { restaurants, getVoicesCount } = this.props;
+    const { restaurants, getVoicesCount, remainingTime } = this.props;
     const { url } = this.props.match.params;
     // filter the list of restaurants with url parameter to display only one
     let listOfRestaurants;
@@ -91,6 +95,12 @@ class AddAVoice extends Component {
       }
     }
 
+    // Display result if vote is finished
+    let displayTrophy;
+    if (moment(remainingTime) < moment()) {
+      displayTrophy = <DisplayWinner />;
+    }
+
     return (
       <Container fluid className="AddVoice">
         <Row className="justify-content-center">
@@ -100,7 +110,7 @@ class AddAVoice extends Component {
             lg="8"
           >
             <ButtonGroup
-              className="mr-3"
+              className="mr-2"
             >
               <Button
                 disabled
@@ -116,9 +126,11 @@ class AddAVoice extends Component {
                 </Button>
               </CopyToClipboard>
             </ButtonGroup>
-            <MailToButton />
+            <MailToButton className="mr-2" />
+            <ButtonEndDate />
           </Col>
         </Row >
+        {displayTrophy}
         <Row className="justify-content-center pt-3">
           {listOfRestaurants.map(restaurant => (
             <PlaceCard
@@ -169,6 +181,7 @@ AddAVoice.propTypes = {
     )
   ).isRequired,
   getAVoteUrl: PropTypes.string.isRequired,
+  remainingTime: PropTypes.string.isRequired,
   getVoicesCount: PropTypes.arrayOf(
     PropTypes.object
   ).isRequired,
@@ -177,6 +190,7 @@ AddAVoice.propTypes = {
 const mstp = ({ getPlacesList: gPL, getAVote: gAV, getVoicesCount }) => ({
   restaurants: gPL.result,
   getAVoteUrl: gAV.url,
+  remainingTime: gAV.end_date,
   getVoicesCount,
 });
 
