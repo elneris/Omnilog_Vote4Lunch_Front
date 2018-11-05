@@ -36,26 +36,25 @@ class CreateAVote extends Component {
     const {
       date,
       endDate,
+      endTime,
       onTopAlert: onTA,
       offTopAlert: offTA,
     } = this.props;
 
-    if (date !== '' && endDate !== '' && (date !== prevProps.date || endDate !== prevProps.endDate)) {
+    if (date !== '' && endDate !== '' && (date !== prevProps.date || endDate !== prevProps.endDate || endTime !== prevProps.endTime)) {
       if (moment(date).isBefore(moment(endDate))) {
         this.toggleButton(true);
         onTA('danger', 'La date de fin du vote ne peut pas être supérieure à la date du repas');
         setTimeout(() => { offTA(); }, 5000);
-      }
-    } else if (date !== '' && date !== prevProps.date) {
-      if (moment(date).isBefore(moment())) {
+      } else if (moment(date).isBefore(moment(), 'day')) {
         onTA('warning', "Ca c'était avant, un peu tard pour programmer un déjeuner ;-) !");
         setTimeout(() => { offTA(); }, 5000);
+      } else if (endDate !== '' && endTime !== '' && (moment(`${endDate} ${endTime}`).isBefore(moment()))) {
+        onTA('warning', 'Ca va être compliqué de voter, la fin du vote est passée !');
+        setTimeout(() => { offTA(); }, 5000);
+      } else if (this.state.disabledButton === true) {
+        this.toggleButton(false);
       }
-    } else if (
-      this.state.disabledButton === true
-      && (date !== prevProps.date || endDate !== prevProps.endDate
-      )) {
-      this.toggleButton(false);
     }
   }
 
