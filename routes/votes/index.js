@@ -18,15 +18,19 @@ const makeid = () => {
 
 // Create a vote and return vote data
 router.post('/add', (req, res) => {
-  Vote
-    .create({
-      pseudo: req.body.pseudo,
-      email: req.body.email,
-      date: req.body.date,
-      end_date: req.body.end_date,
-      url: makeid()
-    })
-    .then(vote => res.json(vote));
+  if (req.body.date && req.body.end_date && req.body.pseudo && req.body.email) {
+    Vote
+      .create({
+        pseudo: req.body.pseudo,
+        email: req.body.email,
+        date: req.body.date,
+        end_date: req.body.end_date,
+        url: makeid()
+      })
+      .then(vote => res.json(vote));
+  } else {
+    res.sendStatus(400);
+  }
 });
 
 // Get a vote from his url field and delete it

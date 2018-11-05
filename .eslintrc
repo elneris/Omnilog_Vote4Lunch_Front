@@ -16,7 +16,9 @@
     "jsx-a11y/href-no-hash": "off",
     "comma-dangle": 0,
     "linebreak-style": 0,
-    "react/jsx-uses-react": 2
+    "react/jsx-uses-react": 2,
+    "react/require-default-props": "off",
+    "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }]
   },
   "plugins": [
     "react"

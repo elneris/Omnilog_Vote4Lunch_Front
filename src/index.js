@@ -1,3 +1,5 @@
+import WebFont from 'webfontloader';
+import 'bootstrap/dist/css/bootstrap.min.css';
 import React from 'react';
 import ReactDOM from 'react-dom';
 import reduxThunk from 'redux-thunk';
@@ -7,12 +9,9 @@ import { composeWithDevTools } from 'redux-devtools-extension';
 import { Provider } from 'react-redux';
 import allReducers from './reducers';
 
-import WebFont from 'webfontloader';
+import App from './Core/organisms/App';
 
-import App from './components/App';
-
-import 'bootstrap/dist/css/bootstrap.min.css';
-import './index.css';
+import './Core/css/index.css';
 
 const store = createStore(allReducers, composeWithDevTools(
   applyMiddleware(reduxThunk)
@@ -30,4 +29,4 @@ ReactDOM.render(
       <App />
     </BrowserRouter>
   </Provider>
-, document.getElementById('root'));
+  , document.getElementById('root'));
