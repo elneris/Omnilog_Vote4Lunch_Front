@@ -76,10 +76,8 @@ class VoteMap extends Component {
 
 VoteMap.propTypes = {
   updateMapCoordinates: PropTypes.func.isRequired,
-  restaurants: PropTypes.objectOf(
-    PropTypes.arrayOf(
-      PropTypes.object
-    )
+  restaurants: PropTypes.arrayOf(
+    PropTypes.object
   ).isRequired,
   positionLatitude: PropTypes.number.isRequired,
   positionLongitude: PropTypes.number.isRequired,
