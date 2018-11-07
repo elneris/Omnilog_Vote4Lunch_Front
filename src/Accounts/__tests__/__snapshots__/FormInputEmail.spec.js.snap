@@ -2,7 +2,7 @@
 
 exports[`FormInputEmail Snapshot capturing Snapshot of FormInputEmail 1`] = `
 <div
-  className="position-relative form-group"
+  className="form-group"
 >
   <label
     className="text-white"

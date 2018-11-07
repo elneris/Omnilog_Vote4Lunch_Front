@@ -1,9 +1,14 @@
 /* eslint-disable no-undef */
 import React from 'react';
-import { shallow } from 'enzyme';
+import { Provider } from 'react-redux';
+
+import { shallow, mount } from 'enzyme';
 import renderer from 'react-test-renderer';
-import { FormInputEmail } from '..';
 import configureStore from 'redux-mock-store';
+
+import { FormInputEmail } from '..';
+
+import { formInputEmail } from '../actions';
 
 describe('FormInputEmail Snapshot', () => {
   const initialState = { voteDataForm: { email: 'bob@bob.com' } };
@@ -20,29 +25,6 @@ describe('FormInputEmail Snapshot', () => {
   });
 });
 
-describe('FormInputEmail - Shallow Render REACT COMPONENTS', () => {
-  const initialState = { voteDataForm: { email: 'bob@bob.com' } };
-  const mockStore = configureStore();
-  let store;
-  let wrapper;
-
-  beforeEach(() => {
-    store = mockStore(initialState);
-    wrapper = shallow(<FormInputEmail store={store} />);
-  });
-
-  it('render the DUMB component', () => {
-    expect(wrapper.length).toEqual(1);
-  });
-
-  it('label value', () => {
-    expect(wrapper.find('label').get(0).props.children).toBe('Indique ton email');
-  });
-
-  it('contains email', () => {
-    expect(wrapper.find('input').prop('value')).toEqual(voteDataForm.email);
-});
-});
 
 describe('FormInputEmail (Shallow + passing the {store} directly)', () => {
   const initialState = { voteDataForm: { email: 'bob@bob.com' } };
@@ -61,5 +43,40 @@ describe('FormInputEmail (Shallow + passing the {store} directly)', () => {
 
   it('check Prop matches with initialState', () => {
     expect(container.prop('email')).toEqual(initialState.voteDataForm.email);
+  });
+});
+
+describe('FormInputEmail - REACT-REDUX (Mount + wrapping in <Provider>)', () => {
+  const initialState = { voteDataForm: { email: 'bob@bob.com' } };
+  const mockStore = configureStore();
+  let store;
+  let wrapper;
+
+  beforeEach(() => {
+    store = mockStore(initialState);
+    store.clearActions();
+    wrapper = mount(<Provider store={store}><FormInputEmail /></Provider>);
+  });
+
+  it('render the connected(SMART) component', () => {
+    expect(wrapper.length).toEqual(1);
+  });
+
+  it('check action on dispatching', () => {
+    store.dispatch(formInputEmail('bob@bob.com'));
+    const action = store.getActions();
+    expect(action[0].type).toBe('FORM_INPUT_EMAIL');
+    expect(action[0].email).toBe(initialState.voteDataForm.email);
+  });
+
+  it('check onChange in email input', () => {
+    const input = wrapper.find('#email');
+    expect(input.props().value).toBe(initialState.voteDataForm.email);
+
+    const event = { target: { value: 'roger@roger.com' } };
+    input.props().onChange(event);
+    const action = store.getActions();
+    expect(action[0].type).toBe('FORM_INPUT_EMAIL');
+    expect(action[0].email).toBe('roger@roger.com');
   });
 });
