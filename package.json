@@ -8,7 +8,8 @@
     "node": "10.11.0"
   },
   "jest": {
-    "setupTestFrameworkScriptFile": "<rootDir>/src/test-setup.js"
+    "setupTestFrameworkScriptFile": "<rootDir>/src/test-setup.js",
+    "collectCoverageFrom": ["src/**/*.{js,jsx}"]
   },
   "scripts": {
     "start": "node ./bin/start",
