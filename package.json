@@ -15,6 +15,7 @@
     "start-dev": "concurrently \"npm start\" \"npm run-script start-front\"",
     "test": "mocha --recursive ./test/*Test.js --compilers js:@babel/register --require @babel/polyfill --exit",
     "test-front": "jest",
+    "coverage": "jest --coverage",
     "heroku-postbuild": "npm run-script build-js",
     "build-css": "node-sass-chokidar src/ -o src/",
     "watch-css": "npm --max-old-space-size=8192 run build-css && node-sass-chokidar src/ -o src/ --watch --recursive",
@@ -84,7 +85,7 @@
     "enzyme-adapter-react-16": "^1.6.0"
   },
   "devDependencies": {
-    "babel-eslint": "^10.0.0",
+    "babel-eslint": "^9.0.0",
     "chai": "^4.2.0",
     "chai-http": "^4.2.0",
     "concurrently": "^4.0.1",
