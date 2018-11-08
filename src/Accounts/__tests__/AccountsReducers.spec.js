@@ -29,7 +29,7 @@ describe('Test Accounts Reducers', () => {
   });
 
   it('default case reducer for userData', () => {
-    state = userDataReducer(state, { type: '' });
-    expect(state).toEqual({ pseudo: 'bob', email: 'bob@bob.com' });
+    state = userDataReducer(undefined, { type: 'DUMMY_ACTION' });
+    expect(state).toEqual(state);
   });
 });
