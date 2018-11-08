@@ -1,5 +1,6 @@
 /* eslint-disable no-undef */
 import React from 'react';
+import reduxThunk from 'redux-thunk';
 import { Provider } from 'react-redux';
 
 import { shallow, mount } from 'enzyme';
@@ -21,7 +22,11 @@ describe('LoginModal Snapshot', () => {
   });
 
   it('capturing Snapshot of LoginModal', () => {
-    const renderedValue = renderer.create(<LoginModal store={store} />).toJSON();
+    const renderedValue = renderer.create(
+      <Provider store={store}>
+        <LoginModal />
+      </Provider>
+    ).toJSON();
     expect(renderedValue).toMatchSnapshot();
   });
 });
@@ -55,7 +60,8 @@ describe('LoginModal - REACT-REDUX (Mount + wrapping in <Provider>)', () => {
     userData: { pseudo: '', email: '' },
     voteDataForm: { pseudo: '', email: '' },
   };
-  const mockStore = configureStore();
+  const middlewares = [reduxThunk];
+  const mockStore = configureStore(middlewares);
   let store;
   let wrapper;
 
@@ -73,5 +79,18 @@ describe('LoginModal - REACT-REDUX (Mount + wrapping in <Provider>)', () => {
     const modal = wrapper.find('Modal');
 
     expect(modal.props().isOpen).toBeTruthy();
+  });
+
+  it('check submitting form', () => {
+    const inputPseudo = wrapper.find('#pseudo');
+    inputPseudo.props().value = 'bob';
+    const inputMail = wrapper.find('#email');
+    inputMail.props().value = 'bob@bob.com';
+
+    const form = wrapper.find('Form');
+    form.simulate('submit', { preventDefault: jest.fn() });
+
+    const action = store.getActions();
+    expect(action[0].type).toBe('UPDATE_USER_DATA');
   });
 });
