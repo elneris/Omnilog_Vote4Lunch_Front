@@ -77,7 +77,7 @@ const fakeDataTableBody = [
 ];
 
 describe('TableBody Snapshot', () => {
-  it('capturing Snapshot of FormInputDate', () => {
+  it('capturing Snapshot of TableBody', () => {
     const renderedValue = renderer.create(<TableBody data={fakeDataTableBody} />).toJSON();
     expect(renderedValue).toMatchSnapshot();
   });

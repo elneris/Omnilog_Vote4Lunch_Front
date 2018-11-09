@@ -20,8 +20,8 @@ const fakeDataTableHead = [
   }
 ];
 
-describe('TableBody Snapshot', () => {
-  it('capturing Snapshot of FormInputDate', () => {
+describe('TableHead Snapshot', () => {
+  it('capturing Snapshot of TableHead', () => {
     const renderedValue = renderer.create(<TableHead headList={fakeDataTableHead} />).toJSON();
     expect(renderedValue).toMatchSnapshot();
   });

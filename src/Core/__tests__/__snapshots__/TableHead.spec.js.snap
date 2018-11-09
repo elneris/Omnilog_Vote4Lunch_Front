@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`TableBody Snapshot capturing Snapshot of FormInputDate 1`] = `
+exports[`TableHead Snapshot capturing Snapshot of TableHead 1`] = `
 <thead>
   <tr>
     <th />
