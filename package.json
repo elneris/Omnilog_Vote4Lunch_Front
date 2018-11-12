@@ -9,7 +9,9 @@
   },
   "jest": {
     "setupTestFrameworkScriptFile": "<rootDir>/src/test-setup.js",
-    "collectCoverageFrom": ["src/**/*.{js,jsx}"],
+    "collectCoverageFrom": [
+      "src/**/*.{js,jsx}"
+    ],
     "moduleNameMapper": {
       "\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$": "<rootDir>/__mocks__/fileMock.js",
       "\\.(css|sass)$": "<rootDir>/__mocks__/styleMock.js"
@@ -101,5 +103,11 @@
     "eslint-plugin-mocha": "^4.11.0",
     "eslint-plugin-react": "^7.7.0",
     "react-addons-test-utils": "^15.6.2"
-  }
+  },
+  "browserslist": [
+    ">0.2%",
+    "not dead",
+    "not ie <= 11",
+    "not op_mini all"
+  ]
 }
