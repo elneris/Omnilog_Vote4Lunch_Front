@@ -40,71 +40,65 @@ router.get('/count/foruser', (req, res) => {
         url: req.query.vote_url
       }
     })
-    .then(vote =>
-      Voice.findAndCountAll({
-        where: {
-          voteId: vote.id,
+    .then(vote => Voice.findAndCountAll({
+      where: {
+        voteId: vote.id,
+        pseudo: req.query.pseudo,
+        email: req.query.email
+      }
+    }).then((result) => {
+      if (result.count === 0) {
+        res.json({
+          vote_id: vote.id,
           pseudo: req.query.pseudo,
-          email: req.query.email
-        }
-      }).then((result) => {
-        if (result.count === 0) {
-          res.json({
-            vote_id: vote.id,
-            pseudo: req.query.pseudo,
-            email: req.query.email,
-            vote: false,
-          });
-        } else {
-          res.json({
-            vote_id: vote.id,
-            pseudo: req.query.pseudo,
-            email: req.query.email,
-            vote: true,
-          });
-        }
-      })
-    );
+          email: req.query.email,
+          vote: false,
+        });
+      } else {
+        res.json({
+          vote_id: vote.id,
+          pseudo: req.query.pseudo,
+          email: req.query.email,
+          vote: true,
+        });
+      }
+    }));
 });
 
 // Verify if a user have voted for a vote
 router.post('/count/all/foruser', (req, res) => {
   const request = JSON.parse(req.body.votes_url);
 
-  const resultPromises = request.map(voteUrl =>
-    Vote
-      .findOne({
+  const resultPromises = request.map(voteUrl => Vote
+    .findOne({
+      where: {
+        url: voteUrl
+      }
+    })
+    .then(vote => Voice
+      .findAndCountAll({
         where: {
-          url: voteUrl
+          voteId: vote.id,
+          pseudo: req.body.pseudo,
+          email: req.body.email
         }
       })
-      .then(vote =>
-        Voice
-          .findAndCountAll({
-            where: {
-              voteId: vote.id,
-              pseudo: req.body.pseudo,
-              email: req.body.email
-            }
-          })
-          .then((result) => {
-            if (result.count === 0) {
-              return {
-                vote_id: vote.id,
-                pseudo: req.body.pseudo,
-                email: req.body.email,
-                vote: false,
-              };
-            }
-            return {
-              vote_id: vote.id,
-              pseudo: req.body.pseudo,
-              email: req.body.email,
-              vote: true,
-            };
-          })
-      )
-  );
+      .then((result) => {
+        if (result.count === 0) {
+          return {
+            vote_id: vote.id,
+            pseudo: req.body.pseudo,
+            email: req.body.email,
+            vote: false,
+          };
+        }
+        return {
+          vote_id: vote.id,
+          pseudo: req.body.pseudo,
+          email: req.body.email,
+          vote: true,
+        };
+      })));
   Promise.all(resultPromises).then((resultToSend) => {
     res.json(resultToSend);
   });
@@ -118,41 +112,35 @@ router.get('/get/foruser', (req, res) => {
         url: req.query.vote_url
       }
     })
-    .then(vote =>
-      Voice
-        .findAll({
-          where: {
-            voteId: vote.id,
-            pseudo: req.query.pseudo,
-            email: req.query.email
-          }
-        })
-        .then(result => res.json(result))
-    );
+    .then(vote => Voice
+      .findAll({
+        where: {
+          voteId: vote.id,
+          pseudo: req.query.pseudo,
+          email: req.query.email
+        }
+      })
+      .then(result => res.json(result)));
 });
 
 // Get all voices for an array of votes URL
 router.get('/get/all/foruser', (req, res) => {
   const request = JSON.parse(req.query.votes_url);
-  const resultPromises = request.map(voteUrl =>
-    Vote
-      .findOne({
+  const resultPromises = request.map(voteUrl => Vote
+    .findOne({
+      where: {
+        url: voteUrl
+      }
+    })
+    .then(vote => Voice
+      .findAll({
         where: {
-          url: voteUrl
+          voteId: vote.id,
+          pseudo: req.query.pseudo,
+          email: req.query.email
         }
       })
-      .then(vote =>
-        Voice
-          .findAll({
-            where: {
-              voteId: vote.id,
-              pseudo: req.query.pseudo,
-              email: req.query.email
-            }
-          })
-          .then(result => result)
-      )
-  );
+      .then(result => result)));
   Promise.all(resultPromises).then((result) => {
     const resultToSend = [].concat(...result);
     res.json(resultToSend);
@@ -167,15 +155,13 @@ router.get('/get/all/forvote', (req, res) => {
         url: req.query.vote_url
       }
     })
-    .then(vote =>
-      Voice
-        .findAll({
-          where: {
-            voteId: vote.id
-          }
-        })
-        .then(result => res.json(result))
-    );
+    .then(vote => Voice
+      .findAll({
+        where: {
+          voteId: vote.id
+        }
+      })
+      .then(result => res.json(result)));
 });
 
 export default router;
