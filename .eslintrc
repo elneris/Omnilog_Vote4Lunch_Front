@@ -7,10 +7,6 @@
     "node": true,
     "browser": true
   },
-  "ecmaFeatures": {
-    "classes": true,
-    "modules": true
-  },
   "rules": {
     "jsx-a11y/href-no-hash": "off",
     "comma-dangle": 0,

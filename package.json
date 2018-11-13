@@ -21,6 +21,7 @@
     }
   },
   "scripts": {
+    "lint": "eslint src && eslint server",
     "build": "react-scripts build",
     "start": "node ./server/bin/start",
     "dev": "concurrently \"npm start\" \" react-scripts start\"",
