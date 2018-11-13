@@ -21,14 +21,14 @@ app.use(bodyParser.urlencoded({
 
 app.use(cookieParser());
 
-app.use(express.static(path.join(__dirname, '/build')));
+app.use(express.static(path.join(__dirname, '../build')));
 
 app.use('/api', index);
 
 // The "catchall" handler: for any request that doesn't
 // match one above, send back React's index.html file.
 app.get('*', (req, res) => {
-  res.sendFile(path.join(`${__dirname}/build/index.html`));
+  res.sendFile(path.join(`${__dirname}/../build/index.html`));
 });
 
 // Handle uncaughtException
