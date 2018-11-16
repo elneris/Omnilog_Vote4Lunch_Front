@@ -9,18 +9,26 @@ import PropTypes from 'prop-types';
 
 import { ListGroupItem, Button } from 'reactstrap';
 
-import { deleteAPlace } from '../actions';
+import { deleteAPlace } from '../../actions';
 
-const Place = ({ place, type, vote_id, place_id, deleteAPlace: dAP }) => (
+const Place = ({
+  placeName,
+  type,
+  voteId,
+  placeId,
+  deleteAPlace: dAP,
+}) => (
   <ListGroupItem>
     <p className="my-1">
-      {type === 'restaurant' ? <MaterialIcon icon="restaurant" /> : <MaterialIcon icon="fastfood" />} {place}
+      {type === 'restaurant' ? <MaterialIcon icon="restaurant" /> : <MaterialIcon icon="fastfood" />}
+      { '' }
+      {placeName}
       <span className="align-top">
         <Button
           color="danger"
           size="sm"
           className="float-right"
-          onClick={() => dAP(vote_id, place_id)}
+          onClick={() => dAP(voteId, placeId)}
         >
           <FontAwesomeIcon icon={faTimes} />
         </Button>
@@ -31,10 +39,10 @@ const Place = ({ place, type, vote_id, place_id, deleteAPlace: dAP }) => (
 );
 
 Place.propTypes = {
-  place: PropTypes.string.isRequired,
+  placeName: PropTypes.string.isRequired,
   type: PropTypes.string.isRequired,
-  vote_id: PropTypes.string.isRequired,
-  place_id: PropTypes.string.isRequired,
+  voteId: PropTypes.number.isRequired,
+  placeId: PropTypes.number.isRequired,
   deleteAPlace: PropTypes.func.isRequired,
 };
 

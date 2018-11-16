@@ -1,4 +1,4 @@
-import { addVoice } from './addVoice';
+import { addVoice } from './addVoice/addVoice';
 import { deleteAVote } from './deleteAVote';
 import { getAllVoicesForAVote } from './getAllVoicesForAVote';
 import { getAVote } from './getAVote';
