@@ -1,4 +1,4 @@
-import AddPlace from './AddPlace';
+import AddPlace from './AddPlace/AddPlace';
 import BeginVote from './BeginVote';
 import CreateAVote from './CreateAVote';
 import CreateAVotePlaces from './CreateAVotePlaces';
