@@ -4,6 +4,8 @@ const getEmail = localStorage.getItem('email');
 const initialState = {
   pseudo: getPseudo || '',
   email: getEmail || '',
+  password: '',
+  passwordRepeater: '',
 };
 
 export default (state = initialState, action) => {
@@ -23,6 +25,16 @@ export default (state = initialState, action) => {
       return {
         ...state,
         email: action.email,
+      };
+    case 'FORM_INPUT_PASSWORD':
+      return {
+        ...state,
+        password: action.password,
+      };
+    case 'FORM_INPUT_PASSWORD_REPEATER':
+      return {
+        ...state,
+        passwordRepeater: action.passwordRepeater,
       };
     case 'RESET_VOTE_DATA':
       return {

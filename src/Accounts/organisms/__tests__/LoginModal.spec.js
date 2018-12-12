@@ -13,6 +13,16 @@ describe('LoginModal Snapshot', () => {
   const initialState = {
     userData: { pseudo: '', email: '' },
     voteDataForm: { pseudo: '', email: '' },
+    pseudoChecker: {
+      payload: {
+        exist: false,
+      },
+    },
+    emailChecker: {
+      payload: {
+        exist: false,
+      },
+    },
   };
   const mockStore = configureStore();
   let store;
@@ -35,6 +45,16 @@ describe('LoginModal (Shallow + passing the {store} directly)', () => {
   const initialState = {
     userData: { pseudo: '', email: '' },
     voteDataForm: { pseudo: '', email: '' },
+    pseudoChecker: {
+      payload: {
+        exist: false,
+      },
+    },
+    emailChecker: {
+      payload: {
+        exist: false,
+      },
+    },
   };
   const mockStore = configureStore();
   let store;
@@ -59,6 +79,16 @@ describe('LoginModal - REACT-REDUX (Mount + wrapping in <Provider>)', () => {
   const initialState = {
     userData: { pseudo: '', email: '' },
     voteDataForm: { pseudo: '', email: '' },
+    pseudoChecker: {
+      payload: {
+        exist: false,
+      },
+    },
+    emailChecker: {
+      payload: {
+        exist: false,
+      },
+    },
   };
   const middlewares = [reduxThunk];
   const mockStore = configureStore(middlewares);

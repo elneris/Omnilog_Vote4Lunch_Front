@@ -17,6 +17,7 @@ let config;
 if (development !== 'production') {
   config = {
     dialect: 'postgresql',
+    logging: false,
   };
 } else {
   config = {

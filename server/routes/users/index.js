@@ -4,6 +4,7 @@ import { User } from '../../sequelize';
 
 const router = express.Router();
 
+// add a user
 router.post('/add', (req, res) => {
   if (req.body.password !== req.body.password_repeat) {
     res.json({ created: false, message: 'Submitted passwords are differents' });
@@ -20,7 +21,42 @@ router.post('/add', (req, res) => {
         password: req.body.password,
       })
       .then(() => res.json({ created: true }))
-      .catch(() => res.json({ created: 'error' }));
+      .catch(() => res.json({ created: false }));
+  } else {
+    res.sendStatus(400);
+  }
+});
+
+// test if a user exists in database
+router.get('/exists', (req, res) => {
+  if (req.query.pseudo) {
+    User
+      .findOne({
+        where: {
+          pseudo: req.query.pseudo
+        }
+      })
+      .then((result) => {
+        if (!result) {
+          res.json({ exist: false });
+        } else {
+          res.json({ exist: true });
+        }
+      });
+  } else if (req.query.email) {
+    User
+      .findOne({
+        where: {
+          email: req.query.email
+        }
+      })
+      .then((result) => {
+        if (!result) {
+          res.json({ exist: false });
+        } else {
+          res.json({ exist: true });
+        }
+      });
   } else {
     res.sendStatus(400);
   }
