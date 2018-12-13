@@ -22,8 +22,6 @@ import { faPowerOff } from '@fortawesome/free-solid-svg-icons';
 
 import Link from 'react-router-dom/Link';
 
-import { LoginModal } from '../../../Accounts';
-
 import { TopAlert } from '../..';
 import { updateUserData } from '../../../Accounts/actions';
 
@@ -34,13 +32,10 @@ class Header extends Component {
     this.state = {
       isOpen: false,
       tooltipOpen: false,
-      openLoginModal: false,
     };
 
     this.toggleHamburger = this.toggleHamburger.bind(this);
     this.toggleTooltip = this.toggleTooltip.bind(this);
-    this.openLoginModal = this.openLoginModal.bind(this);
-    this.closeLoginModal = this.closeLoginModal.bind(this);
   }
 
   componentDidMount() {
@@ -65,36 +60,18 @@ class Header extends Component {
     });
   }
 
-  openLoginModal() {
-    this.setState({
-      openLoginModal: true
-    });
-  }
-
-  closeLoginModal() {
-    this.setState({
-      openLoginModal: false
-    });
-  }
-
   render() {
-    const { isOpen, tooltipOpen, openLoginModal } = this.state;
-    const { voteData } = this.props;
-    const votePseudo = voteData.pseudo;
-
-    let pseudo = '';
-
-    const getPseudo = localStorage.getItem('pseudo');
-    const getEmail = localStorage.getItem('email');
-
-    if (getPseudo && getEmail) {
-      pseudo = getPseudo;
-    } else {
-      pseudo = votePseudo;
-    }
+    const {
+      isOpen,
+      tooltipOpen,
+    } = this.state;
+    const {
+      pseudo,
+      authenticated,
+    } = this.props;
 
     let renderBonjour;
-    if (pseudo) {
+    if (authenticated) {
       renderBonjour = (
         <NavItem className="mr-3 pt-1">
           <NavLink>
@@ -111,7 +88,8 @@ class Header extends Component {
             color="success"
             className="mr-2"
             outline
-            onClick={() => this.openLoginModal()}
+            tag={Link}
+            to="/signin"
           >
             {"S'identifier"}
           </Button>
@@ -129,7 +107,7 @@ class Header extends Component {
 
     let renderButtonVote;
     let renderButtonLogout;
-    if (pseudo) {
+    if (authenticated) {
       if (window.innerWidth <= 768) {
         renderButtonVote = (
           <NavItem className="mr-3">
@@ -152,7 +130,6 @@ class Header extends Component {
                 tag={Link}
                 color="danger"
                 to="/logout"
-                onClick={() => this.closeLoginModal()}
               >
                 <FontAwesomeIcon icon={faPowerOff} />
               </Button>
@@ -185,7 +162,6 @@ class Header extends Component {
               tag={Link}
               color="danger"
               to="/logout"
-              onClick={() => this.closeLoginModal()}
             >
               <FontAwesomeIcon icon={faPowerOff} />
             </Button>
@@ -211,7 +187,7 @@ class Header extends Component {
             </Nav>
           </Collapse>
         </Navbar>
-        {pseudo
+        {authenticated
           ? (
             <Tooltip
               placement="bottom"
@@ -223,21 +199,20 @@ class Header extends Component {
             </Tooltip>
           )
           : ''}
-        {openLoginModal ? <LoginModal open /> : ''}
       </div>
     );
   }
 }
 
 Header.propTypes = {
-  voteData: PropTypes.shape({
-    id: PropTypes.number.isRequired,
-    pseudo: PropTypes.string.isRequired,
-  }).isRequired,
+  pseudo: PropTypes.string.isRequired,
+  authenticated: PropTypes.bool.isRequired,
+
 };
 
-const mstp = ({ voteData }) => ({
-  voteData,
+const mstp = ({ userData }) => ({
+  pseudo: userData.pseudo,
+  authenticated: userData.authenticated,
 });
 
 const mdtp = dispatch => bindActionCreators({ updateUserData }, dispatch);

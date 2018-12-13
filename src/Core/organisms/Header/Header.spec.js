@@ -17,9 +17,9 @@ import Header from './Header';
 
 describe('Header Snapshot, screen larger than 768px', () => {
   const initialState = {
-    voteData: {
-      id: 0,
-      pseudo: ''
+    userData: {
+      authenticated: false,
+      pseudo: '',
     },
     topAlert: {
       messageType: 'success',
@@ -70,9 +70,9 @@ describe('Header Snapshot, screen larger than 768px', () => {
 
 describe('Header Snapshot, screen smaller than 768px', () => {
   const initialState = {
-    voteData: {
-      id: 0,
-      pseudo: ''
+    userData: {
+      authenticated: false,
+      pseudo: '',
     },
     topAlert: {
       messageType: 'success',
@@ -124,10 +124,10 @@ describe('Header Snapshot, screen smaller than 768px', () => {
 
 describe('Header (Shallow + passing the {store} directly)', () => {
   const initialState = {
-    voteData: {
-      id: 0,
-      pseudo: ''
-    }
+    userData: {
+      authenticated: false,
+      pseudo: '',
+    },
   };
   const mockStore = configureStore();
   let store;
@@ -149,9 +149,9 @@ describe('Header (Shallow + passing the {store} directly)', () => {
 
 describe('Header - REACT-REDUX (Mount + wrapping in <Provider>) - user is logged in', () => {
   const initialState = {
-    voteData: {
-      id: 0,
-      pseudo: ''
+    userData: {
+      authenticated: true,
+      pseudo: '',
     },
     topAlert: {
       messageType: 'success',
@@ -171,7 +171,7 @@ describe('Header - REACT-REDUX (Mount + wrapping in <Provider>) - user is logged
     // set localStorage value to login user
     LS.window.localStorage.setItem('pseudo', 'bob');
     LS.window.localStorage.setItem('email', 'bob@bob.com');
-
+    LS.window.localStorage.setItem('authenticated', 'true');
     wrapper = mount(
       <Router>
         <Provider store={store}>
@@ -212,31 +212,13 @@ describe('Header - REACT-REDUX (Mount + wrapping in <Provider>) - user is logged
     toolTip.props().toggle();
     expect(header.state().tooltipOpen).toBeTruthy();
   });
-
-  it('check if LoginModal is closed after login', () => {
-    const header = wrapper.find('Header');
-    const buttonLogout = wrapper.find('Button#logoutButton');
-    header.state().openLoginModal = true;
-
-    buttonLogout.simulate('click');
-    expect(header.state().openLoginModal).toBeFalsy();
-  });
-
-  it('check if LoginModal is closed after login for screen smaller than 768px', () => {
-    const header = wrapper.find('Header');
-    const buttonLogout = wrapper.find('Button#logoutButton');
-    header.state().openLoginModal = true;
-
-    buttonLogout.simulate('click');
-    expect(header.state().openLoginModal).toBeFalsy();
-  });
 });
 
 describe('Header - REACT-REDUX (Mount + wrapping in <Provider>) - user is logged in', () => {
   const initialState = {
-    voteData: {
-      id: 0,
-      pseudo: ''
+    userData: {
+      authenticated: true,
+      pseudo: '',
     },
     topAlert: {
       messageType: 'success',
@@ -258,6 +240,7 @@ describe('Header - REACT-REDUX (Mount + wrapping in <Provider>) - user is logged
     // set localStorage value to login user
     LS.window.localStorage.setItem('pseudo', 'bob');
     LS.window.localStorage.setItem('email', 'bob@bob.com');
+    LS.window.localStorage.setItem('authenticated', 'true');
 
     wrapper = mount(
       <Router>
@@ -280,23 +263,10 @@ describe('Header - REACT-REDUX (Mount + wrapping in <Provider>) - user is logged
   it('render the connected(SMART) component', () => {
     expect(wrapper.length).toEqual(1);
   });
-
-  it('check if LoginModal is closed after login for screen larger than 768px', () => {
-    const header = wrapper.find('Header');
-    const buttonLogout = wrapper.find('Button#logoutButton');
-    header.state().openLoginModal = true;
-
-    buttonLogout.simulate('click');
-    expect(header.state().openLoginModal).toBeFalsy();
-  });
 });
 
 describe('Header - REACT-REDUX (Mount + wrapping in <Provider>) - user is not logged in', () => {
   const initialState = {
-    voteData: {
-      id: 0,
-      pseudo: ''
-    },
     topAlert: {
       messageType: 'success',
       status: true,
@@ -305,6 +275,7 @@ describe('Header - REACT-REDUX (Mount + wrapping in <Provider>) - user is not lo
     userData: {
       pseudo: '',
       email: '',
+      authenticated: false,
     },
     voteDataForm: {
       pseudo: '',
@@ -359,14 +330,5 @@ describe('Header - REACT-REDUX (Mount + wrapping in <Provider>) - user is not lo
     const buttonHamburger = wrapper.find('.navbar-toggler');
     buttonHamburger.simulate('click');
     expect(header.state().isOpen).toBeTruthy();
-  });
-
-  it('check if LoginModal is open', () => {
-    const header = wrapper.find('Header');
-    const buttonLogin = wrapper.find('Button#loginButton');
-
-    expect(header.state().openLoginModal).toBeFalsy();
-    buttonLogin.simulate('click');
-    expect(header.state().openLoginModal).toBeTruthy();
   });
 });
