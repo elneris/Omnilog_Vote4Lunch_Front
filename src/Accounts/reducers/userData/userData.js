@@ -6,6 +6,9 @@ const initialState = {
   email: getEmail || '',
   password: '',
   passwordRepeater: '',
+  authenticated: false,
+  loading: false,
+  loginError: false,
 };
 
 export default (state = initialState, action) => {
@@ -41,6 +44,34 @@ export default (state = initialState, action) => {
         ...state,
         pseudo: '',
         email: '',
+      };
+    case 'LOGIN_USER_BEGIN':
+      return {
+        ...state,
+        loading: true,
+        loginError: false,
+      };
+    case 'LOGIN_USER_SUCCESS':
+      localStorage.setItem('pseudo', action.payload.pseudo);
+      localStorage.setItem('email', action.payload.email);
+      localStorage.setItem('authenticated', JSON.stringify(true));
+      return {
+        ...state,
+        loading: false,
+        pseudo: action.payload.pseudo,
+        email: action.payload.email,
+        authenticated: true,
+      };
+    case 'LOGIN_USER_FAILURE':
+      return {
+        ...state,
+        loading: false,
+        loginError: true,
+      };
+    case 'RESET_LOGIN_FAILURE':
+      return {
+        ...state,
+        loginError: false,
       };
     default:
       return state;

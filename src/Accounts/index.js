@@ -7,7 +7,12 @@ import {
   PasswordChecker,
   PseudoChecker,
 } from './molecules';
-import { LoginModal, LogoutView, SignUp } from './organisms';
+import {
+  LoginModal,
+  LogoutView,
+  SignUp,
+  SignIn,
+} from './organisms';
 
 
 export {
@@ -23,4 +28,5 @@ export {
   LoginModal,
   LogoutView,
   SignUp,
+  SignIn,
 };

@@ -17,8 +17,8 @@ import { checkPseudo } from '../../actions';
 
 class FormGroupPseudo extends Component {
   componentDidUpdate(prevProps) {
-    const { pseudo, checkPseudo: checkP } = this.props;
-    if (prevProps.pseudo !== pseudo) {
+    const { pseudo, checkPseudo: checkP, noCheck } = this.props;
+    if (prevProps.pseudo !== pseudo && !noCheck) {
       checkP(pseudo);
     }
   }
@@ -28,12 +28,13 @@ class FormGroupPseudo extends Component {
       pseudo,
       text,
       forProp,
-      colorLabel
+      colorLabel,
+      noCheck,
     } = this.props;
 
     let rendering = '';
 
-    if (pseudo !== '') {
+    if (pseudo !== '' && !noCheck) {
       rendering = (
         <InputGroupAddon addonType="append">
           <InputGroupText>
@@ -68,6 +69,7 @@ FormGroupPseudo.propTypes = {
   text: PropTypes.string.isRequired,
   forProp: PropTypes.string.isRequired,
   colorLabel: PropTypes.string,
+  noCheck: PropTypes.bool,
 };
 
 const mstp = ({ userData }) => ({

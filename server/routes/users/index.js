@@ -62,4 +62,36 @@ router.get('/exists', (req, res) => {
   }
 });
 
+// login a user
+router.post('/login', (req, res) => {
+  if (req.body.pseudo) {
+    User
+      .findOne({
+        where: {
+          pseudo: req.body.pseudo,
+        }
+      })
+      .then((user) => {
+        if (!user) {
+          res.json({ login: false });
+        } else {
+          const validPassword = User
+            .prototype
+            .validPassword(req.body.password, user.dataValues.password);
+          if (validPassword) {
+            res.json({
+              login: true,
+              pseudo: user.dataValues.pseudo,
+              email: user.dataValues.email,
+            });
+          } else {
+            res.json({ login: false });
+          }
+        }
+      });
+  } else {
+    res.sendStatus(400);
+  }
+});
+
 export default router;
