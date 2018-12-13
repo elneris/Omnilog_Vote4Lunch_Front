@@ -1,5 +1,5 @@
 import LoginModal from './LoginModal';
-import LogoutView from './LogoutView';
+import LogoutView from './LogoutView/LogoutView';
 import SignUp from './SignUp/SignUp';
 import SignIn from './SignIn/SignIn';
 

@@ -23,14 +23,15 @@ describe('Test Accounts Reducers', () => {
     state = userDataReducer(state, {
       type: 'UPDATE_USER_DATA',
       pseudo: 'roger',
-      email: 'roger@roger.com'
+      email: 'roger@roger.com',
+      authenticated: true,
     });
     expect(state).toEqual({
       pseudo: 'roger',
       email: 'roger@roger.com',
       password: '',
       passwordRepeater: '',
-      authenticated: false,
+      authenticated: true,
       loading: false,
       loginError: false,
     });
@@ -75,7 +76,7 @@ describe('Test Accounts Reducers', () => {
     });
   });
 
-  it('UPDATE_USER_DATA case reducer for userData', () => {
+  it('FORM_INPUT_EMAIL case reducer for userData', () => {
     state = userDataReducer(state, { type: 'FORM_INPUT_EMAIL', email: 'roger@roger.com' });
     expect(state).toEqual({
       pseudo: 'bob',
@@ -169,6 +170,25 @@ describe('Test Accounts Reducers', () => {
       authenticated: false,
       loading: false,
       loginError: true,
+    });
+  });
+
+  it('RESET_LOGIN_FAILURE case reducer for userData', () => {
+    state = userDataReducer(
+      state,
+      {
+        type: 'RESET_LOGIN_FAILURE',
+      },
+    );
+
+    expect(state).toEqual({
+      pseudo: 'bob',
+      email: 'bob@bob.com',
+      password: '',
+      passwordRepeater: '',
+      authenticated: false,
+      loading: false,
+      loginError: false,
     });
   });
 

@@ -5,13 +5,14 @@ import PropTypes from 'prop-types';
 
 import { Redirect } from 'react-router-dom';
 
-import { resetVoteData } from '../../VoteCreator/actions';
+import { resetVoteData } from '../../../VoteCreator/actions';
 
 class LogoutView extends Component {
   componentDidMount() {
     const { resetVoteData: resetVD } = this.props;
     localStorage.removeItem('pseudo');
     localStorage.removeItem('email');
+    localStorage.removeItem('authenticated');
     resetVD();
   }
 

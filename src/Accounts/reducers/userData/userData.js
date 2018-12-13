@@ -18,6 +18,7 @@ export default (state = initialState, action) => {
         ...state,
         pseudo: action.pseudo,
         email: action.email,
+        authenticated: action.authenticated,
       };
     case 'FORM_INPUT_PSEUDO':
       return {
@@ -44,6 +45,7 @@ export default (state = initialState, action) => {
         ...state,
         pseudo: '',
         email: '',
+        authenticated: false,
       };
     case 'LOGIN_USER_BEGIN':
       return {
