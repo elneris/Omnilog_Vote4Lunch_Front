@@ -1,4 +1,4 @@
-const usersVotes = (state = [], action) => {
+export default (state = [], action) => {
   switch (action.type) {
     case 'GET_USERS_VOTES_SUCCESS':
       return [...action.votes];
@@ -6,5 +6,3 @@ const usersVotes = (state = [], action) => {
       return state;
   }
 };
-
-export default usersVotes;

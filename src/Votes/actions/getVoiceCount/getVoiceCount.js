@@ -31,7 +31,7 @@ export function getVoiceCount(voteUrl, placeId) {
         .then((result) => {
           dispatch(getVoiceCountSuccess(result.count, result.vote_id, placeId));
         })
-        .catch(error => dispatch(getVoiceCountSuccess(error)))
+        .catch(error => dispatch(getVoiceCountFailure(error)))
     );
   };
 }

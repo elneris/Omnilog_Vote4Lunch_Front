@@ -12,7 +12,7 @@ const MailToButton = ({ className }) => (
       color="info"
       className={className}
     >
-        Partager par mail
+      {'Partager par mail'}
       <FontAwesomeIcon
         className="ml-2"
         icon={faPaperPlane}

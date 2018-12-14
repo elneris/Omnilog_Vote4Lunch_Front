@@ -23,7 +23,7 @@ export function getUsersVotes(pseudo) {
         .then((votes) => {
           dispatch(getUsersVotesSuccess(votes.data));
         })
-        .catch(error => dispatch(getUsersVotesSuccess(error)))
+        .catch(error => dispatch(getUsersVotesFailure(error)))
     );
   };
 }

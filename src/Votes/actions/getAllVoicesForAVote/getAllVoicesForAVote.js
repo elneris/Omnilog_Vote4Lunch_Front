@@ -21,7 +21,7 @@ export function getAllVoicesForAVote(voteUrl) {
       axios
         .get(`/api/voice/get/all/forvote?vote_url=${voteUrl}`)
         .then((result) => {
-          dispatch(getAllVoicesForAVoteSuccess(result));
+          dispatch(getAllVoicesForAVoteSuccess(result.data));
         })
         .catch(error => dispatch(getAllVoicesForAVoteFailure(error)))
     );

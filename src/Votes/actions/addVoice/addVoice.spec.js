@@ -5,7 +5,7 @@ import thunk from 'redux-thunk';
 
 import { addVoice } from './addVoice';
 
-describe('Test Vote asynchronous Actions', () => {
+describe('Test Votes asynchronous Actions', () => {
   const middlewares = [thunk];
   const mockStore = configureMockStore(middlewares);
   beforeEach(() => {

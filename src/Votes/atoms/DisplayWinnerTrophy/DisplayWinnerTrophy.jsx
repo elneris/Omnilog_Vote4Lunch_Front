@@ -3,7 +3,9 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTrophy, faSadTear } from '@fortawesome/free-solid-svg-icons';
 import { faSurprise } from '@fortawesome/free-regular-svg-icons';
 
-const DisplayWinnerEmoji = ({ emoji }) => {
+import PropTypes from 'prop-types';
+
+const DisplayWinnerTrophy = ({ emoji }) => {
   let result = '';
   if (emoji === 'trophy') {
     result = (
@@ -39,4 +41,8 @@ const DisplayWinnerEmoji = ({ emoji }) => {
   return result;
 };
 
-export default DisplayWinnerEmoji;
+DisplayWinnerTrophy.propTypes = {
+  emoji: PropTypes.string.isRequired,
+};
+
+export default DisplayWinnerTrophy;

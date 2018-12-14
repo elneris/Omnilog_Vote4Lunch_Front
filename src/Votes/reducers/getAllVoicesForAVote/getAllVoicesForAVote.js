@@ -17,7 +17,7 @@ export default (state = initialState, action) => {
         ...state,
         loading: false,
         error: null,
-        result: action.result.data,
+        result: action.result,
       };
     case 'GET_ALL_VOICES_FOR_VOTES_FAILURE':
       return {
