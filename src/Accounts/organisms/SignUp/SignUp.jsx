@@ -14,7 +14,7 @@ import {
 
 import { FormGroupPassword, FormGroupPseudo, FormGroupEmail } from '../..';
 
-import { addUser } from '../../actions';
+import { addUser, resetPasswordData } from '../../actions';
 
 import './SignUp.scss';
 
@@ -26,11 +26,13 @@ class SignUp extends Component {
       password,
       passwordRepeater,
       addUser: addU,
+      resetPasswordData: resetPData,
     } = this.props;
 
     e.preventDefault();
 
     addU(pseudo, email, password, passwordRepeater);
+    resetPData();
   }
 
   render() {
@@ -105,6 +107,7 @@ class SignUp extends Component {
 
 SignUp.propTypes = {
   addUser: PropTypes.func.isRequired,
+  resetPasswordData: PropTypes.func.isRequired,
   pseudo: PropTypes.string.isRequired,
   email: PropTypes.string.isRequired,
   password: PropTypes.string.isRequired,
@@ -124,6 +127,6 @@ const mstp = ({ userData, addUser: addUserReducer }) => ({
   loading: addUserReducer.loading,
 });
 
-const mdtp = dispatch => bindActionCreators({ addUser }, dispatch);
+const mdtp = dispatch => bindActionCreators({ addUser, resetPasswordData }, dispatch);
 
 export default connect(mstp, mdtp)(SignUp);
