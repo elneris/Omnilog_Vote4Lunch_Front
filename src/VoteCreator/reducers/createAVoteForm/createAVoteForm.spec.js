@@ -1,15 +1,21 @@
 /* eslint-disable no-undef */
+import moment from 'moment';
+import 'moment/locale/fr';
+
 import { voteDataFormReducer } from '..';
+
+moment.locale('fr');
 
 describe('Test Accounts Reducers', () => {
   let state;
+  const today = moment().format('YYYY-MM-DD');
 
   beforeEach(() => {
     state = {
       pseudo: '',
       email: '',
-      date: '',
-      endDate: '',
+      date: today,
+      endDate: today,
       endTime: '',
     };
   });
@@ -19,8 +25,8 @@ describe('Test Accounts Reducers', () => {
     expect(state).toEqual({
       pseudo: 'bob',
       email: '',
-      date: '',
-      endDate: '',
+      date: today,
+      endDate: today,
       endTime: '',
     });
   });
@@ -30,8 +36,8 @@ describe('Test Accounts Reducers', () => {
     expect(state).toEqual({
       pseudo: '',
       email: 'bob@bob.com',
-      date: '',
-      endDate: '',
+      date: today,
+      endDate: today,
       endTime: '',
     });
   });
@@ -42,7 +48,7 @@ describe('Test Accounts Reducers', () => {
       pseudo: '',
       email: '',
       date: '2018-10-01',
-      endDate: '',
+      endDate: today,
       endTime: '',
     });
   });
@@ -52,7 +58,7 @@ describe('Test Accounts Reducers', () => {
     expect(state).toEqual({
       pseudo: '',
       email: '',
-      date: '',
+      date: today,
       endDate: '2018-10-01',
       endTime: '12:00',
     });
@@ -63,8 +69,8 @@ describe('Test Accounts Reducers', () => {
     expect(state).toEqual({
       pseudo: 'bob',
       email: 'bob@bob.com',
-      date: '',
-      endDate: '',
+      date: today,
+      endDate: today,
       endTime: '',
     });
   });
@@ -74,8 +80,8 @@ describe('Test Accounts Reducers', () => {
     expect(state).toEqual({
       pseudo: '',
       email: '',
-      date: '',
-      endDate: '',
+      date: today,
+      endDate: today,
       endTime: '',
     });
   });

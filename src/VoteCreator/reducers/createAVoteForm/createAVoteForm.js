@@ -1,11 +1,16 @@
+import moment from 'moment';
+import 'moment/locale/fr';
+
+moment.locale('fr');
+
 const getPseudo = localStorage.getItem('pseudo');
 const getEmail = localStorage.getItem('email');
 
 const initialState = {
   pseudo: getPseudo || '',
   email: getEmail || '',
-  date: '',
-  endDate: '',
+  date: moment().format('YYYY-MM-DD'),
+  endDate: moment().format('YYYY-MM-DD'),
   endTime: '',
 };
 
