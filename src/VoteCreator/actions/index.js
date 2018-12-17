@@ -1,5 +1,5 @@
 import { addAPlace } from './addAPlace';
-import { createAVote } from './createAVote';
+import { createAVote } from './createAVote/createAVote';
 import { deleteAPlace } from './deleteAPlace';
 import resetVoteData from './resetVoteData';
 import saveVoteData from './saveVoteData';

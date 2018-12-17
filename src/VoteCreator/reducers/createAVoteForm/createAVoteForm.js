@@ -10,6 +10,7 @@ const initialState = {
   pseudo: getPseudo || '',
   email: getEmail || '',
   date: moment().format('YYYY-MM-DD'),
+  time: '',
   endDate: moment().format('YYYY-MM-DD'),
   endTime: '',
 };
@@ -29,7 +30,8 @@ export default (state = initialState, action) => {
     case 'FORM_INPUT_DATE':
       return {
         ...state,
-        date: action.date
+        date: action.date,
+        time: action.time,
       };
     case 'FORM_INPUT_END_DATE':
       return {

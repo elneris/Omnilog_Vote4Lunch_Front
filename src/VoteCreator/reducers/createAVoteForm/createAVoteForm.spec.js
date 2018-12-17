@@ -15,6 +15,7 @@ describe('Test Accounts Reducers', () => {
       pseudo: '',
       email: '',
       date: today,
+      time: '',
       endDate: today,
       endTime: '',
     };
@@ -26,6 +27,7 @@ describe('Test Accounts Reducers', () => {
       pseudo: 'bob',
       email: '',
       date: today,
+      time: '',
       endDate: today,
       endTime: '',
     });
@@ -37,17 +39,19 @@ describe('Test Accounts Reducers', () => {
       pseudo: '',
       email: 'bob@bob.com',
       date: today,
+      time: '',
       endDate: today,
       endTime: '',
     });
   });
 
   it('FORM_INPUT_DATE case reducer for voteDataForm', () => {
-    state = voteDataFormReducer(state, { type: 'FORM_INPUT_DATE', date: '2018-10-01' });
+    state = voteDataFormReducer(state, { type: 'FORM_INPUT_DATE', date: '2018-10-01', time: '12:00' });
     expect(state).toEqual({
       pseudo: '',
       email: '',
       date: '2018-10-01',
+      time: '12:00',
       endDate: today,
       endTime: '',
     });
@@ -59,6 +63,7 @@ describe('Test Accounts Reducers', () => {
       pseudo: '',
       email: '',
       date: today,
+      time: '',
       endDate: '2018-10-01',
       endTime: '12:00',
     });
@@ -70,6 +75,7 @@ describe('Test Accounts Reducers', () => {
       pseudo: 'bob',
       email: 'bob@bob.com',
       date: today,
+      time: '',
       endDate: today,
       endTime: '',
     });
@@ -81,6 +87,7 @@ describe('Test Accounts Reducers', () => {
       pseudo: '',
       email: '',
       date: today,
+      time: '',
       endDate: today,
       endTime: '',
     });

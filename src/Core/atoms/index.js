@@ -1,5 +1,5 @@
 import ButtonCollapser from './ButtonCollapser';
-import FormInputDate from './FormInputDate';
+import FormInputDate from './FormInputDate/FormInputDate';
 import FormInputEndDate from './FormInputEndDate';
 import Label from './Label/Label';
 import TableBody from './TableBody';

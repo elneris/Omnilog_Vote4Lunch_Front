@@ -3,7 +3,7 @@ import moxios from 'moxios';
 import configureMockStore from 'redux-mock-store';
 import thunk from 'redux-thunk';
 
-import { createAVote } from '..';
+import { createAVote } from './createAVote';
 
 describe('Test Map asynchronous createAVote Actions', () => {
   const middlewares = [thunk];
@@ -52,7 +52,7 @@ describe('Test Map asynchronous createAVote Actions', () => {
       },
     ];
     const store = mockStore({});
-    return store.dispatch(createAVote('bob', 'bob@bob.com', '2018-10-01', '2018-10-01', '12:00'))
+    return store.dispatch(createAVote('bob', 'bob@bob.com', '2018-10-01', '12:00', '2018-10-01', '12:00'))
       .then(() => {
         expect(store.getActions()).toEqual(expectedActions);
       });
@@ -70,7 +70,7 @@ describe('Test Map asynchronous createAVote Actions', () => {
       { type: 'CREATE_A_VOTE_FAILURE', error: new Error('Request failed with status code 404') },
     ];
     const store = mockStore({});
-    return store.dispatch(createAVote('bob', 'bob@bob.com', '2018-10-01', '2018-10-01', '12:00'))
+    return store.dispatch(createAVote('bob', 'bob@bob.com', '2018-10-01', '12:00', '2018-10-01', '12:00'))
       .then(() => {
         expect(store.getActions()).toEqual(expectedActions);
       });
