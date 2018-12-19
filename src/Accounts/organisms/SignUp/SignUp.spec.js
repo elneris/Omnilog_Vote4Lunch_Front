@@ -7,6 +7,8 @@ import { shallow, mount } from 'enzyme';
 import renderer from 'react-test-renderer';
 import configureStore from 'redux-mock-store';
 
+import { BrowserRouter as Router } from 'react-router-dom';
+
 import SignUp from './SignUp';
 
 describe('SignUp Snapshot', () => {
@@ -133,9 +135,11 @@ describe('SignUp Snapshot with user created', () => {
 
   it('capturing Snapshot of SignUp with user created', () => {
     const renderedValue = renderer.create(
-      <Provider store={store}>
-        <SignUp />
-      </Provider>
+      <Router>
+        <Provider store={store}>
+          <SignUp />
+        </Provider>
+      </Router>
     ).toJSON();
     expect(renderedValue).toMatchSnapshot();
   });
