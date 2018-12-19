@@ -114,10 +114,7 @@ class PlaceMap extends Component {
 
   addAPlaceToVote(voteData, placeId) {
     const { addAPlace: addAP, onMapAlert: onMA, offMapAlert: offMA } = this.props;
-    if (voteData.places.length > 4) {
-      onMA('danger', 'Le saviez vous : trop de choix tue le choix.');
-      setTimeout(() => { offMA(); }, 3000);
-    } else if (voteData.places.filter(place => place.id === placeId).length > 0) {
+    if (voteData.places.filter(place => place.id === placeId).length > 0) {
       onMA('danger', 'Hola, attention il existe déjà !');
       setTimeout(() => { offMA(); }, 3000);
     } else {
