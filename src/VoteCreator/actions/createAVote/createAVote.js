@@ -26,7 +26,7 @@ export const createAVoteFailure = error => ({
   error,
 });
 
-export function createAVote(pseudo, email, date, time, endDate, endTime) {
+export function createAVote(pseudo, email, title, date, time, endDate, endTime) {
   return (dispatch) => {
     dispatch(createAVoteBegin());
     return (
@@ -36,6 +36,7 @@ export function createAVote(pseudo, email, date, time, endDate, endTime) {
         data: {
           pseudo,
           email,
+          title,
           date: `${date} ${time}`,
           end_date: `${endDate} ${endTime}`,
         }

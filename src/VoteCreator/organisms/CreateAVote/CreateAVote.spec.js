@@ -26,6 +26,7 @@ describe('CreateAVote (Shallow + passing the {store} directly)', () => {
     voteDataForm: {
       pseudo: 'bob',
       email: 'bob@bob.com',
+      title: 'ceci est un titre',
       date: moment().format('YYYY-MM-DD'),
       time: '',
       endDate: moment().format('YYYY-MM-DD'),
@@ -61,6 +62,7 @@ describe('CreateAVote - REACT-REDUX (Mount + wrapping in <Provider>)', () => {
     voteDataForm: {
       pseudo: 'bob',
       email: 'bob@bob.com',
+      title: 'ceci est un titre',
       date: moment().format('YYYY-MM-DD'),
       time: '',
       endDate: moment().format('YYYY-MM-DD'),
@@ -109,6 +111,7 @@ describe('CreateAVote - REACT-REDUX (Mount + wrapping in <Provider>) - loading s
     voteDataForm: {
       pseudo: 'bob',
       email: 'bob@bob.com',
+      title: 'ceci est un titre',
       date: moment().format('YYYY-MM-DD'),
       time: '',
       endDate: moment().format('YYYY-MM-DD'),
@@ -144,6 +147,7 @@ describe('CreateAVote - REACT-REDUX (Mount + wrapping in <Provider>) - error sta
     voteDataForm: {
       pseudo: 'bob',
       email: 'bob@bob.com',
+      title: 'ceci est un titre',
       date: moment().format('YYYY-MM-DD'),
       time: '',
       endDate: moment().format('YYYY-MM-DD'),
@@ -177,6 +181,7 @@ describe('CreateAVote - REACT-REDUX (Mount + wrapping in <Provider>) - success s
         pseudo: 'bob',
         email: 'bob@bob.com',
         date: '2018-10-01T13:00:00.000Z',
+        title: 'ceci est un titre',
         end_date: '2018-10-01T13:00:00.000Z',
         url: 'QuMsv',
         updatedAt: '2018-12-17T12:44:16.164Z',
@@ -189,6 +194,7 @@ describe('CreateAVote - REACT-REDUX (Mount + wrapping in <Provider>) - success s
     voteDataForm: {
       pseudo: 'bob',
       email: 'bob@bob.com',
+      title: 'ceci est un titre',
       date: moment().format('YYYY-MM-DD'),
       time: '',
       endDate: moment().format('YYYY-MM-DD'),

@@ -22,6 +22,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSpinner } from '@fortawesome/free-solid-svg-icons';
 
 import { FormInputDate, FormInputEndDate } from '../../../Core';
+import { FormGroupVoteTitle } from '../..';
 
 import { onTopAlert, offTopAlert } from '../../../Core/actions';
 import { createAVote, saveVoteData } from '../../actions';
@@ -76,6 +77,7 @@ class CreateAVote extends Component {
     const {
       pseudo,
       email,
+      title,
       date,
       time,
       endDate,
@@ -88,6 +90,7 @@ class CreateAVote extends Component {
     createAV(
       pseudo,
       email,
+      title,
       date,
       time,
       endDate,
@@ -111,8 +114,6 @@ class CreateAVote extends Component {
 
     if (result !== '' && result.createdAt) {
       saveVD(result.id, result.date, result.pseudo, result.email, result.url);
-      localStorage.setItem('pseudo', result.pseudo);
-      localStorage.setItem('email', result.email);
       return <Redirect to="/add-place" />;
     }
     if (loading) {
@@ -132,6 +133,7 @@ class CreateAVote extends Component {
             className="bg-blue p-5 rounded"
           >
             <Form onSubmit={e => this.submitForm(e)}>
+              <FormGroupVoteTitle />
               <FormInputDate />
               <FormInputEndDate />
               <div className="text-center mt-5">
@@ -156,6 +158,7 @@ CreateAVote.propTypes = {
   saveVoteData: PropTypes.func.isRequired,
   pseudo: PropTypes.string.isRequired,
   email: PropTypes.string.isRequired,
+  title: PropTypes.string.isRequired,
   date: PropTypes.string.isRequired,
   time: PropTypes.string.isRequired,
   endDate: PropTypes.string.isRequired,
@@ -168,6 +171,7 @@ const mstp = ({ vote, voteDataForm }) => ({
   loading: vote.loading,
   pseudo: voteDataForm.pseudo,
   email: voteDataForm.email,
+  title: voteDataForm.title,
   date: voteDataForm.date,
   time: voteDataForm.time,
   endDate: voteDataForm.endDate,

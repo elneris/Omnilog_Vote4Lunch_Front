@@ -14,6 +14,7 @@ describe('Test Accounts Reducers', () => {
     state = {
       pseudo: '',
       email: '',
+      title: '',
       date: today,
       time: '',
       endDate: today,
@@ -26,6 +27,7 @@ describe('Test Accounts Reducers', () => {
     expect(state).toEqual({
       pseudo: 'bob',
       email: '',
+      title: '',
       date: today,
       time: '',
       endDate: today,
@@ -38,6 +40,7 @@ describe('Test Accounts Reducers', () => {
     expect(state).toEqual({
       pseudo: '',
       email: 'bob@bob.com',
+      title: '',
       date: today,
       time: '',
       endDate: today,
@@ -50,6 +53,7 @@ describe('Test Accounts Reducers', () => {
     expect(state).toEqual({
       pseudo: '',
       email: '',
+      title: '',
       date: '2018-10-01',
       time: '12:00',
       endDate: today,
@@ -62,6 +66,7 @@ describe('Test Accounts Reducers', () => {
     expect(state).toEqual({
       pseudo: '',
       email: '',
+      title: '',
       date: today,
       time: '',
       endDate: '2018-10-01',
@@ -74,6 +79,7 @@ describe('Test Accounts Reducers', () => {
     expect(state).toEqual({
       pseudo: 'bob',
       email: 'bob@bob.com',
+      title: '',
       date: today,
       time: '',
       endDate: today,
@@ -86,6 +92,7 @@ describe('Test Accounts Reducers', () => {
     expect(state).toEqual({
       pseudo: '',
       email: '',
+      title: '',
       date: today,
       time: '',
       endDate: today,
