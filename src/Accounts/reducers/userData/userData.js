@@ -78,6 +78,8 @@ export default (state = initialState, action) => {
     case 'RESET_PASSWORD_DATA':
       return {
         ...state,
+        pseudo: '',
+        email: '',
         password: '',
         passwordRepeater: '',
       };

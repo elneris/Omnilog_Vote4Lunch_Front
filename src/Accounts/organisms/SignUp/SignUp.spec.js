@@ -37,6 +37,9 @@ describe('SignUp Snapshot', () => {
       },
       loading: false,
     },
+    passwordChecker: {
+      tooShort: false,
+    },
   };
   const mockStore = configureStore();
   let store;
@@ -81,6 +84,9 @@ describe('SignUp Snapshot with loading', () => {
       },
       loading: false,
     },
+    passwordChecker: {
+      tooShort: false,
+    },
   };
   const mockStore = configureStore();
   let store;
@@ -124,6 +130,9 @@ describe('SignUp Snapshot with user created', () => {
         exist: false,
       },
       loading: false,
+    },
+    passwordChecker: {
+      tooShort: false,
     },
   };
   const mockStore = configureStore();
@@ -170,6 +179,9 @@ describe('SignUp (Shallow + passing the {store} directly)', () => {
         exist: false,
       },
       loading: false,
+    },
+    passwordChecker: {
+      tooShort: false,
     },
   };
   const mockStore = configureStore();
@@ -220,6 +232,9 @@ describe('SignUp - REACT-REDUX (Mount + wrapping in <Provider>)', () => {
         exist: false,
       },
       loading: false,
+    },
+    passwordChecker: {
+      tooShort: false,
     },
   };
   const middlewares = [reduxThunk];

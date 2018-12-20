@@ -204,8 +204,8 @@ describe('Test Accounts Reducers', () => {
     );
 
     expect(state).toEqual({
-      pseudo: 'bob',
-      email: 'bob@bob.com',
+      pseudo: '',
+      email: '',
       password: '',
       passwordRepeater: '',
       authenticated: false,
@@ -217,6 +217,8 @@ describe('Test Accounts Reducers', () => {
     state = userDataReducer(
       {
         ...state,
+        pseudo: 'bob',
+        email: 'bob@bob.com',
         password: 'f4k3password',
         passwordRepeater: 'f4k3password',
         authenticated: true,
