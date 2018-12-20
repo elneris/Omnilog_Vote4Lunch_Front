@@ -48,6 +48,19 @@ describe('Test Accounts Reducers', () => {
     });
   });
 
+  it('FORM_INPUT_TITLE case reducer for voteDataForm', () => {
+    state = voteDataFormReducer(state, { type: 'FORM_INPUT_TITLE', title: 'Ceci est un titre' });
+    expect(state).toEqual({
+      pseudo: '',
+      email: '',
+      title: 'Ceci est un titre',
+      date: today,
+      time: '',
+      endDate: today,
+      endTime: '',
+    });
+  });
+
   it('FORM_INPUT_DATE case reducer for voteDataForm', () => {
     state = voteDataFormReducer(state, { type: 'FORM_INPUT_DATE', date: '2018-10-01', time: '12:00' });
     expect(state).toEqual({
@@ -71,6 +84,28 @@ describe('Test Accounts Reducers', () => {
       time: '',
       endDate: '2018-10-01',
       endTime: '12:00',
+    });
+  });
+
+  it('LOGIN_USER_SUCCESS case reducer for voteDataForm', () => {
+    state = voteDataFormReducer(
+      state,
+      {
+        type: 'LOGIN_USER_SUCCESS',
+        payload: {
+          pseudo: 'bob',
+          email: 'bob@bob.com',
+        }
+      }
+    );
+    expect(state).toEqual({
+      pseudo: 'bob',
+      email: 'bob@bob.com',
+      title: '',
+      date: today,
+      time: '',
+      endDate: today,
+      endTime: '',
     });
   });
 
