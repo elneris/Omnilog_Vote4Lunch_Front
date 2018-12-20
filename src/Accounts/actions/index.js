@@ -6,7 +6,8 @@ import formInputEmail from './formInputEmailAction';
 import { checkPseudo } from './pseudoChecker/pseudoChecker';
 import { checkEmail } from './emailChecker/emailChecker';
 import updateUserData from './updateUserData';
-import resetPasswordData from './resetPasswordData';
+import resetPasswordData from './resetPasswordData/resetPasswordData';
+import resetUserData from './resetUserData/resetUserData';
 import { loginUser, resetLoginFailure } from './loginUser/loginUser';
 
 export {
@@ -21,4 +22,5 @@ export {
   loginUser,
   resetLoginFailure,
   resetPasswordData,
+  resetUserData,
 };

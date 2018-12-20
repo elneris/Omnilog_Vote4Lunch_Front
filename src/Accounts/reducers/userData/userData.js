@@ -81,6 +81,10 @@ export default (state = initialState, action) => {
         password: '',
         passwordRepeater: '',
       };
+    case 'RESET_USER_DATA':
+      return {
+        ...initialState,
+      };
     default:
       return state;
   }
