@@ -1,26 +1,26 @@
 import axios from 'axios';
 import { getVoiceCount, getUserVoices, getAllVoicesForAVote } from '..';
 
-export const addVoiceBegin = () => ({
-  type: 'ADD_VOICE_BEGIN',
+export const deleteVoiceBegin = () => ({
+  type: 'DELETE_VOICE_BEGIN',
 });
 
-export const addVoiceSuccess = result => ({
-  type: 'ADD_VOICE_SUCCESS',
+export const deleteVoiceSuccess = result => ({
+  type: 'DELETE_VOICE_SUCCESS',
   result,
 });
 
-export const addVoiceFailure = error => ({
-  type: 'ADD_VOICE_FAILURE',
+export const deleteVoiceFailure = error => ({
+  type: 'DELETE_VOICE_FAILURE',
   error,
 });
 
-export function addVoice(voteUrl, placeId, pseudo, email) {
+export function deleteVoice(voteUrl, placeId, pseudo, email) {
   return (dispatch) => {
-    dispatch(addVoiceBegin());
+    dispatch(deleteVoiceBegin());
     return (
       axios({
-        url: '/api/voice/add',
+        url: '/api/voice/delete',
         method: 'post',
         data: {
           vote_url: voteUrl,
@@ -30,12 +30,12 @@ export function addVoice(voteUrl, placeId, pseudo, email) {
         }
       })
         .then((result) => {
-          dispatch(addVoiceSuccess(result.data));
+          dispatch(deleteVoiceSuccess(result.data));
           dispatch(getVoiceCount(voteUrl, placeId));
           dispatch(getUserVoices(pseudo, email, [voteUrl]));
           dispatch(getAllVoicesForAVote(voteUrl));
         })
-        .catch(error => dispatch(addVoiceFailure(error)))
+        .catch(error => dispatch(deleteVoiceFailure(error)))
     );
   };
 }

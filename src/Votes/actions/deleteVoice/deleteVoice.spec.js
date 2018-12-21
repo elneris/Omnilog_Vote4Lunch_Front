@@ -3,9 +3,9 @@ import moxios from 'moxios';
 import configureMockStore from 'redux-mock-store';
 import thunk from 'redux-thunk';
 
-import { addVoice } from './addVoice';
+import { deleteVoice } from './deleteVoice';
 
-describe('Test addVoice asynchronous actions', () => {
+describe('Test deleteVoice asynchronous actions', () => {
   const middlewares = [thunk];
   const mockStore = configureMockStore(middlewares);
   beforeEach(() => {
@@ -15,29 +15,29 @@ describe('Test addVoice asynchronous actions', () => {
   afterEach(() => {
     moxios.uninstall();
   });
-  it('actionCreator addVoice success', () => {
+  it('actionCreator deleteVoice success', () => {
     moxios.wait(() => {
       const request = moxios.requests.mostRecent();
       request.respondWith({
         status: 200,
-        response: { vote: true },
+        response: { deleted: true },
       });
     });
     const expectedActions = [
-      { type: 'ADD_VOICE_BEGIN' },
-      { type: 'ADD_VOICE_SUCCESS', result: { vote: true } },
+      { type: 'DELETE_VOICE_BEGIN' },
+      { type: 'DELETE_VOICE_SUCCESS', result: { deleted: true } },
       { type: 'GET_VOICE_COUNT_BEGIN' },
       { type: 'GET_USER_VOICES_BEGIN' },
       { type: 'GET_ALL_VOICES_FOR_VOTES_BEGIN' },
     ];
     const store = mockStore({});
-    return store.dispatch(addVoice('f4k3ur1', 1, 'bob', 'bob@bob.com'))
+    return store.dispatch(deleteVoice('f4k3ur1', 1, 'bob', 'bob@bob.com'))
       .then(() => {
         expect(store.getActions()).toEqual(expectedActions);
       });
   });
 
-  it('actionCreator addVoice failure', () => {
+  it('actionCreator deleteVoice failure', () => {
     moxios.wait(() => {
       const request = moxios.requests.mostRecent();
       request.respondWith({
@@ -45,11 +45,11 @@ describe('Test addVoice asynchronous actions', () => {
       });
     });
     const expectedActions = [
-      { type: 'ADD_VOICE_BEGIN' },
-      { type: 'ADD_VOICE_FAILURE', error: new Error('Request failed with status code 404') },
+      { type: 'DELETE_VOICE_BEGIN' },
+      { type: 'DELETE_VOICE_FAILURE', error: new Error('Request failed with status code 404') },
     ];
     const store = mockStore({});
-    return store.dispatch(addVoice('f4k3ur1', 1, 'bob', 'bob@bob.com'))
+    return store.dispatch(deleteVoice('f4k3ur1', 1, 'bob', 'bob@bob.com'))
       .then(() => {
         expect(store.getActions()).toEqual(expectedActions);
       });
