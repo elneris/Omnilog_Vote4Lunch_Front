@@ -38,15 +38,15 @@ class VoteIcon extends Component {
 
   render() {
     const { disable, vote } = this.props;
+    const className = `VoteIcon ${disable ? 'disabled-icon' : ''}`;
     return (
       <FontAwesomeIcon
         color="#E82CA6"
         icon={vote ? SolidHeart : RegularHeart}
         size="lg"
         onClick={() => this.voteOnClick()}
-        className={disable ? 'disabled-icon' : ''}
+        className={className}
       />
-
     );
   }
 }
