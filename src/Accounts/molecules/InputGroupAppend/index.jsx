@@ -2,21 +2,16 @@ import React from 'react';
 
 import PropTypes from 'prop-types';
 
-import {
-  InputGroupAddon,
-  InputGroupText,
-} from 'reactstrap';
-
-const InputGroupAppend = ({ wrappedElement }) => (
-  <InputGroupAddon addonType="append">
-    <InputGroupText>
-      {wrappedElement}
-    </InputGroupText>
-  </InputGroupAddon>
+const InputGroupAppend = ({ children }) => (
+  <div className="input-group-append">
+    <span className="input-group-text">
+      {children}
+    </span>
+  </div>
 );
 
 InputGroupAppend.propTypes = {
-  wrappedElement: PropTypes.element,
+  children: PropTypes.element,
 };
 
 export default InputGroupAppend;
