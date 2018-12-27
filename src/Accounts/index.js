@@ -1,4 +1,10 @@
-import { FormInputPassword, FormInputPseudo, FormInputEmail } from './atoms';
+import {
+  FormInputPassword,
+  FormInputPseudo,
+  FormInputEmail,
+  LoginButton,
+  LogoutButton,
+} from './atoms';
 import {
   FormGroupEmail,
   FormGroupPassword,
@@ -20,6 +26,8 @@ export {
   FormInputPassword,
   FormInputPseudo,
   FormInputEmail,
+  LoginButton,
+  LogoutButton,
   FormGroupPassword,
   FormGroupPseudo,
   EmailChecker,

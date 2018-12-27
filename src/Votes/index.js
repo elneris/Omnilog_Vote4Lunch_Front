@@ -3,14 +3,28 @@ import {
   DisplayWinnerTrophy,
   MailToButton,
   VoteIcon,
+  VoteTitle,
+  CloseIcon,
+  HomeButton,
+  HamburgerIcon,
 } from './atoms';
-import { DisplayWinner, UsersVoicesTable } from './molecules';
+import {
+  DisplayWinner,
+  UsersVoicesTable,
+  VoteHeader,
+  VoteSidebar,
+  VoteHeaderButtonBar,
+  VoteSidebarContent,
+  VoteCard,
+} from './molecules';
 import {
   AddAVoice,
   GetUsersVotes,
   PlaceCard,
   UsersVoices,
-  VoteCollapser
+  VoteCollapser,
+  VoteView,
+  VoteContent,
 } from './organisms';
 
 export {
@@ -18,11 +32,22 @@ export {
   DisplayWinnerTrophy,
   MailToButton,
   VoteIcon,
+  VoteTitle,
+  CloseIcon,
+  HamburgerIcon,
   DisplayWinner,
   UsersVoicesTable,
+  VoteHeader,
+  VoteSidebar,
+  VoteHeaderButtonBar,
+  VoteSidebarContent,
+  VoteCard,
   AddAVoice,
   GetUsersVotes,
   PlaceCard,
   UsersVoices,
-  VoteCollapser
+  VoteCollapser,
+  VoteView,
+  VoteContent,
+  HomeButton,
 };
