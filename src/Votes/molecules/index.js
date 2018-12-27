@@ -5,6 +5,7 @@ import VoteSidebar from './VoteSidebar/VoteSidebar';
 import VoteHeaderButtonBar from './VoteHeaderButtonBar';
 import VoteSidebarContent from './VoteSidebarContent';
 import VoteCard from './VoteCard';
+import VoteCardTextVoiceCounter from './VoteCardTextVoiceCounter';
 
 export {
   DisplayWinner,
@@ -14,4 +15,5 @@ export {
   VoteHeaderButtonBar,
   VoteSidebarContent,
   VoteCard,
+  VoteCardTextVoiceCounter,
 };

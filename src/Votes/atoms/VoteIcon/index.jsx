@@ -10,12 +10,39 @@ import './VoteIcon.scss';
 
 import PropTypes from 'prop-types';
 
+import moment from 'moment';
+import 'moment/locale/fr';
+
 import { addVoice, deleteVoice } from '../../actions';
+
+moment.locale('fr');
 
 class VoteIcon extends Component {
   constructor() {
     super();
+    this.state = {
+      vote: false,
+    };
     this.voteOnClick = this.voteOnClick.bind(this);
+    this.checkVote = this.checkVote.bind(this);
+  }
+
+  componentDidMount() {
+    this.checkVote();
+  }
+
+  checkVote() {
+    const { userVoices, placeId } = this.props;
+
+    if (userVoices.length > 0) {
+      const filteredUserVoices = userVoices
+        .filter(element => parseInt(element.placeId, 10) === placeId);
+      if (filteredUserVoices.length !== 0) {
+        this.setState({
+          vote: true,
+        });
+      }
+    }
   }
 
   voteOnClick() {
@@ -23,22 +50,36 @@ class VoteIcon extends Component {
       email,
       placeId,
       pseudo,
-      vote,
       voteUrl,
       addVoice: addV,
       deleteVoice: delV,
     } = this.props;
+    const { vote } = this.state;
 
     if (!vote) {
       addV(voteUrl, placeId, pseudo, email);
     } else {
       delV(voteUrl, placeId, pseudo, email);
     }
+    this.setState({
+      vote: !vote,
+    });
   }
 
   render() {
-    const { disable, vote } = this.props;
-    const className = `VoteIcon ${disable ? 'disabled-icon' : ''}`;
+    const { remainingTime } = this.props;
+    const { vote } = this.state;
+
+    let disabledButton = false;
+
+    // disable button if vote end date is exceeded
+    const tooLate = moment(remainingTime).isBefore();
+    if (tooLate) {
+      disabledButton = true;
+    }
+
+    const className = `VoteIcon ${disabledButton ? 'disabled-icon' : ''}`;
+
     return (
       <FontAwesomeIcon
         color="#E82CA6"
@@ -57,19 +98,22 @@ VoteIcon.propTypes = {
   email: PropTypes.string,
   pseudo: PropTypes.string,
   voteUrl: PropTypes.string.isRequired,
-  // pass as props by parent
-  disable: PropTypes.bool,
-  vote: PropTypes.bool,
   placeId: PropTypes.number.isRequired,
+  userVoices: PropTypes.arrayOf(PropTypes.object).isRequired,
+  remainingTime: PropTypes.string.isRequired,
 };
 
 const mstp = ({
   getAVote,
   userData,
+  userVoices,
 }) => ({
   voteUrl: getAVote.url,
+  voteId: getAVote.id,
+  remainingTime: getAVote.end_date,
   pseudo: userData.pseudo,
   email: userData.email,
+  userVoices: userVoices.result,
 });
 
 const mdtp = dispatch => bindActionCreators({

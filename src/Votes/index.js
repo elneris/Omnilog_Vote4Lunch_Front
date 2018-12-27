@@ -16,6 +16,7 @@ import {
   VoteHeaderButtonBar,
   VoteSidebarContent,
   VoteCard,
+  VoteCardTextVoiceCounter,
 } from './molecules';
 import {
   AddAVoice,
@@ -42,6 +43,7 @@ export {
   VoteHeaderButtonBar,
   VoteSidebarContent,
   VoteCard,
+  VoteCardTextVoiceCounter,
   AddAVoice,
   GetUsersVotes,
   PlaceCard,
