@@ -14,6 +14,7 @@ import {
   PseudoChecker,
   FormGroupSignUp,
   SignUpMessage,
+  InputGroupAppend,
 } from './molecules';
 import {
   LoginModal,
@@ -32,6 +33,7 @@ export {
   LogoutButton,
   FormGroupPassword,
   FormGroupPseudo,
+  InputGroupAppend,
   EmailChecker,
   PasswordChecker,
   PseudoChecker,
