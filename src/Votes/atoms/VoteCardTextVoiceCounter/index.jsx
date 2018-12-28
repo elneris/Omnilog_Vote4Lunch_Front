@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 
 import PropTypes from 'prop-types';
 
-const VoteCardTextVoiceCounter = ({ placeId, voiceCount }) => {
+const VoteCardTextVoiceCounter = ({ placeId, voteId, voiceCount }) => {
   // Get the number of voices for the place
   let filteredVoiceCountValue = { count: 0, place: placeId };
 
@@ -11,6 +11,7 @@ const VoteCardTextVoiceCounter = ({ placeId, voiceCount }) => {
     const filteredVoiceCount = voiceCount
       .filter(
         element => element.place === placeId
+        && element.voteId === voteId
       );
 
     if (filteredVoiceCount.length !== 0) {
@@ -29,12 +30,15 @@ const VoteCardTextVoiceCounter = ({ placeId, voiceCount }) => {
 VoteCardTextVoiceCounter.propTypes = {
   placeId: PropTypes.number.isRequired,
   voiceCount: PropTypes.arrayOf(PropTypes.object),
+  voteId: PropTypes.number.isRequired,
 };
 
 const mstp = ({
   getVoicesCount,
+  getAVote,
 }) => ({
   voiceCount: getVoicesCount,
+  voteId: getAVote.id
 });
 
 export default connect(mstp)(VoteCardTextVoiceCounter);

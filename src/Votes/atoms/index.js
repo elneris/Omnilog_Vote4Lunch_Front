@@ -6,6 +6,7 @@ import VoteTitle from './VoteTitle';
 import CloseIcon from './CloseIcon';
 import HomeButton from './HomeButton';
 import HamburgerIcon from './HamburgerIcon';
+import VoteCardTextVoiceCounter from './VoteCardTextVoiceCounter';
 
 export {
   ButtonEndDate,
@@ -16,4 +17,5 @@ export {
   CloseIcon,
   HomeButton,
   HamburgerIcon,
+  VoteCardTextVoiceCounter,
 };

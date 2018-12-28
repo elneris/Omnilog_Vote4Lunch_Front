@@ -7,6 +7,7 @@ import {
   CloseIcon,
   HomeButton,
   HamburgerIcon,
+  VoteCardTextVoiceCounter,
 } from './atoms';
 import {
   DisplayWinner,
@@ -16,7 +17,6 @@ import {
   VoteHeaderButtonBar,
   VoteSidebarContent,
   VoteCard,
-  VoteCardTextVoiceCounter,
 } from './molecules';
 import {
   AddAVoice,
