@@ -11,6 +11,9 @@ import VoteCardTextVoiceCounter from '.';
 describe('VoteCardTextVoiceCounter - REACT-REDUX (Mount + wrapping in <Provider>) with no voices', () => {
   const initialState = {
     getVoicesCount: [],
+    getAVote: {
+      id: 1,
+    },
   };
   const mockStore = configureStore();
   let store;
@@ -37,9 +40,13 @@ describe('VoteCardTextVoiceCounter - REACT-REDUX (Mount + wrapping in <Provider>
     getVoicesCount: [
       {
         count: 0,
-        place: 1
-      }
+        place: 1,
+        voteId: 1,
+      },
     ],
+    getAVote: {
+      id: 1,
+    },
   };
   const mockStore = configureStore();
   let store;
@@ -66,9 +73,13 @@ describe('VoteCardTextVoiceCounter - REACT-REDUX (Mount + wrapping in <Provider>
     getVoicesCount: [
       {
         count: 0,
-        place: 1024
-      }
+        place: 1024,
+        voteId: 1,
+      },
     ],
+    getAVote: {
+      id: 1,
+    },
   };
   const mockStore = configureStore();
   let store;
