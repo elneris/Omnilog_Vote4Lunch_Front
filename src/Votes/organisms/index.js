@@ -3,7 +3,7 @@ import GetUsersVotes from './GetUsersVotes';
 import PlaceCard from './PlaceCard';
 import UsersVoices from './UsersVoices';
 import VoteCollapser from './VoteCollapser';
-import VoteContent from './VoteContent/VoteContent';
+import VoteContent from './VoteContent';
 import VoteView from './VoteView/VoteView';
 
 export {
