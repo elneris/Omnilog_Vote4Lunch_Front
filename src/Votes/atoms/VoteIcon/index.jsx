@@ -20,15 +20,8 @@ moment.locale('fr');
 class VoteIcon extends Component {
   constructor() {
     super();
-    this.state = {
-      vote: false,
-    };
     this.voteOnClick = this.voteOnClick.bind(this);
     this.checkVote = this.checkVote.bind(this);
-  }
-
-  componentDidMount() {
-    this.checkVote();
   }
 
   checkVote() {
@@ -38,14 +31,13 @@ class VoteIcon extends Component {
       const filteredUserVoices = userVoices
         .filter(element => parseInt(element.placeId, 10) === placeId);
       if (filteredUserVoices.length !== 0) {
-        this.setState({
-          vote: true,
-        });
+        return true;
       }
     }
+    return false;
   }
 
-  voteOnClick() {
+  voteOnClick(vote) {
     const {
       email,
       placeId,
@@ -54,22 +46,18 @@ class VoteIcon extends Component {
       addVoice: addV,
       deleteVoice: delV,
     } = this.props;
-    const { vote } = this.state;
 
     if (!vote) {
       addV(voteUrl, placeId, pseudo, email);
     } else {
       delV(voteUrl, placeId, pseudo, email);
     }
-    this.setState({
-      vote: !vote,
-    });
   }
 
   render() {
     const { remainingTime } = this.props;
-    const { vote } = this.state;
 
+    const vote = this.checkVote();
     let disabledButton = false;
 
     // disable button if vote end date is exceeded
@@ -85,7 +73,7 @@ class VoteIcon extends Component {
         color="#E82CA6"
         icon={vote ? SolidHeart : RegularHeart}
         size="lg"
-        onClick={() => this.voteOnClick()}
+        onClick={() => this.voteOnClick(vote)}
         className={className}
       />
     );
