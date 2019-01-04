@@ -4,18 +4,42 @@ import { connect } from 'react-redux';
 
 import PropTypes from 'prop-types';
 
-import { VoteIcon, VoteCardTextVoiceCounter } from '../..';
+import { VoteIcon, VoteCardTextVoiceCounter, VoteCardTextUsersList } from '../..';
 
 import { getVoiceCount } from '../../actions';
 
 class VoteCard extends Component {
+  constructor() {
+    super();
+
+    this.displayUsersList = this.displayUsersList.bind(this);
+    this.hideUsersList = this.hideUsersList.bind(this);
+
+    this.state = {
+      displayTip: false,
+    };
+  }
+
   componentDidMount() {
     const { voteUrl, restaurant, getVoiceCount: getVC } = this.props;
     getVC(voteUrl, restaurant.id);
   }
 
+  displayUsersList() {
+    this.setState({
+      displayTip: true,
+    });
+  }
+
+  hideUsersList() {
+    this.setState({
+      displayTip: false,
+    });
+  }
+
   render() {
     const { restaurant } = this.props;
+    const { displayTip } = this.state;
 
     return (
       <div className="row mt-2">
@@ -28,11 +52,14 @@ class VoteCard extends Component {
                 </h5>
                 <h5
                   className="text-right ml-auto"
+                  onMouseEnter={() => this.displayUsersList()}
+                  onMouseLeave={() => this.hideUsersList()}
                 >
                   <VoteIcon placeId={restaurant.id} />
                 </h5>
               </div>
               <VoteCardTextVoiceCounter placeId={restaurant.id} />
+              { displayTip ? <VoteCardTextUsersList placeId={restaurant.id} /> : ''}
             </div>
           </div>
         </div>

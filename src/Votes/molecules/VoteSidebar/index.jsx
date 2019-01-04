@@ -25,7 +25,7 @@ class VoteSidebar extends Component {
 
     let colWidth;
     if (sidebarOpen) {
-      colWidth = 'col-4';
+      colWidth = 'col-4 with-overflow';
     } else {
       colWidth = 'col-1 col-small';
     }

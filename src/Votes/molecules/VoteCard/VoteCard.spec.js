@@ -34,6 +34,21 @@ describe('VoteCard  - REACT-REDUX (Mount + wrapping in <Provider>)', () => {
       result: [],
     },
     getVoicesCount: [],
+    allVoicesForAVote: {
+      result: [
+        {
+          id: 170,
+          pseudo: 'bob',
+          email: 'bob@bob.com',
+          createdAt: '2019-01-04T07:56:44.333Z',
+          updatedAt: '2019-01-04T07:56:44.333Z',
+          voteId: 69,
+          placeId: 604
+        },
+      ],
+      loading: false,
+      error: null
+    }
   };
   const middlewares = [reduxThunk];
   const mockStore = configureStore(middlewares);
@@ -57,5 +72,19 @@ describe('VoteCard  - REACT-REDUX (Mount + wrapping in <Provider>)', () => {
 
   it('render the connected(SMART) component', () => {
     expect(wrapper.length).toEqual(1);
+  });
+
+  it('check if VoteCardTextUsersList atom is displayed and hidden', () => {
+    const voteCard = wrapper.find('h5.text-right.ml-auto');
+
+    voteCard.simulate('mouseenter');
+
+    const voteCardTextUsersListIsDisplayed = wrapper.find('VoteCardTextUsersList');
+    expect(voteCardTextUsersListIsDisplayed.length).toEqual(1);
+
+    voteCard.simulate('mouseleave');
+
+    const voteCardTextUsersListIsHidden = wrapper.find('VoteCardTextUsersList');
+    expect(voteCardTextUsersListIsHidden.length).toEqual(0);
   });
 });

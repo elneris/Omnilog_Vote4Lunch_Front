@@ -1,6 +1,9 @@
 .VoteSidebar.row{
   .VoteSidebarContent {
     background-color: rgba(0, 0, 0, 0.7);
+    &.with-overflow {
+      overflow: auto;
+    }
     &.col-small {
       max-width: 50px !important;
     }

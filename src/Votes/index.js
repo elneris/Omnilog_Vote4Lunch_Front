@@ -8,6 +8,7 @@ import {
   HomeButton,
   HamburgerIcon,
   VoteCardTextVoiceCounter,
+  VoteCardTextUsersList,
 } from './atoms';
 import {
   DisplayWinner,
@@ -52,4 +53,5 @@ export {
   VoteView,
   VoteContent,
   HomeButton,
+  VoteCardTextUsersList,
 };

@@ -78,7 +78,7 @@ describe('VoteIcon - REACT-REDUX (Mount + wrapping in <Provider>)', () => {
   });
 });
 
-describe('VoteIcon - REACT-REDUX (Mount + wrapping in <Provider>) with vote state true', () => {
+describe('VoteIcon - REACT-REDUX (Mount + wrapping in <Provider>) with userVoices', () => {
   const initialState = {
     userData: {
       pseudo: 'bob',
