@@ -16,8 +16,6 @@ import 'leaflet/dist/leaflet.css';
 
 import './VoteMap.scss';
 
-import { VoteContent } from '../../../Votes';
-
 import { updateMapCoordinates } from '../../actions';
 
 class VoteMap extends Component {
@@ -62,11 +60,9 @@ class VoteMap extends Component {
         className="VoteMap"
         zoomControl={false}
       >
-        
         <TileLayer
           url={mapTiles}
         />
-        <VoteContent />
         {
             restaurants.map(restaurant => (
               <Marker

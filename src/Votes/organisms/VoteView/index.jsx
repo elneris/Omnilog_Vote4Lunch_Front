@@ -5,6 +5,7 @@ import PropTypes from 'prop-types';
 
 import { VoteMap } from '../../../Map';
 import { LoginModal } from '../../../Accounts';
+import { VoteContent } from '../..';
 
 import './VoteView.scss';
 
@@ -78,6 +79,7 @@ class VoteView extends Component {
     }
     return (
       <div className="VoteView">
+        <VoteContent />
         <VoteMap restaurants={listOfPlaces} />
         {openLoginModal ? <LoginModal open voteUrl={url} /> : ''}
       </div>

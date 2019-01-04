@@ -4,7 +4,7 @@ import PlaceCard from './PlaceCard';
 import UsersVoices from './UsersVoices';
 import VoteCollapser from './VoteCollapser';
 import VoteContent from './VoteContent';
-import VoteView from './VoteView/VoteView';
+import VoteView from './VoteView';
 
 export {
   AddAVoice,

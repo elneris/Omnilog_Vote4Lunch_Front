@@ -47,9 +47,7 @@ class VoteCard extends Component {
           <div className="card">
             <div className="card-body">
               <div className="card-title d-flex flex-row">
-                <h5>
-                  {restaurant.name}
-                </h5>
+                <h5>{restaurant.name}</h5>
                 <h5
                   className="text-right ml-auto"
                   onMouseEnter={() => this.displayUsersList()}
