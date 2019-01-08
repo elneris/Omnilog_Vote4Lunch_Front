@@ -14,9 +14,9 @@ const VoteTitle = ({ voteTitle, creatorPseudo, date }) => {
   const rendezvous = moment(date).format('Do/MM/YYYY à h:mm');
 
   return (
-    <h4 className="VoteTitle">
+    <p className="VoteTitle">
       {`${voteTitle} le ${rendezvous} par ${creatorPseudo}`}
-    </h4>
+    </p>
   );
 };
 

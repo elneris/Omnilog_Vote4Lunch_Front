@@ -56,7 +56,11 @@ class VoteCard extends Component {
                   <VoteIcon placeId={restaurant.id} />
                 </h5>
               </div>
-              <VoteCardTextVoiceCounter placeId={restaurant.id} />
+              <VoteCardTextVoiceCounter
+                displayUsersList={this.displayUsersList}
+                hideUsersList={this.hideUsersList}
+                placeId={restaurant.id}
+              />
               { displayTip ? <VoteCardTextUsersList placeId={restaurant.id} /> : ''}
             </div>
           </div>

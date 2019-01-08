@@ -15,6 +15,8 @@ describe('VoteCardTextVoiceCounter - REACT-REDUX (Mount + wrapping in <Provider>
       id: 1,
     },
   };
+  const displayUsersList = jest.fn();
+  const hideUsersList = jest.fn();
   const mockStore = configureStore();
   let store;
   let wrapper;
@@ -28,6 +30,8 @@ describe('VoteCardTextVoiceCounter - REACT-REDUX (Mount + wrapping in <Provider>
       <Provider store={store}>
         <VoteCardTextVoiceCounter
           placeId={1}
+          displayUsersList={displayUsersList}
+          hideUsersList={hideUsersList}
         />
       </Provider>
     );
@@ -48,6 +52,8 @@ describe('VoteCardTextVoiceCounter - REACT-REDUX (Mount + wrapping in <Provider>
       id: 1,
     },
   };
+  const displayUsersList = jest.fn();
+  const hideUsersList = jest.fn();
   const mockStore = configureStore();
   let store;
   let wrapper;
@@ -61,6 +67,8 @@ describe('VoteCardTextVoiceCounter - REACT-REDUX (Mount + wrapping in <Provider>
       <Provider store={store}>
         <VoteCardTextVoiceCounter
           placeId={1}
+          displayUsersList={displayUsersList}
+          hideUsersList={hideUsersList}
         />
       </Provider>
     );
@@ -81,6 +89,8 @@ describe('VoteCardTextVoiceCounter - REACT-REDUX (Mount + wrapping in <Provider>
       id: 1,
     },
   };
+  const displayUsersList = jest.fn();
+  const hideUsersList = jest.fn();
   const mockStore = configureStore();
   let store;
   let wrapper;
@@ -94,6 +104,8 @@ describe('VoteCardTextVoiceCounter - REACT-REDUX (Mount + wrapping in <Provider>
       <Provider store={store}>
         <VoteCardTextVoiceCounter
           placeId={1}
+          displayUsersList={displayUsersList}
+          hideUsersList={hideUsersList}
         />
       </Provider>
     );

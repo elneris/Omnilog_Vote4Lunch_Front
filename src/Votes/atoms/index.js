@@ -6,7 +6,6 @@ import VoteTitle from './VoteTitle';
 import CloseIcon from './CloseIcon';
 import HomeButton from './HomeButton';
 import HamburgerIcon from './HamburgerIcon';
-import VoteCardTextVoiceCounter from './VoteCardTextVoiceCounter';
 import VoteCardTextUsersList from './VoteCardTextUsersList';
 
 export {
@@ -18,6 +17,5 @@ export {
   CloseIcon,
   HomeButton,
   HamburgerIcon,
-  VoteCardTextVoiceCounter,
   VoteCardTextUsersList,
 };
