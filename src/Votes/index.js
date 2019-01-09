@@ -8,6 +8,9 @@ import {
   HomeButton,
   HamburgerIcon,
   VoteCardTextUsersList,
+  CopyTo,
+  OClock,
+  TimeToEnd,
 } from './atoms';
 import {
   DisplayWinner,
@@ -18,6 +21,8 @@ import {
   VoteSidebarContent,
   VoteCard,
   VoteCardTextVoiceCounter,
+  SideButtonGroup,
+  SideButtonBarInfo,
 } from './molecules';
 import {
   AddAVoice,
@@ -27,6 +32,7 @@ import {
   VoteCollapser,
   VoteView,
   VoteContent,
+  SideButtonBar,
 } from './organisms';
 
 export {
@@ -54,4 +60,10 @@ export {
   VoteContent,
   HomeButton,
   VoteCardTextUsersList,
+  SideButtonBar,
+  CopyTo,
+  OClock,
+  TimeToEnd,
+  SideButtonGroup,
+  SideButtonBarInfo,
 };

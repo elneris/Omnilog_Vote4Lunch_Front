@@ -68,6 +68,12 @@ describe('VoteView (Shallow + passing the {store} directly)', () => {
         exist: false,
       },
     },
+    votes: {
+      sideButtonBarInfo: {
+        displayInfos: false,
+        element: ''
+      },
+    },
   };
   const mockStore = configureStore();
   let store;
@@ -151,6 +157,12 @@ describe('VoteContent - REACT-REDUX (Mount + wrapping in <Provider>)', () => {
     emailChecker: {
       payload: {
         exist: false,
+      },
+    },
+    votes: {
+      sideButtonBarInfo: {
+        displayInfos: false,
+        element: ''
       },
     },
   };

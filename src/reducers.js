@@ -14,7 +14,7 @@ import { listOfRestaurantsReducer, mapCoordinatesReducer, onMapAlertReducer } fr
 
 import { createAVoteReducer, voteDataFormReducer, voteDataReducer } from './VoteCreator/reducers';
 
-import {
+import votesReducer, {
   addVoiceReducer,
   deleteAVoteReducer,
   getAllVoicesForAVoteReducer,
@@ -48,4 +48,5 @@ export default combineReducers({
   voteDataForm: voteDataFormReducer,
   getAVote: getAVoteReducer,
   allVoicesForAVote: getAllVoicesForAVoteReducer,
+  votes: votesReducer,
 });

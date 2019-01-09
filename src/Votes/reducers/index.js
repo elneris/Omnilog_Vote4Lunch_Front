@@ -1,3 +1,5 @@
+import { combineReducers } from 'redux';
+
 import addVoiceReducer from './addVoice/addVoice';
 import deleteAVoteReducer from './deleteAVote/deleteAVote';
 import getAllVoicesForAVoteReducer from './getAllVoicesForAVote/getAllVoicesForAVote';
@@ -7,6 +9,12 @@ import getPlacesListReducer from './getPlacesList/getPlacesList';
 import getUsersVotesReducer from './getUsersVotes/getUsersVotes';
 import getUserVoicesReducer from './getUserVoices/getUserVoices';
 import getVoicesCountReducer from './getVoicesCount/getVoicesCount';
+import toggleSideButtonBarInfo from './toggleSideButtonBarInfo';
+
+
+export default combineReducers({
+  sideButtonBarInfo: toggleSideButtonBarInfo,
+});
 
 export {
   addVoiceReducer,

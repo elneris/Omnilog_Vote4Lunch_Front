@@ -113,6 +113,12 @@ describe('VoteSidebar - REACT-REDUX (Mount + wrapping in <Provider>) - without p
       loading: false,
       error: null
     },
+    votes: {
+      sideButtonBarInfo: {
+        displayInfos: false,
+        element: ''
+      },
+    },
   };
   const middlewares = [reduxThunk];
   const mockStore = configureStore(middlewares);
@@ -203,6 +209,12 @@ describe('VoteSidebar - REACT-REDUX (Mount + wrapping in <Provider>)', () => {
       },
       loading: false,
       error: null
+    },
+    votes: {
+      sideButtonBarInfo: {
+        displayInfos: false,
+        element: ''
+      },
     },
   };
   const middlewares = [reduxThunk];

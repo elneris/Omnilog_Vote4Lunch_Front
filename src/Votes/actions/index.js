@@ -7,6 +7,8 @@ import { getPlacesList } from './getPlacesList/getPlacesList';
 import { getUsersVotes } from './getUsersVotes/getUsersVotes';
 import { getUserVoices } from './getUserVoices/getUserVoices';
 import { getVoiceCount } from './getVoiceCount/getVoiceCount';
+import displaySideButtonBarInfo from './displaySideButtonBarInfo';
+import hideSideButtonBarInfo from './hideSideButtonBarInfo';
 
 export {
   addVoice,
@@ -18,4 +20,6 @@ export {
   getUsersVotes,
   getUserVoices,
   getVoiceCount,
+  displaySideButtonBarInfo,
+  hideSideButtonBarInfo,
 };

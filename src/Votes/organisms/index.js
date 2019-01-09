@@ -5,6 +5,7 @@ import UsersVoices from './UsersVoices';
 import VoteCollapser from './VoteCollapser';
 import VoteContent from './VoteContent';
 import VoteView from './VoteView';
+import SideButtonBar from './SideButtonBar';
 
 export {
   AddAVoice,
@@ -14,4 +15,5 @@ export {
   VoteCollapser,
   VoteContent,
   VoteView,
+  SideButtonBar,
 };

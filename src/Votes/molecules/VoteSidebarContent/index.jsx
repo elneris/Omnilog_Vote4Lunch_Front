@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 
 import PropTypes from 'prop-types';
 
-import { VoteCard } from '../..';
+import { VoteCard, SideButtonBar } from '../..';
 
 const VoteSidebarContent = ({ places, getAVoteUrl }) => {
   // filter the list of restaurants with url parameter to display only one
@@ -15,6 +15,7 @@ const VoteSidebarContent = ({ places, getAVoteUrl }) => {
   }
   return (
     <div>
+      <SideButtonBar />
       {listOfPlaces.sort((a, b) => a.id - b.id).map(restaurant => (
         <VoteCard
           className="text-white"
