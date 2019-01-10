@@ -21,6 +21,8 @@ import 'moment/locale/fr';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSpinner } from '@fortawesome/free-solid-svg-icons';
 
+import './CreateAVote.scss';
+
 import { FormInputDate, FormInputEndDate } from '../../../Core';
 import { FormGroupVoteTitle } from '../..';
 
