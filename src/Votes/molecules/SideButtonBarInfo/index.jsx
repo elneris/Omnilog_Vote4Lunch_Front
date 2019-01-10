@@ -13,7 +13,9 @@ const SideButtonBarInfo = ({ element }) => {
       return (<TimeToEnd />);
     case 'copyto':
       return (
-        <p>Copier le lien du vote</p>
+        <p>
+          {'Copier le lien du vote'}
+        </p>
       );
     case 'mailto':
       return (
