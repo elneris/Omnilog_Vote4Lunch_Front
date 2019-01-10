@@ -10,7 +10,7 @@ import {
 } from 'reactstrap';
 import { Link } from 'react-router-dom';
 
-import { Place } from '..';
+import { Place } from '../..';
 
 const CreateAVotePlaces = ({ voteData }) => {
   let disabledButton = true;
@@ -48,7 +48,13 @@ const CreateAVotePlaces = ({ voteData }) => {
 };
 
 CreateAVotePlaces.propTypes = {
-  voteData: PropTypes.objectOf(PropTypes.object).isRequired,
+  voteData: PropTypes.shape({
+    id: PropTypes.number,
+    pseudo: PropTypes.string,
+    email: PropTypes.string,
+    url: PropTypes.string,
+    places: PropTypes.array,
+  }).isRequired,
 };
 
 const mstp = ({ voteData }) => ({

@@ -30,11 +30,11 @@ import {
   resetListOfRestaurants,
   updateMapCoordinates,
   updateZoomLevel,
-} from '../actions';
-import { addAPlace } from '../../VoteCreator/actions/addAPlace';
+} from '../../actions';
+import { addAPlace } from '../../../VoteCreator/actions/addAPlace';
 
 
-import { Controls } from '..';
+import { Controls } from '../..';
 
 /* eslint no-underscore-dangle: ["error", { "allow": ["_getIconUrl","_northEast","_southWest"] }] */
 delete L.Icon.Default.prototype._getIconUrl;

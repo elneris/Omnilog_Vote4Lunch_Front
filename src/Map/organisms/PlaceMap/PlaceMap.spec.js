@@ -19,6 +19,12 @@ describe('PlaceMap (Shallow + passing the {store} directly)', () => {
       positionLongitude: -0.59,
       zoomLevel: 12,
     },
+    voteData: {
+      id: 1,
+      date: '2019-01-10T11:00:00.000Z',
+      places: [],
+      url: 'f4k3Url',
+    },
   };
   const mockStore = configureStore();
   let store;
@@ -55,6 +61,12 @@ describe('PlaceMap (Mount + wrapping in <Provider>)', () => {
       status: false,
       messageType: '',
       message: '',
+    },
+    voteData: {
+      id: 1,
+      date: '2019-01-10T11:00:00.000Z',
+      places: [],
+      url: 'f4k3Url',
     },
   };
   const mockStore = configureStore();

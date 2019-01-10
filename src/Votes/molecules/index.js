@@ -1,5 +1,3 @@
-import DisplayWinner from './DisplayWinner';
-import UsersVoicesTable from './UsersVoicesTable';
 import VoteHeader from './VoteHeader';
 import VoteSidebar from './VoteSidebar';
 import VoteHeaderButtonBar from './VoteHeaderButtonBar';
@@ -10,8 +8,6 @@ import SideButtonGroup from './SideButtonGroup';
 import SideButtonBarInfo from './SideButtonBarInfo';
 
 export {
-  DisplayWinner,
-  UsersVoicesTable,
   VoteHeader,
   VoteSidebar,
   VoteHeaderButtonBar,

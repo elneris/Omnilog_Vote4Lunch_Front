@@ -1,4 +1,3 @@
-import ButtonEndDate from './ButtonEndDate';
 import DisplayWinnerTrophy from './DisplayWinnerTrophy/DisplayWinnerTrophy';
 import MailToButton from './MailToButton';
 import VoteIcon from './VoteIcon';
@@ -12,7 +11,6 @@ import OClock from './OClock';
 import TimeToEnd from './TimeToEnd';
 
 export {
-  ButtonEndDate,
   DisplayWinnerTrophy,
   MailToButton,
   VoteIcon,

@@ -1,5 +1,4 @@
 import {
-  ButtonEndDate,
   DisplayWinnerTrophy,
   MailToButton,
   VoteIcon,
@@ -13,8 +12,6 @@ import {
   TimeToEnd,
 } from './atoms';
 import {
-  DisplayWinner,
-  UsersVoicesTable,
   VoteHeader,
   VoteSidebar,
   VoteHeaderButtonBar,
@@ -25,10 +22,8 @@ import {
   SideButtonBarInfo,
 } from './molecules';
 import {
-  AddAVoice,
   GetUsersVotes,
   PlaceCard,
-  UsersVoices,
   VoteCollapser,
   VoteView,
   VoteContent,
@@ -36,25 +31,20 @@ import {
 } from './organisms';
 
 export {
-  ButtonEndDate,
   DisplayWinnerTrophy,
   MailToButton,
   VoteIcon,
   VoteTitle,
   CloseIcon,
   HamburgerIcon,
-  DisplayWinner,
-  UsersVoicesTable,
   VoteHeader,
   VoteSidebar,
   VoteHeaderButtonBar,
   VoteSidebarContent,
   VoteCard,
   VoteCardTextVoiceCounter,
-  AddAVoice,
   GetUsersVotes,
   PlaceCard,
-  UsersVoices,
   VoteCollapser,
   VoteView,
   VoteContent,

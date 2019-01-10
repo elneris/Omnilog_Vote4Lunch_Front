@@ -17,6 +17,7 @@ class TimeToEnd extends Component {
   }
 
   componentDidMount() {
+    this.tick();
     this.interval = setInterval(() => this.tick(), 1000);
   }
 
@@ -27,8 +28,10 @@ class TimeToEnd extends Component {
   tick() {
     const { remainingTime } = this.props;
     const timeObject = moment(moment(remainingTime).diff(moment())).toObject();
-    const hourTime = (timeObject.date - 1) * 24 + timeObject.hours;
-    const fromNow = `${hourTime}:${timeObject.minutes}:${timeObject.seconds}`;
+    const hourTime = (timeObject.date - 1) * 24 + timeObject.hours - 1;
+    const minutes = timeObject.minutes < 10 ? `0${timeObject.minutes}` : `${timeObject.minutes}`;
+    const seconds = timeObject.seconds < 10 ? `0${timeObject.seconds}` : `${timeObject.seconds}`;
+    const fromNow = `${hourTime}:${minutes}:${seconds}`;
 
     this.setState({
       fromNow,

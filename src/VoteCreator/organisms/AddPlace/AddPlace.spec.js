@@ -23,6 +23,11 @@ describe('AddPlace (Shallow + passing the {store} directly)', () => {
         title: 'Ceci est un titre',
       },
     },
+    onMapAlert: {
+      messageType: 'success',
+      status: true,
+      message: 'Ceci est un test'
+    }
   };
   const mockStore = configureStore();
   let store;
@@ -66,8 +71,10 @@ describe('AddPlace - REACT-REDUX (Mount + wrapping in <Provider>)', () => {
       zoomLevel: 12,
     },
     onMapAlert: {
-      messageType: '',
-    },
+      messageType: 'success',
+      status: true,
+      message: 'Ceci est un test'
+    }
   };
   const mockStore = configureStore();
   let store;
