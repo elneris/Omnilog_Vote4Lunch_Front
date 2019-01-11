@@ -16,6 +16,8 @@ import 'leaflet/dist/leaflet.css';
 
 import './VoteMap.scss';
 
+import { PlaceInfos } from '../..';
+
 import { updateMapCoordinates } from '../../actions';
 
 class VoteMap extends Component {
@@ -76,6 +78,12 @@ class VoteMap extends Component {
                   <p className="text-center my-1">
                     {restaurant.name}
                   </p>
+                  {
+                    restaurant.address || restaurant.city || restaurant.phone
+                      || restaurant.website || restaurant.email || restaurant.opening_hours
+                      ? <PlaceInfos restaurant={restaurant} />
+                      : null
+                  }
                 </Popup>
               </Marker>
             ))

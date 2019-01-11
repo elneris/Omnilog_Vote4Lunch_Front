@@ -20,4 +20,25 @@ export default (sequelize, type) => sequelize.define('place', {
     type: type.STRING,
     allowNull: false
   },
+  address: {
+    type: type.STRING,
+  },
+  city: {
+    type: type.STRING,
+  },
+  phone: {
+    type: type.STRING,
+  },
+  email: {
+    type: type.STRING,
+  },
+  website: {
+    type: type.STRING,
+  },
+  opening_hours: {
+    type: type.STRING,
+  },
+  cuisine: {
+    type: type.STRING,
+  },
 });
