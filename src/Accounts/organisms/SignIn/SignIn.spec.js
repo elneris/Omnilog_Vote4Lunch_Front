@@ -9,15 +9,17 @@ import configureStore from 'redux-mock-store';
 
 import { BrowserRouter as Router } from 'react-router-dom';
 
-import SignIn from './SignIn';
+import SignIn from '.';
 
 describe('SignIn Snapshot', () => {
   const initialState = {
     userData: {
       pseudo: '',
+      email: '',
       password: '',
       passwordRepeater: '',
       authenticated: false,
+      loading: false,
       loginError: false,
     },
     pseudoChecker: {
@@ -51,9 +53,11 @@ describe('SignIn Snapshot with loginError true', () => {
   const initialState = {
     userData: {
       pseudo: '',
+      email: '',
       password: '',
       passwordRepeater: '',
       authenticated: false,
+      loading: false,
       loginError: true,
     },
     pseudoChecker: {
@@ -87,9 +91,11 @@ describe('SignIn (Shallow + passing the {store} directly)', () => {
   const initialState = {
     userData: {
       pseudo: '',
+      email: '',
       password: '',
       passwordRepeater: '',
       authenticated: false,
+      loading: false,
       loginError: false,
     },
     pseudoChecker: {
@@ -120,9 +126,11 @@ describe('SignIn - REACT-REDUX (Mount + wrapping in <Provider>)', () => {
   const initialState = {
     userData: {
       pseudo: 'bob',
+      email: '',
       password: 'f4k3password',
       passwordRepeater: '',
       authenticated: false,
+      loading: false,
       loginError: false,
     },
     pseudoChecker: {
@@ -168,10 +176,12 @@ describe('SignIn - REACT-REDUX (Mount + wrapping in <Provider>) - test Redirect'
   const initialState = {
     userData: {
       pseudo: 'bob',
+      email: '',
       password: 'f4k3password',
       passwordRepeater: '',
       authenticated: true,
       loginError: false,
+      loading: false,
     },
     pseudoChecker: {
       payload: {

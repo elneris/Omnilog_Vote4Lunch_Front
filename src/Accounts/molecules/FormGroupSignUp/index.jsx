@@ -2,61 +2,39 @@ import React, { Component } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 
-import PropTypes from 'prop-types';
-
-import {
-  Button,
-  Form,
-} from 'reactstrap';
+import { func } from 'prop-types';
+import { addUserReducerTypes, userDataTypes } from '../../types';
 
 import { FormGroupPassword, FormGroupPseudo, FormGroupEmail } from '../..';
 
 import { addUser, resetPasswordData } from '../../actions';
 
-class SignUp extends Component {
+class FormGroupSignUp extends Component {
   submitForm(e) {
     const {
-      pseudo,
-      email,
-      password,
-      passwordRepeater,
+      userData,
       addUser: addU,
       resetPasswordData: resetPData,
     } = this.props;
 
     e.preventDefault();
 
-    addU(pseudo, email, password, passwordRepeater);
+    addU(userData);
     resetPData();
   }
 
   render() {
-    const {
-      loading,
-    } = this.props;
+    const { addUserReducer } = this.props;
 
-    let renderButton = 'Valider';
-
-    if (loading) {
-      renderButton = 'Requête en cours';
-    }
     return (
-      <Form onSubmit={e => this.submitForm(e)}>
-        <FormGroupPseudo
-          text="Choisis ton pseudo"
-          forProp="pseudo"
-          colorLabel="white"
-        />
-        <FormGroupEmail
-          text="Indique ton email"
-          forProp="email"
-          colorLabel="white"
-        />
-        <FormGroupPassword
-          text="Choisis ton mot de passe"
-          forProp="password"
-          colorLabel="white"
-        />
+      <form onSubmit={e => this.submitForm(e)}>
+
+        <FormGroupPseudo text="Choisis ton pseudo" forProp="pseudo" colorLabel="white" />
+
+        <FormGroupEmail text="Indique ton email" forProp="email" colorLabel="white" />
+
+        <FormGroupPassword text="Choisis ton mot de passe" forProp="password" colorLabel="white" />
+
         <FormGroupPassword
           text="Répète ton mot de passe"
           forProp="passwordRepeater"
@@ -64,31 +42,25 @@ class SignUp extends Component {
           repeater
         />
         <div className="text-center mt-5">
-          <Button color="success">{renderButton}</Button>
+          <button type="submit" className="btn btn-success">{ !addUserReducer.loading ? 'Valider' : 'Requête en cours' }</button>
         </div>
-      </Form>
+      </form>
     );
   }
 }
 
-SignUp.propTypes = {
-  addUser: PropTypes.func.isRequired,
-  resetPasswordData: PropTypes.func.isRequired,
-  pseudo: PropTypes.string.isRequired,
-  email: PropTypes.string.isRequired,
-  password: PropTypes.string.isRequired,
-  passwordRepeater: PropTypes.string.isRequired,
-  loading: PropTypes.bool.isRequired,
+FormGroupSignUp.propTypes = {
+  addUser: func.isRequired,
+  resetPasswordData: func.isRequired,
+  userData: userDataTypes.isRequired,
+  addUserReducer: addUserReducerTypes.isRequired,
 };
 
 const mstp = ({ userData, addUser: addUserReducer }) => ({
-  pseudo: userData.pseudo,
-  email: userData.email,
-  password: userData.password,
-  passwordRepeater: userData.passwordRepeater,
-  loading: addUserReducer.loading,
+  userData,
+  addUserReducer,
 });
 
 const mdtp = dispatch => bindActionCreators({ addUser, resetPasswordData }, dispatch);
 
-export default connect(mstp, mdtp)(SignUp);
+export default connect(mstp, mdtp)(FormGroupSignUp);

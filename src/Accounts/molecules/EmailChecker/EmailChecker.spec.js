@@ -4,7 +4,7 @@ import React from 'react';
 import renderer from 'react-test-renderer';
 import configureStore from 'redux-mock-store';
 
-import EmailChecker from './EmailChecker';
+import EmailChecker from '.';
 
 describe('EmailChecker Snapshot', () => {
   const initialState = {

@@ -14,7 +14,7 @@ export const addUserFailure = error => ({
   error,
 });
 
-export function addUser(pseudo, email, password, passwordRepeater) {
+export function addUser(userData) {
   return (dispatch) => {
     dispatch(addUserBegin());
     return (
@@ -22,10 +22,10 @@ export function addUser(pseudo, email, password, passwordRepeater) {
         url: '/api/user/add',
         method: 'post',
         data: {
-          pseudo,
-          email,
-          password,
-          password_repeat: passwordRepeater
+          pseudo: userData.pseudo,
+          email: userData.email,
+          password: userData.password,
+          password_repeat: userData.passwordRepeater
         }
       })
         .then(payload => dispatch(addUserSuccess(payload.data)))

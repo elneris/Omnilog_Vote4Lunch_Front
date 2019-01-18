@@ -18,6 +18,9 @@ describe('SignUp Snapshot', () => {
       email: '',
       password: '',
       passwordRepeater: '',
+      authenticated: false,
+      loading: false,
+      loginError: false,
     },
     addUser: {
       payload: {
@@ -65,6 +68,9 @@ describe('SignUp Snapshot with loading', () => {
       email: '',
       password: '',
       passwordRepeater: '',
+      authenticated: false,
+      loading: false,
+      loginError: false,
     },
     addUser: {
       payload: {
@@ -112,6 +118,9 @@ describe('SignUp Snapshot with user created', () => {
       email: '',
       password: '',
       passwordRepeater: '',
+      authenticated: false,
+      loading: false,
+      loginError: false,
     },
     addUser: {
       payload: {
@@ -161,6 +170,9 @@ describe('SignUp (Shallow + passing the {store} directly)', () => {
       email: 'mickey@mou.se',
       password: 'dingolefoldingo',
       passwordRepeater: 'dingolefoldingo',
+      authenticated: false,
+      loading: false,
+      loginError: false,
     },
     addUser: {
       payload: {
@@ -209,6 +221,9 @@ describe('SignUp - REACT-REDUX (Mount + wrapping in <Provider>)', () => {
       email: 'mickey@mou.se',
       password: 'dingolefoldingo',
       passwordRepeater: 'dingolefoldingo',
+      authenticated: false,
+      loading: false,
+      loginError: false,
     },
     addUser: {
       payload: {

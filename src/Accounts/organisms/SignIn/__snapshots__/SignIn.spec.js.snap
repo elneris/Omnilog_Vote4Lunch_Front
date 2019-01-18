@@ -5,13 +5,14 @@ exports[`SignIn Snapshot capturing Snapshot of SignIn 1`] = `
   className="SignIn container-fluid"
 >
   <div
-    className="justify-content-center align-items-center h-100 no-gutters row"
+    className="row no-gutters justify-content-center align-items-center h-100"
   >
     <div
-      className="bg-blue p-5 rounded col-12 col-md-4"
+      className="col-12 col-md-4 bg-blue p-5 rounded"
+      md="4"
+      xs="12"
     >
       <form
-        className=""
         onSubmit={[Function]}
       >
         <div
@@ -72,9 +73,8 @@ exports[`SignIn Snapshot capturing Snapshot of SignIn 1`] = `
           className="text-center mt-5"
         >
           <button
-            aria-label={null}
             className="btn btn-success"
-            onClick={[Function]}
+            type="submit"
           >
             Se connecter
           </button>
@@ -90,13 +90,14 @@ exports[`SignIn Snapshot with loginError true capturing Snapshot of SignIn with 
   className="SignIn container-fluid"
 >
   <div
-    className="justify-content-center align-items-center h-100 no-gutters row"
+    className="row no-gutters justify-content-center align-items-center h-100"
   >
     <div
-      className="bg-blue p-5 rounded col-12 col-md-4"
+      className="col-12 col-md-4 bg-blue p-5 rounded"
+      md="4"
+      xs="12"
     >
       <form
-        className=""
         onSubmit={[Function]}
       >
         <div
@@ -157,9 +158,8 @@ exports[`SignIn Snapshot with loginError true capturing Snapshot of SignIn with 
           className="text-center mt-5"
         >
           <button
-            aria-label={null}
             className="btn btn-success"
-            onClick={[Function]}
+            type="submit"
           >
             Se connecter
           </button>

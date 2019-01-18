@@ -36,7 +36,19 @@ describe('Test Map asynchronous addUser Actions', () => {
       },
     ];
     const store = mockStore({});
-    return store.dispatch(addUser('bob', 'bob@bob.com', 'f4k3password', 'f4k3password'))
+
+    const pseudo = 'bob';
+    const email = 'bob@bob.com';
+    const password = 'f4k3password';
+    const passwordRepeater = 'f4k3password';
+
+    const userData = {
+      pseudo,
+      email,
+      password,
+      passwordRepeater,
+    };
+    return store.dispatch(addUser(userData))
       .then(() => {
         expect(store.getActions()).toEqual(expectedActions);
       });
@@ -54,7 +66,19 @@ describe('Test Map asynchronous addUser Actions', () => {
       { type: 'ADD_USER_FAILURE', error: new Error('Request failed with status code 404') },
     ];
     const store = mockStore({});
-    return store.dispatch(addUser('bob', 'bob@bob.com', 'f4k3password', 'f4k3password'))
+
+    const pseudo = 'bob';
+    const email = 'bob@bob.com';
+    const password = 'f4k3password';
+    const passwordRepeater = 'f4k3password';
+
+    const userData = {
+      pseudo,
+      email,
+      password,
+      passwordRepeater,
+    };
+    return store.dispatch(addUser(userData))
       .then(() => {
         expect(store.getActions()).toEqual(expectedActions);
       });

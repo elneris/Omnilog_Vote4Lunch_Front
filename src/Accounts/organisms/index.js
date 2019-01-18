@@ -1,7 +1,7 @@
 import LoginModal from './LoginModal';
 import LogoutView from './LogoutView/LogoutView';
 import SignUp from './SignUp/SignUp';
-import SignIn from './SignIn/SignIn';
+import SignIn from './SignIn';
 
 export {
   LoginModal,
