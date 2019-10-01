@@ -79,3 +79,5 @@ typings/
 
 package-lock.json
 front/package-lock.json
+
+.idea
