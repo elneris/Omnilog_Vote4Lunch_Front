@@ -23,7 +23,7 @@ export function loginUser(pseudo, password) {
     dispatch(loginUserBegin());
     return (
       axios({
-        url: '/api/user/login',
+        url: 'http://localhost/api/user/login',
         method: 'post',
         data: {
           pseudo,

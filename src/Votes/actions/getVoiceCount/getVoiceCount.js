@@ -21,7 +21,7 @@ export function getVoiceCount(voteUrl, placeId) {
     dispatch(getVoiceCountBegin());
     return (
       axios
-        .get(`/api/vote/get?vote_url=${voteUrl}`)
+        .get(`http://localhost/api/vote/getVote?vote_url=${voteUrl}`)
         .then((vote) => {
           const url = `/api/voice/count/all?vote_id=${vote.data.id}&place_id=${placeId}`;
           return axios

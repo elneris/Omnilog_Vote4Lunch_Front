@@ -17,7 +17,7 @@ export const checkPseudoFailure = error => ({
 export function checkPseudo(pseudo) {
   return (dispatch) => {
     dispatch(checkPseudoBegin());
-    const url = `/api/user/exists?pseudo=${pseudo}`;
+    const url = `http://localhost/api/user/exists?pseudo=${pseudo}`;
     return (
       axios.get(url)
         .then(payload => dispatch(checkPseudoSuccess(payload.data)))

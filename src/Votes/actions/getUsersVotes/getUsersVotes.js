@@ -19,7 +19,7 @@ export function getUsersVotes(pseudo) {
     dispatch(getUsersVotesBegin());
     return (
       axios
-        .get(`/api/vote/get/mine?pseudo=${pseudo}`)
+        .get(`http://localhost/api/vote/get/mine?pseudo=${pseudo}`)
         .then((votes) => {
           dispatch(getUsersVotesSuccess(votes.data));
         })

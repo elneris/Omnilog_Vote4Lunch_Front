@@ -49,7 +49,7 @@ class VoteCollapser extends Component {
 
     moment.locale('fr');
 
-    const dateVote = moment(vote.date).format('dddd D MMMM YYYY');
+    const dateVote = moment(vote.date.date).format('dddd D MMMM YYYY');
     let listOfRestaurants = [];
     const myRestaurants = restaurants.find(
       obj => Object.prototype.hasOwnProperty.call(obj, vote.url)

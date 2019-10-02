@@ -31,7 +31,7 @@ export function createAVote(pseudo, email, title, date, time, endDate, endTime) 
     dispatch(createAVoteBegin());
     return (
       axios({
-        url: '/api/vote/add',
+        url: 'http://localhost/api/vote/add',
         method: 'post',
         data: {
           pseudo,

@@ -19,7 +19,7 @@ export function getAVote(voteUrl) {
     dispatch(getAVoteBegin());
     return (
       axios
-        .get(`/api/vote/get?vote_url=${voteUrl}`)
+        .get(`http://localhost/api/vote/getVote?vote_url=${voteUrl}`)
         .then((vote) => {
           dispatch(getAVoteSuccess(vote.data));
         })

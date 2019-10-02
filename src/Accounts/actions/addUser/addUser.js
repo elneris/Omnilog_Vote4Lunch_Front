@@ -19,7 +19,7 @@ export function addUser(userData) {
     dispatch(addUserBegin());
     return (
       axios({
-        url: '/api/user/add',
+        url: 'http://localhost/api/user/add',
         method: 'post',
         data: {
           pseudo: userData.pseudo,

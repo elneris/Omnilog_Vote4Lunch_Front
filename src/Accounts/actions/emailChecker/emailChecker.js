@@ -17,7 +17,7 @@ export const checkEmailFailure = error => ({
 export function checkEmail(email) {
   return (dispatch) => {
     dispatch(checkEmailBegin());
-    const url = `/api/user/exists?email=${email}`;
+    const url = `http://localhost/api/user/exists?email=${email}`;
     return (
       axios.get(url)
         .then(payload => dispatch(checkEmailSuccess(payload.data)))
