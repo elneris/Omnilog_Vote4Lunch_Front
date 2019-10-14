@@ -27,11 +27,13 @@ export const createAVoteFailure = error => ({
 });
 
 export function createAVote(pseudo, email, title, date, time, endDate, endTime) {
+  const token = localStorage.getItem('token');
   return (dispatch) => {
     dispatch(createAVoteBegin());
     return (
       axios({
         url: 'http://localhost/api/vote/add',
+        headers: { Authorization: `Bearer ${token}` },
         method: 'post',
         data: {
           pseudo,
