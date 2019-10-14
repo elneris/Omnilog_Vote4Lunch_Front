@@ -14,6 +14,7 @@ class LogoutView extends Component {
     localStorage.removeItem('pseudo');
     localStorage.removeItem('email');
     localStorage.removeItem('authenticated');
+    localStorage.removeItem('token');
     resetVD();
     resetUD();
   }

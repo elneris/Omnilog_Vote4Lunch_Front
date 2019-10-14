@@ -16,11 +16,14 @@ export default () => (
           <Col>
             <p className="text-center">
               Ce site est réalisé avec React Redux,
-              servi par NodeJS avec une base de données Postgresql.<br />
+              servi par Symfony avec une base de données MySql.<br />
               Il est hébergé grâce à Heroku.
             </p>
             <p className="text-center">
                 Le code est hébergé sur Github, il est visible <a href="https://github.com/Humch/vote4lunch" className="text-white">ici</a>
+            </p>
+            <p className="text-center">
+                Front by Fabien - Back by Elnéris
             </p>
           </Col>
         </Row>

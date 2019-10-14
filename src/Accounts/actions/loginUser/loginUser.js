@@ -18,20 +18,20 @@ export const resetLoginFailure = () => ({
   type: 'RESET_LOGIN_FAILURE',
 });
 
-export function loginUser(pseudo, password) {
+export function loginUser(username, password) {
   return (dispatch) => {
     dispatch(loginUserBegin());
     return (
       axios({
-        url: 'http://localhost/api/user/login',
+        url: 'http://localhost/api/login_check',
         method: 'post',
         data: {
-          pseudo,
+          username,
           password,
         }
       })
         .then((payload) => {
-          if (payload.data.login) {
+          if (payload.data.token) {
             dispatch(loginUserSuccess(payload.data));
           } else {
             const error = new Error('votre pseudo ou votre mot de passe est erroné');
