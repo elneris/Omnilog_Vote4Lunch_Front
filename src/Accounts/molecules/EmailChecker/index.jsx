@@ -17,11 +17,11 @@ const EmailChecker = ({ emailChecker }) => {
       />
     );
   }
-  if (!emailChecker.payload.exist) {
-    return (<ValueChecker check />);
+  if (emailChecker.payload) {
+    return (<ValueChecker check={false} />);
   }
   return (
-    <ValueChecker check={false} />
+    <ValueChecker check />
   );
 };
 

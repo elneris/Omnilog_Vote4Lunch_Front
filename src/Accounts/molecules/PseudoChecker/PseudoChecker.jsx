@@ -8,6 +8,7 @@ import { faSpinner } from '@fortawesome/free-solid-svg-icons';
 
 import { ValueChecker } from '../../../Core';
 
+// eslint-disable-next-line react/prop-types
 const PseudoChecker = ({ payload, loading }) => {
   let rendering = '';
   if (loading) {
@@ -17,10 +18,10 @@ const PseudoChecker = ({ payload, loading }) => {
         spin
       />
     );
-  } else if (!payload.exist) {
-    rendering = <ValueChecker check />;
-  } else {
+  } else if (payload) {
     rendering = <ValueChecker check={false} />;
+  } else {
+    rendering = <ValueChecker check />;
   }
   return (
     <span>
@@ -30,9 +31,6 @@ const PseudoChecker = ({ payload, loading }) => {
 };
 
 PseudoChecker.propTypes = {
-  payload: PropTypes.shape({
-    exist: PropTypes.bool.isRequired
-  }),
   loading: PropTypes.bool.isRequired,
 };
 

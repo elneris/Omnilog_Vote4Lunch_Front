@@ -17,10 +17,10 @@ export const checkPseudoFailure = error => ({
 export function checkPseudo(pseudo) {
   return (dispatch) => {
     dispatch(checkPseudoBegin());
-    const url = `http://localhost/api/user/exists?pseudo=${pseudo}`;
+    const url = `http://localhost/api/users?pseudo=${pseudo}`;
     return (
       axios.get(url)
-        .then(payload => dispatch(checkPseudoSuccess(payload.data)))
+        .then(payload => dispatch(checkPseudoSuccess(payload.data['hydra:totalItems'])))
         .catch(error => dispatch(checkPseudoFailure(error)))
     );
   };

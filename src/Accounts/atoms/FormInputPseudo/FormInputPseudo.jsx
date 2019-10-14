@@ -9,7 +9,7 @@ import { formInputPseudo } from '../../actions';
 const FormInputPseudo = ({ pseudo, exist, formInputPseudo: formInputPseudoAction }) => {
   let renderExist = '';
 
-  if (exist) {
+  if (exist > 0) {
     renderExist = 'is-invalid';
   }
   return (
@@ -33,7 +33,7 @@ FormInputPseudo.propTypes = {
 
 const mstp = ({ userData, pseudoChecker }) => ({
   pseudo: userData.pseudo,
-  exist: pseudoChecker.payload.exist
+  exist: pseudoChecker.payload
 });
 
 const mdtp = dispatch => bindActionCreators({ formInputPseudo }, dispatch);

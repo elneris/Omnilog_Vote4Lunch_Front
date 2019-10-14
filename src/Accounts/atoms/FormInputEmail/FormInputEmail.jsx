@@ -9,7 +9,7 @@ import { formInputEmail } from '../../actions';
 const FormInputEmail = ({ email, exist, formInputEmail: formInputEmailAction }) => {
   let renderExist = '';
 
-  if (exist) {
+  if (exist > 0) {
     renderExist = 'is-invalid';
   }
 
@@ -34,7 +34,7 @@ FormInputEmail.propTypes = {
 
 const mstp = ({ userData, emailChecker }) => ({
   email: userData.email,
-  exist: emailChecker.payload.exist,
+  exist: emailChecker.payload,
 });
 
 const mdtp = dispatch => bindActionCreators({ formInputEmail }, dispatch);
