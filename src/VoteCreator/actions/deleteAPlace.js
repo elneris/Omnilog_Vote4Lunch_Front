@@ -19,8 +19,8 @@ export function deleteAPlace(voteId, placeId) {
     dispatch(deleteAPlaceBegin());
     return (
       axios({
-        url: 'http://localhost/api/vote/del/place',
-        method: 'post',
+        url: `http://localhost/api/votes/${voteId}/del_place`,
+        method: 'put',
         data: {
           vote_id: voteId,
           place_id: placeId,
