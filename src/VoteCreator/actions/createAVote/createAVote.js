@@ -32,7 +32,7 @@ export function createAVote(pseudo, email, title, date, time, endDate, endTime) 
     dispatch(createAVoteBegin());
     return (
       axios({
-        url: 'http://localhost/api/vote/add',
+        url: 'http://localhost/api/votes',
         headers: { Authorization: `Bearer ${token}` },
         method: 'post',
         data: {
@@ -40,7 +40,7 @@ export function createAVote(pseudo, email, title, date, time, endDate, endTime) 
           email,
           title,
           date: `${date} ${time}`,
-          end_date: `${endDate} ${endTime}`,
+          endDate: `${endDate} ${endTime}`,
         }
       })
         .then(async (result) => {
