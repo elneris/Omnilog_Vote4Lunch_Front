@@ -19,11 +19,10 @@ export function addAPlace(voteId, placeId) {
     dispatch(addAPlaceBegin());
     return (
       axios({
-        url: 'http://localhost/api/vote/add/place',
-        method: 'post',
+        url: `http://localhost/api/votes/${voteId}`,
+        method: 'put',
         data: {
-          vote_id: voteId,
-          place_id: placeId,
+          places: [`/api/places/${placeId}`],
         }
       })
         .then(result => dispatch(addAPlaceSuccess(result.data)))
