@@ -20,11 +20,13 @@ export const deleteAVoteInit = () => ({
 });
 
 export function deleteAVote(voteUrl) {
+  const token = localStorage.getItem('token');
   return (dispatch) => {
     dispatch(deleteAVoteBegin());
     return (
       axios({
         url: 'http://localhost/api/votes/delete',
+        headers: { Authorization: `Bearer ${token}` },
         method: 'delete',
         data: {
           vote_url: voteUrl,

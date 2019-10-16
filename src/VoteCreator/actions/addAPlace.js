@@ -15,11 +15,13 @@ export const addAPlaceFailure = error => ({
 });
 
 export function addAPlace(voteId, placeId) {
+  const token = localStorage.getItem('token');
   return (dispatch) => {
     dispatch(addAPlaceBegin());
     return (
       axios({
         url: `http://localhost/api/votes/${voteId}/add_place`,
+        headers: { Authorization: `Bearer ${token}` },
         method: 'put',
         data: {
           vote_id: voteId,

@@ -26,7 +26,7 @@ export function getVoiceCount(voteUrl, placeId) {
           const url = `http://localhost/api/voices/count/all?vote_id=${vote.data['hydra:member'][0].id}&place_id=${placeId}`;
           return axios
             .get(url)
-            .then(result => ({ count: result.data.count, vote_id: vote.data.id }));
+            .then(result => ({ count: result.data.count, vote_id: vote.data['hydra:member'][0].id }));
         })
         .then((result) => {
           dispatch(getVoiceCountSuccess(result.count, result.vote_id, placeId));

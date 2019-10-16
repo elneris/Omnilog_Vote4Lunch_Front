@@ -15,11 +15,13 @@ export const deleteAPlaceFailure = error => ({
 });
 
 export function deleteAPlace(voteId, placeId) {
+  const token = localStorage.getItem('token');
   return (dispatch) => {
     dispatch(deleteAPlaceBegin());
     return (
       axios({
         url: `http://localhost/api/votes/${voteId}/del_place`,
+        headers: { Authorization: `Bearer ${token}` },
         method: 'put',
         data: {
           vote_id: voteId,

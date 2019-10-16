@@ -19,7 +19,7 @@ export function getUserVoices(pseudo, email, votesUrl) {
     dispatch(getUserVoicesBegin());
     return (
       axios
-        .get(`http://localhost/api/voice/get/all/foruser?pseudo=${pseudo}&email=${email}&votes_url=${JSON.stringify(votesUrl)}`)
+        .get(`http://localhost/api/voices/get/all/for_user?pseudo=${pseudo}&email=${email}&votes_url=${votesUrl}`)
         .then(voices => dispatch(getUserVoicesSuccess(voices.data)))
         .catch(error => dispatch(getUserVoicesFailure(error)))
     );
