@@ -24,8 +24,8 @@ export function deleteAVote(voteUrl) {
     dispatch(deleteAVoteBegin());
     return (
       axios({
-        url: 'http://localhost/api/vote/del',
-        method: 'post',
+        url: 'http://localhost/api/votes/delete',
+        method: 'delete',
         data: {
           vote_url: voteUrl,
         }

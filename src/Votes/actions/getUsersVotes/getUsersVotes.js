@@ -14,7 +14,8 @@ export const getUsersVotesFailure = error => ({
   error,
 });
 
-export function getUsersVotes(pseudo) {
+export function getUsersVotes() {
+  const pseudo = localStorage.getItem('pseudo');
   return (dispatch) => {
     dispatch(getUsersVotesBegin());
     return (
