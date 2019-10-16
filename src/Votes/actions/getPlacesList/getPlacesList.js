@@ -19,8 +19,8 @@ export function getPlacesList(voteUrl) {
     dispatch(getPlacesListBegin());
     return (
       axios({
-        url: 'http://localhost/api/votes/places',
-        method: 'post',
+        url: `http://localhost/api/votes/places?vote_url=${voteUrl}`,
+        method: 'get',
         data: {
           vote_url: voteUrl,
         }
