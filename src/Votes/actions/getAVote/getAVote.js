@@ -19,9 +19,9 @@ export function getAVote(voteUrl) {
     dispatch(getAVoteBegin());
     return (
       axios
-        .get(`http://localhost/api/vote/getVote?vote_url=${voteUrl}`)
+        .get(`http://localhost/api/votes?url=${voteUrl}`)
         .then((vote) => {
-          dispatch(getAVoteSuccess(vote.data));
+          dispatch(getAVoteSuccess(vote.data['hydra:member'][0]));
         })
         .catch(error => dispatch(getAVoteFailure(error)))
     );

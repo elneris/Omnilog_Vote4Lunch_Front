@@ -48,8 +48,8 @@ class PlaceCard extends Component {
     const { voteUrl } = this.props;
 
     const voteId = await axios
-      .get(`http://localhost/api/vote/getVote?vote_url=${voteUrl}`)
-      .then(result => result.data.id);
+      .get(`http://localhost/api/votes?url=${voteUrl}`)
+      .then(result => result.data['hydra:member'].id);
     await this.setState({
       voteId,
     });
