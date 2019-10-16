@@ -15,7 +15,9 @@ export const addVoiceFailure = error => ({
   error,
 });
 
-export function addVoice(voteUrl, placeId, pseudo, email) {
+export function addVoice(voteUrl, placeId) {
+  const pseudo = localStorage.getItem('pseudo');
+  const email = localStorage.getItem('email');
   return (dispatch) => {
     dispatch(addVoiceBegin());
     return (

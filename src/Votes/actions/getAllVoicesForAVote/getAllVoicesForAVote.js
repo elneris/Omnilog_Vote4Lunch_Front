@@ -18,8 +18,13 @@ export function getAllVoicesForAVote(voteUrl) {
   return (dispatch) => {
     dispatch(getAllVoicesForAVoteBegin());
     return (
-      axios
-        .get(`https://localhost/api/voice/get/all/forvote?vote_url=${voteUrl}`)
+      axios({
+        url: `http://localhost/api/voices/get/all?vote_url=${voteUrl}`,
+        method: 'get',
+        data: {
+          vote_url: voteUrl,
+        }
+      })
         .then((result) => {
           dispatch(getAllVoicesForAVoteSuccess(result.data));
         })
