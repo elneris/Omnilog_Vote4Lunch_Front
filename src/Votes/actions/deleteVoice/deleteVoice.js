@@ -20,8 +20,8 @@ export function deleteVoice(voteUrl, placeId, pseudo, email) {
     dispatch(deleteVoiceBegin());
     return (
       axios({
-        url: 'http://localhost/api/voice/delete',
-        method: 'post',
+        url: 'http://localhost/api/voices/del',
+        method: 'delete',
         data: {
           vote_url: voteUrl,
           place_id: placeId,

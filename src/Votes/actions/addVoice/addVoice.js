@@ -20,7 +20,7 @@ export function addVoice(voteUrl, placeId, pseudo, email) {
     dispatch(addVoiceBegin());
     return (
       axios({
-        url: 'http://localhost/api/voice/add',
+        url: 'http://localhost/api/voices/add',
         method: 'post',
         data: {
           vote_url: voteUrl,
