@@ -95,9 +95,7 @@ class PlaceCard extends Component {
       const filteredVoiceCount = voiceCount
         .filter(
           element => element.place === restaurant.id
-          && element.voteId === voteId
         );
-
       if (filteredVoiceCount.length !== 0) {
         [filteredVoiceCountValue] = filteredVoiceCount;
       }
